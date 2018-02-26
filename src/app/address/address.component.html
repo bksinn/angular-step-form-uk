@@ -1,3 +1,7 @@
+
+<!--TODO: Fill in city/state info by zip code-->
+
+
 <form #addressForm="ngForm" class="editForm" novalidate>
     <div class="tab-pane fade in active" [@flyInOut]="'in'">
         <h4 class="head text-center">{{title}}</h4>
@@ -30,6 +34,62 @@
                             <label class="control-label" for="zip">Zip</label>
                             <input class="form-control input-md" #zip="ngModel" required id="zip" name="zip" type="text" placeholder="Zip" [(ngModel)]="address.zip">
                             <div class="alert alert-danger" [hidden]="zip.valid">Zip is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-xs-12 col-sm-4'>
+                        <div class="form-group">
+                            <label class="control-label" for="residentialStatus">Residential Status</label>
+                            <select class="form-control input-md" #residentialStatus="ngModel" required name="residentialStatus" [(ngModel)]="address.residentialStatus">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="HomeOwner">Home Owner</option>
+                                    <option value="PrivateTenant">Private Tenant</option>
+                                    <option value="CouncilTenant">Council Tenant</option>
+                                    <option value="LivingWithParents">Living With Parents</option>
+                                    <option value="Other">Other</option>
+                            </select>
+                            <div class="alert alert-danger" [hidden]="residentialStatus.valid">Residential status is required</div>
+                        </div>
+                    </div>
+                    <div class='col-xs-12 col-sm-12'>
+                        <label class="control-label" for="addressTime">Time at address</label>
+                        <div class="form-group">
+                            <div style="width: 49%; display:inline-block;" class='half-width'>
+                                <select class="form-control input-md" #addressYears="ngModel" required name="addressYears" [(ngModel)]="address.addressYears">
+                                    <option value="" disabled selected>Years</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10+</option>
+                            </select>
+                                <div class="alert alert-danger" [hidden]="addressYears.valid">Years required</div>
+                            </div>
+                            <div style="width: 49%; display:inline-block;" class='half-width'>
+                                <select class="form-control input-md" #addressMonths="ngModel" required name="addressMonths" [(ngModel)]="address.addressMonths">
+                                <option value="" disabled selected>Months</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select>
+                                <div class="alert alert-danger" [hidden]="addressMonths.valid">Months required</div>
+                            </div>
                         </div>
                     </div>
                 </div>

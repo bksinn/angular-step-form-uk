@@ -1,0 +1,148 @@
+<form #incomeForm="ngForm" class="editForm" novalidate>
+    <div class="tab-pane fade in active" [@flyInOut]="'in'">
+        <h4 class="head text-center">{{title}}</h4>
+        <br/>
+        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
+            <div class='row'>
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="incomeSource">Income Source</label>
+                        <select class="form-control input-md" #incomeSource="ngModel" required name="incomesource" [(ngModel)]="income.incomeSource">
+                            <option value="" disabled selected>Select</option>
+                            <option value="EmployedFullTime">Employed Full Time</option>
+                            <option value="EmployedPartTime">Employed Part Time</option>
+                            <option value="EmployedTemporary">Employed Temporary</option>
+                            <option value="SelfEmployed">Self Employed</option>
+                            <option value="Benefits">Benefits</option>
+                            <option value="DisabilityBenefits">Disability Benefits</option>
+                            <option value="Pension">Pension</option>
+                        </select>
+                        <div class="alert alert-danger" [hidden]="incomeSource.valid">Income source is required</div>
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="workphone">Employer Name</label>
+                        <input class="form-control input-md" #employerName="ngModel" required name="employername"
+                            type="text" placeholder="Employer name" [(ngModel)]="income.employerName">
+                        <div class="alert alert-danger" [hidden]="employerName.valid">Employer name is required</div>
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="paymentType">Payment Type</label>
+                        <select class="form-control input-md" #paymentType="ngModel" required name="paymentType" 
+                        [(ngModel)]="income.paymentType">
+                        <option value="" disabled selected>Select</option>
+                        <option value="RegionalDirectDeposit">Direct Deposit (US Bank)</option>
+                        <option value="NonRegionalDirectDeposit">Direct Deposit (Other country)</option>
+                        <option value="Cheque">Check</option>
+                        <option value="Cash">Cash</option>
+                        </select>
+                        <div class="alert alert-danger" [hidden]="paymentType.valid">Income source is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-xs-12 col-sm-12'>
+                    <label class="control-label" for="employmentTime">Time at employer</label>
+                    <div class="form-group">
+                        <div style="width: 49%; display:inline-block;" class='half-width'>
+                            <select class="form-control input-md" #employmentYears="ngModel" required name="employmentyears" [(ngModel)]="income.employmentYears">
+                                <option value="" disabled selected>Years</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10+</option>
+                            </select>
+                        <div class="alert alert-danger" [hidden]="employmentYears.valid">Years required</div>
+                        </div>
+                        <div style="width: 49%; display:inline-block;" class='half-width'>
+                            <select class="form-control input-md" #employmentMonths="ngModel" required name="employmentmonths" [(ngModel)]="income.employmentMonths">
+                                <option value="" disabled selected>Months</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select>
+                            <div class="alert alert-danger" [hidden]="employmentMonths.valid">Months required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="payFrequency">Pay Frequency</label>
+                        <select class="form-control input-md" #payFrequency="ngModel" required name="payfrequency" 
+                        [(ngModel)]="income.payFrequency">
+                            <option value="" disabled selected>Select</option>
+                            <option>Weekly</option>
+                            <option>Bi-Weekly</option>
+                            <option>Semi-Monthly</option>
+                            <option>Monthly</option>
+                        </select>
+                        <div class="alert alert-danger" [hidden]="payFrequency.valid">Pay frequency is required</div>
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="netamount">Net Monthly Amount</label>
+                        <select class="form-control input-md" #netAmount="ngModel" required name="netAmount" [(ngModel)]="income.netAmount">
+                            <option value="" disabled selected>Select</option>
+                            <option value="250">$500 or less</option>
+                            <option value="675">$501 - $750</option>
+                            <option value="900">$751 - $1,000</option>
+                            <option value="1150">$1,001 - $1,250</option>
+                            <option value="1400">$1,251 - $1,500</option>
+                            <option value="1700">$1,501 - $1,750</option>
+                            <option value="1875">$1,751 - $2,000</option>
+                            <option value="2175">$2,001 - $2,250</option>
+                            <option value="2375">$2,251 - $2,500</option>
+                            <option value="2675">$2,501 - $2,750</option>
+                            <option value="2875">$2,751 - $3,000</option>
+                            <option value="3125">$3,001 - $3,250</option>
+                            <option value="3375">$3,251 - $3,500</option>
+                            <option value="3675">$3,501 - $3,750</option>
+                            <option value="3875">$3,751 - $4,000</option>
+                            <option value="4125">$4,001 - $4,250</option>
+                            <option value="4375">$4,251 - $4,500</option>
+                            <option value="4675">$4,501 - $4,750</option>
+                            <option value="4875">$4,751 - $5,000</option>
+                            <option value="5000">$5,000 +</option>
+                        </select>
+                        <div class="alert alert-danger" [hidden]="netAmount.valid">Net amount is required</div>
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-4'>
+                    <div class="form-group">
+                        <label class="control-label" for="jobtitle">Job Title</label>
+                        <input class="form-control input-md" #jobTitle="ngModel" required name="jobtitle" type="text" placeholder="Job Title" [(ngModel)]="income.jobTitle">
+                        <div class="alert alert-danger" [hidden]="jobTitle.valid">Job title is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(incomeForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+            <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!incomeForm.valid" (click)="goToNext(incomeForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+    </div>               
+</form>                    
+            

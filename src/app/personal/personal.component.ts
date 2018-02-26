@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Personal } from '../data/formData.model';
-import { FormDataService } from '../data/formData.service';
-import {
+import { Input } from '@angular/core';
+import { 
     trigger,
     state,
     style,
     animate,
     transition
 } from '@angular/animations';
+import { Personal } from '../data/formData.model';
+import { FormDataService } from '../data/formData.service';
 
 @Component({
-    selector: 'mt-wizard-personal'
-    , templateUrl: './personal.component.html',
+    selector: 'mt-wizard-personal', 
+    templateUrl: './personal.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({ transform: 'translateX(0)' })),
@@ -52,8 +52,9 @@ export class PersonalComponent implements OnInit {
 
     goToNext(form: any) {
         if (this.save(form)) {
-            // Navigate to the work page
-            this.router.navigate(['/work']);
+            // Navigate to the income page
+            this.router.navigate(['/income']);
         }
     }
 }
+

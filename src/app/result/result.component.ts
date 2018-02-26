@@ -11,8 +11,8 @@ import {
 } from '@angular/animations';
 
 @Component({
-    selector: 'mt-wizard-result'
-    , templateUrl: './result.component.html',
+    selector: 'mt-wizard-result',
+    templateUrl: './result.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({ transform: 'translateX(0)' })),

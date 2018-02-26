@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Address } from '../data/formData.model';
-import { FormDataService } from '../data/formData.service';
+import { Input } from '@angular/core';
 import {
     trigger,
     state,
@@ -10,10 +8,12 @@ import {
     animate,
     transition
 } from '@angular/animations';
+import { Income } from '../data/formData.model';
+import { FormDataService } from '../data/formData.service';
 
 @Component({
-    selector: 'mt-wizard-address', 
-    templateUrl: './address.component.html',
+    selector: 'mt-wizard-income',
+    templateUrl: './income.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({ transform: 'translateX(0)' })),
@@ -28,17 +28,17 @@ import {
     ]
 })
 
-export class AddressComponent implements OnInit {
-    title = 'Where do you live?';
-    address: Address;
+export class IncomeComponent implements OnInit {
+    title = 'Please provide information about your income';
+    income: Income;
     form: any;
 
     constructor(private router: Router, private formDataService: FormDataService) {
     }
 
     ngOnInit() {
-        this.address = this.formDataService.getAddress();
-        console.log('Address feature loaded!');
+        this.income = this.formDataService.getIncome();
+        console.log('Income feature loaded!');
     }
 
     save(form: any): boolean {
@@ -46,21 +46,22 @@ export class AddressComponent implements OnInit {
             return false;
         }
 
-        this.formDataService.setAddress(this.address);
+        this.formDataService.setIncome(this.income);
         return true;
     }
 
     goToPrevious(form: any) {
         if (this.save(form)) {
-            // Navigate to the income page
-            this.router.navigate(['/income']);
+            // Navigate to the personal page
+            this.router.navigate(['/personal']);
         }
     }
 
     goToNext(form: any) {
         if (this.save(form)) {
-            // Navigate to the bank page
-            this.router.navigate(['/bank']);
+            // Navigate to the address page
+            this.router.navigate(['/address']);
         }
     }
 }
+

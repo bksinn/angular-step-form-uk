@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Address } from '../data/formData.model';
+import { Bank } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import {
     trigger,
@@ -12,8 +11,8 @@ import {
 } from '@angular/animations';
 
 @Component({
-    selector: 'mt-wizard-address', 
-    templateUrl: './address.component.html',
+    selector: 'mt-wizard-bank',
+    templateUrl: './bank.component.html',
     animations: [
         trigger('flyInOut', [
             state('in', style({ transform: 'translateX(0)' })),
@@ -28,17 +27,17 @@ import {
     ]
 })
 
-export class AddressComponent implements OnInit {
-    title = 'Where do you live?';
-    address: Address;
+export class BankComponent implements OnInit {
+    title = 'Please enter your bank information';
+    bank: Bank;
     form: any;
 
     constructor(private router: Router, private formDataService: FormDataService) {
     }
 
     ngOnInit() {
-        this.address = this.formDataService.getAddress();
-        console.log('Address feature loaded!');
+        this.bank = this.formDataService.getBank();
+        console.log('Bank feature loaded!');
     }
 
     save(form: any): boolean {
@@ -46,21 +45,21 @@ export class AddressComponent implements OnInit {
             return false;
         }
 
-        this.formDataService.setAddress(this.address);
+        this.formDataService.setBank(this.bank);
         return true;
     }
 
     goToPrevious(form: any) {
         if (this.save(form)) {
-            // Navigate to the income page
-            this.router.navigate(['/income']);
+            // Navigate to the personal page
+            this.router.navigate(['/address']);
         }
     }
 
     goToNext(form: any) {
         if (this.save(form)) {
-            // Navigate to the bank page
-            this.router.navigate(['/bank']);
+            // Navigate to the address page
+            this.router.navigate(['/result']);
         }
     }
 }
