@@ -19,10 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormDataService } from './data/formData.service';
 import { WorkflowService } from './workflow/workflow.service';
 
+/* Animation Modules */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
                 { provide: FormDataService, useClass: FormDataService },

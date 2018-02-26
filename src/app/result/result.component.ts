@@ -2,10 +2,29 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
 
 @Component({
     selector: 'mt-wizard-result'
-    , templateUrl: './result.component.html'
+    , templateUrl: './result.component.html',
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({ transform: 'translateX(0)' })),
+            transition('void => *', [
+                style({ transform: 'translateX(-100%)' }),
+                animate(100)
+            ]),
+            transition('* => void', [
+                animate(100, style({ transform: 'translateX(100%)' }))
+            ])
+        ])
+    ]
 })
 
 export class ResultComponent implements OnInit {

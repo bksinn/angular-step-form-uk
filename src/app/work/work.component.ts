@@ -2,10 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormDataService } from '../data/formData.service';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
+
 
 @Component({
     selector: 'mt-wizard-work'
-    , templateUrl: './work.component.html'
+    , templateUrl: './work.component.html',
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({ transform: 'translateX(0)' })),
+            transition('void => *', [
+                style({ transform: 'translateX(-100%)' }),
+                animate(100)
+            ]),
+            transition('* => void', [
+                animate(100, style({ transform: 'translateX(100%)' }))
+            ])
+        ])
+    ]
 })
 
 export class WorkComponent implements OnInit {
