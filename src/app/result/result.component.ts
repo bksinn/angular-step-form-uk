@@ -28,7 +28,7 @@ import {
 })
 
 export class ResultComponent implements OnInit {
-    title = 'Thanks for staying tuned!';
+    title = 'Review your application';
     @Input() formData: FormData;
     isFormValid: boolean = false;
 

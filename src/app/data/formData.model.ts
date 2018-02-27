@@ -1,4 +1,6 @@
 export class FormData {
+    loanAmount: string = '';
+    termPeriod: string = '';
     prefix: string = '';
     firstName: string = '';
     lastName: string = '';
@@ -11,6 +13,8 @@ export class FormData {
     driversLicense: string = '';
     issuingState: string = '';
     militaryService: string = '';
+
+
     incomeSource: string = '';
     employerName: string = '';
     paymentType: string = '';
@@ -19,9 +23,7 @@ export class FormData {
     payFrequency: string = '';
     netAmount: string = '';
     jobTitle: string = '';
-    bankName: string = '';
-    accountNumber: string = '';
-    routingNumber: string = '';
+
     street: string = '';
     city: string = '';
     state: string = '';
@@ -30,7 +32,16 @@ export class FormData {
     addressYears: string = '';
     residentialStatus: string = '';
 
+    bankName: string = '';
+    accountNumber: string = '';
+    routingNumber: string = '';
+    bankTimeYears: string = '';
+    bankTimeMonths: string = '';
+    accountType: string = '';
+
     clear() {
+        this.loanAmount = '';
+        this.termPeriod = '';
         this.prefix = '';
         this.firstName = '';
         this.lastName = '';
@@ -43,6 +54,7 @@ export class FormData {
         this.driversLicense = '';
         this.issuingState = '';
         this.driversLicense = '';
+
         this.incomeSource = '';
         this.employerName = '';
         this.paymentType = '';
@@ -51,20 +63,27 @@ export class FormData {
         this.payFrequency = '';
         this.netAmount = '';
         this.jobTitle = '';
-        this.bankName = '';
-        this.accountNumber = '';
-        this.routingNumber = '';
+
         this.street = '';
         this.city = '';
         this.state = '';
         this.zip = '';
         this.addressMonths = '';
-        this.addressYears= '';
+        this.addressYears = '';
         this.residentialStatus = '';
+
+        this.bankName = '';
+        this.accountNumber = '';
+        this.routingNumber = '';
+        this.bankTimeYears = '';
+        this.bankTimeMonths = '';
+        this.accountType = '';
     }
 }
 
 export class Personal {
+    loanAmount: string = '';
+    termPeriod: string = '';
     prefix: string = '';
     firstName: string = '';
     lastName: string = '';
@@ -104,4 +123,7 @@ export class Bank {
     bankName: string = '';
     accountNumber: string = '';
     routingNumber: string = '';
+    bankTimeYears: string = '';
+    bankTimeMonths: string = '';
+    accountType: string = '';
 }

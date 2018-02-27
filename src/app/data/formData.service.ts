@@ -20,6 +20,8 @@ export class FormDataService {
     getPersonal(): Personal {
         // Return the Personal data
         var personal: Personal = {
+            loanAmount: this.formData.loanAmount,
+            termPeriod: this.formData.termPeriod,
             prefix: this.formData.prefix,
             firstName: this.formData.firstName,
             lastName: this.formData.lastName,
@@ -39,6 +41,8 @@ export class FormDataService {
     setPersonal(data: Personal) {
         // Update the Personal data only when the Personal Form had been validated successfully
         this.isPersonalFormValid = true;
+        this.formData.loanAmount = data.loanAmount;
+        this.formData.termPeriod = data.termPeriod;
         this.formData.prefix = data.prefix;
         this.formData.firstName = data.firstName;
         this.formData.lastName = data.lastName;
@@ -90,7 +94,10 @@ export class FormDataService {
         var bank: Bank = {
             bankName: this.formData.bankName,
             accountNumber: this.formData.accountNumber,
-            routingNumber: this.formData.routingNumber
+            routingNumber: this.formData.routingNumber,
+            bankTimeYears: this.formData.bankTimeYears,
+            bankTimeMonths: this.formData.bankTimeMonths,
+            accountType: this.formData.accountType
         };
         return bank;
     }
@@ -101,6 +108,9 @@ export class FormDataService {
         this.formData.bankName = data.bankName;
         this.formData.accountNumber = data.accountNumber;
         this.formData.routingNumber = data.routingNumber;
+        this.formData.bankTimeYears = data.bankTimeYears;
+        this.formData.bankTimeMonths = data.bankTimeMonths;
+        this.formData.accountType = data.accountType;
         // Validate Bank Step in Workflow
         this.workflowService.validateStep(STEPS.bank);
     }

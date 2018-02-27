@@ -46,6 +46,11 @@
     color: #fff
 }
 
+#status-buttons a.active span.round-tabs.five { 
+    background: #999;
+    color: #fff
+}
+
 
 .iradio_buttons {
     display: inline-block;
