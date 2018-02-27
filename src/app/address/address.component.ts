@@ -29,7 +29,8 @@ import {
 })
 
 export class AddressComponent implements OnInit {
-    title = 'Where do you live?';
+    title1 = 'Where do you live?';
+    title2 = 'How long at this address?';
     address: Address;
     form: any;
 
@@ -51,6 +52,9 @@ export class AddressComponent implements OnInit {
     }
 
     goToPrevious(form: any) {
+        // Scrolls to top of the page
+        window.scrollTo(0, 0);
+
         if (this.save(form)) {
             // Navigate to the income page
             this.router.navigate(['/income']);
@@ -58,6 +62,9 @@ export class AddressComponent implements OnInit {
     }
 
     goToNext(form: any) {
+        // Scrolls to top of the page
+        window.scrollTo(0, 0);
+
         if (this.save(form)) {
             // Navigate to the bank page
             this.router.navigate(['/bank']);

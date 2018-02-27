@@ -72,3 +72,32 @@
 .iradio_buttons.checked {
     background-position: -168px 0;
 }
+
+h4.head.text-center:not(:first-child) {
+    margin-top: 25px;
+    text-align: left;
+}
+
+form[name=personalForm] h4.head.text-center:first-child {
+    background-color: rgb(34, 194, 34);
+    color: white;
+    padding: 25px;
+}
+
+form[name=incomeForm] h4.head.text-center:first-child {
+    background-color:#febe29;
+    color: white;
+    padding: 25px;
+}
+
+form[name=addressForm] h4.head.text-center:first-child {
+    background-color:#3e5e9a;
+    color: white;
+    padding: 25px;
+}
+
+form[name=bankForm] h4.head.text-center:first-child {
+    background-color:#f1685e;
+    color: white;
+    padding: 25px;
+}

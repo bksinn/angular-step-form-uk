@@ -29,7 +29,9 @@ import { FormDataService } from '../data/formData.service';
 })
 
 export class PersonalComponent implements OnInit {
-    title = 'Please tell us about yourself.';
+    title1 = "Tell us how much you'd like to borrow.";
+    title2 = 'Please tell us your name.';
+    title3 = "Please fill in your personal details.";
     personal: Personal;
     form: any;
 
@@ -39,6 +41,7 @@ export class PersonalComponent implements OnInit {
     ngOnInit() {
         this.personal = this.formDataService.getPersonal();
         console.log('Personal feature loaded!');
+        console.log(this.personal);
     }
 
     save(form: any): boolean {
@@ -51,6 +54,7 @@ export class PersonalComponent implements OnInit {
     }
 
     goToNext(form: any) {
+        window.scrollTo(0, 0);
         if (this.save(form)) {
             // Navigate to the income page
             this.router.navigate(['/income']);

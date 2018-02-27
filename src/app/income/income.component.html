@@ -1,4 +1,4 @@
-<form #incomeForm="ngForm" class="editForm" novalidate>
+<form #incomeForm="ngForm" name="incomeForm" class="editForm" novalidate>
     <div class="tab-pane fade in active" [@flyInOut]="'in'">
         <h4 class="head text-center">{{title}}</h4>
         <br/>
@@ -17,7 +17,7 @@
                             <option value="DisabilityBenefits">Disability Benefits</option>
                             <option value="Pension">Pension</option>
                         </select>
-                        <div class="alert alert-danger" [hidden]="incomeSource.valid">Income source is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="incomeSource.invalid && (incomeSource.dirty || incomeSource.touched)" [hidden]="incomeSource.valid">*Required</div>
                     </div>
                 </div>
                 <div class='col-xs-12 col-sm-4'>
@@ -25,7 +25,7 @@
                         <label class="control-label" for="workphone">Employer Name</label>
                         <input class="form-control input-md" #employerName="ngModel" required name="employername"
                             type="text" placeholder="Employer name" [(ngModel)]="income.employerName">
-                        <div class="alert alert-danger" [hidden]="employerName.valid">Employer name is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">*Required</div>
                     </div>
                 </div>
                 <div class='col-xs-12 col-sm-4'>
@@ -39,15 +39,16 @@
                         <option value="Cheque">Check</option>
                         <option value="Cash">Cash</option>
                         </select>
-                        <div class="alert alert-danger" [hidden]="paymentType.valid">Income source is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)" [hidden]="paymentType.valid">*Required</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class='col-xs-12 col-sm-12'>
                     <label class="control-label" for="employmentTime">Time at employer</label>
+                </div>
                     <div class="form-group">
-                        <div style="width: 49%; display:inline-block;" class='half-width'>
+                        <div class='col-xs-12 col-sm-6 half-width'>
                             <select class="form-control input-md" #employmentYears="ngModel" required name="employmentyears" [(ngModel)]="income.employmentYears">
                                 <option value="" disabled selected>Years</option>
                                 <option value="0">0</option>
@@ -62,9 +63,9 @@
                                 <option value="9">9</option>
                                 <option value="10">10+</option>
                             </select>
-                        <div class="alert alert-danger" [hidden]="employmentYears.valid">Years required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="employmentYears.invalid && (employmentYears.dirty || employmentYears.touched)" [hidden]="employmentYears.valid">*Required</div>
                         </div>
-                        <div style="width: 49%; display:inline-block;" class='half-width'>
+                        <div class='col-xs-12 col-sm-6 half-width'>
                             <select class="form-control input-md" #employmentMonths="ngModel" required name="employmentmonths" [(ngModel)]="income.employmentMonths">
                                 <option value="" disabled selected>Months</option>
                                 <option value="0">0</option>
@@ -80,10 +81,10 @@
                                 <option value="10">10</option>
                                 <option value="11">11</option>
                             </select>
-                            <div class="alert alert-danger" [hidden]="employmentMonths.valid">Months required</div>
+                            <div style="font-size: 12px; color: red;" *ngIf="employmentMonths.invalid && (employmentMonths.dirty || employmentMonths.touched)" [hidden]="employmentMonths.valid">*Required</div>
                         </div>
                     </div>
-                </div>
+                
             </div>
             <div class="row">
                 <div class='col-xs-12 col-sm-4'>
@@ -97,7 +98,7 @@
                             <option>Semi-Monthly</option>
                             <option>Monthly</option>
                         </select>
-                        <div class="alert alert-danger" [hidden]="payFrequency.valid">Pay frequency is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="payFrequency.invalid && (payFrequency.dirty || payFrequency.touched)" [hidden]="payFrequency.valid">*Required</div>
                     </div>
                 </div>
                 <div class='col-xs-12 col-sm-4'>
@@ -126,14 +127,14 @@
                             <option value="4875">$4,751 - $5,000</option>
                             <option value="5000">$5,000 +</option>
                         </select>
-                        <div class="alert alert-danger" [hidden]="netAmount.valid">Net amount is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">*Required</div>
                     </div>
                 </div>
                 <div class='col-xs-12 col-sm-4'>
                     <div class="form-group">
                         <label class="control-label" for="jobtitle">Job Title</label>
                         <input class="form-control input-md" #jobTitle="ngModel" required name="jobtitle" type="text" placeholder="Job Title" [(ngModel)]="income.jobTitle">
-                        <div class="alert alert-danger" [hidden]="jobTitle.valid">Job title is required</div>
+                        <div style="font-size: 12px; color: red;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">*Required</div>
                     </div>
                 </div>
             </div>

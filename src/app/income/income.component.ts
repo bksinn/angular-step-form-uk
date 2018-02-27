@@ -51,6 +51,9 @@ export class IncomeComponent implements OnInit {
     }
 
     goToPrevious(form: any) {
+        // Scrolls to top of the page
+        window.scrollTo(0, 0);
+
         if (this.save(form)) {
             // Navigate to the personal page
             this.router.navigate(['/personal']);
@@ -58,6 +61,9 @@ export class IncomeComponent implements OnInit {
     }
 
     goToNext(form: any) {
+        // Scrolls to top of the page
+        window.scrollTo(0, 0);
+
         if (this.save(form)) {
             // Navigate to the address page
             this.router.navigate(['/address']);
