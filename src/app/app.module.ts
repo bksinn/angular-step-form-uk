@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 /* App Root */
 import { AppComponent } from './app.component';
@@ -20,6 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
 /* Shared Service */
 import { FormDataService } from './data/formData.service';
 import { WorkflowService } from './workflow/workflow.service';
+import { ForbiddenValidatorDirective, 
+  JuriNameValidator, 
+  PhoneNumberValidator, 
+  EmailValidator, 
+  SSNValidator,
+  DOBValidator } from './shared/custom-validations.directive';
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,13 +35,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     { provide: FormDataService, useClass: FormDataService },
     { provide: WorkflowService, useClass: WorkflowService }
   ],
-  declarations: [AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, BankComponent, AddressComponent, ResultComponent],
+  declarations: [
+    AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
+    BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
+    JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator
+    ],
   bootstrap: [AppComponent]
 })
 

@@ -2,29 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Bank } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition
-} from '@angular/animations';
+// import {
+//     trigger,
+//     state,
+//     style,
+//     animate,
+//     transition
+// } from '@angular/animations';
 
 @Component({
     selector: 'mt-wizard-bank',
     templateUrl: './bank.component.html',
-    animations: [
-        trigger('flyInOut', [
-            state('in', style({ transform: 'translateX(0)' })),
-            transition('void => *', [
-                style({ transform: 'translateX(-100%)' }),
-                animate(100)
-            ]),
-            transition('* => void', [
-                animate(100, style({ transform: 'translateX(100%)' }))
-            ])
-        ])
-    ]
+    // animations: [
+    //     trigger('flyInOut', [
+    //         state('in', style({ transform: 'translateX(0)' })),
+    //         transition('void => *', [
+    //             style({ transform: 'translateX(-100%)' }),
+    //             animate(100)
+    //         ]),
+    //         transition('* => void', [
+    //             animate(100, style({ transform: 'translateX(100%)' }))
+    //         ])
+    //     ])
+    // ]
 })
 
 export class BankComponent implements OnInit {
