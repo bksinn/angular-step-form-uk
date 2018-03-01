@@ -198,8 +198,7 @@ function validateAge(): ValidatorFn {
         }
 
         let isValid = age >= 18;
-        console.log(isValid);
-        //console.log(age);
+        
         if (isValid) {
             return null;
         } else {

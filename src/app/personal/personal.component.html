@@ -110,12 +110,11 @@
                     <div class='col-xs-12 col-sm-5'>
                         <div class="form-group">
                             <label class="control-label" for="firstName">First Name</label>
-                            <input class="form-control input-md" #firstName="ngModel" required name="firstName" minlength="4" juriName type="text" placeholder="First Name"
+                            <input class="form-control input-md" #firstName="ngModel" required name="firstName" minlength="1" type="text" placeholder="First Name"
                                 [(ngModel)]="personal.firstName">
                             <div style="font-size: 12px; color: red;" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" [hidden]="firstName.valid">
                                 <div *ngIf="firstName.errors.required">*Required</div>
-                                <div *ngIf="firstName.errors.minlength">Min length is 4</div>
-                                <div *ngIf="firstName.errors.juriName">Name can only be Juri</div>
+                                <div *ngIf="firstName.errors.minlength">Min length is 1</div>
                             </div>
                         </div>
                     </div>
@@ -142,7 +141,7 @@
                                     [(ngModel)]="personal.homePhone">
                             <div style="font-size: 12px; color: red;" *ngIf="homePhone.invalid && (homePhone.dirty || homePhone.touched)" [hidden]="homePhone.valid">
                                 <div *ngIf="homePhone.errors.required">*Required</div>
-                                <div *ngIf="homePhone.errors.validatePhone">Please provide a valid phone number</div>
+                                <div *ngIf="homePhone.errors.validatePhone">Please use format XXX-XXX-XXX</div>
                             </div>
                         </div>
                     </div>

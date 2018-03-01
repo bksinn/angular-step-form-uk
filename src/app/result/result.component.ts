@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 // import {
@@ -46,4 +46,5 @@ export class ResultComponent implements OnInit {
         this.formData = this.formDataService.resetFormData();
         this.isFormValid = false;
     }
+
 }
