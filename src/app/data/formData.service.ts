@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FormData, Personal, Address, Income, Bank } from './formData.model';
+import { FormData, Personal, Address, Income, Bank, Result } from './formData.model';
 import { WorkflowService } from '../workflow/workflow.service';
 import { STEPS } from '../workflow/workflow.model';
 
@@ -13,6 +13,7 @@ export class FormDataService {
     // private isWorkFormValid: boolean = false;
     private isBankFormValid: boolean = false;
     private isAddressFormValid: boolean = false;
+    private isResultFormValid: boolean = true;
 
     constructor(private workflowService: WorkflowService) {
     }
@@ -143,6 +144,24 @@ export class FormDataService {
         this.workflowService.validateStep(STEPS.address);
     }
 
+    getResult(): Result {
+        // Return the Address data
+        var result: Result = {
+            isTCAccepted: this.formData.isTCAccepted,
+
+        };
+        return result;
+    }
+
+    setResult(data: Result) {
+        // Update the Address data only when the Address Form had been validated successfully
+        this.isResultFormValid = true;
+        this.formData.isTCAccepted = data.isTCAccepted;
+
+        // Validate Address Step in Workflow
+        this.workflowService.validateStep(STEPS.result);
+    }
+
     getFormData(): FormData {
         // Return the entire Form Data
         return this.formData;
@@ -153,7 +172,7 @@ export class FormDataService {
         this.workflowService.resetSteps();
         // Return the form data after all this.* members had been reset
         this.formData.clear();
-        this.isPersonalFormValid = this.isIncomeFormValid = this.isBankFormValid = this.isAddressFormValid = false;
+        this.isPersonalFormValid = this.isIncomeFormValid = this.isBankFormValid = this.isAddressFormValid = this.isResultFormValid = false;
         return this.formData;
     }
 
@@ -162,6 +181,7 @@ export class FormDataService {
         return this.isPersonalFormValid &&
             this.isIncomeFormValid &&
             this.isBankFormValid &&
+            this.isResultFormValid &&
             this.isAddressFormValid;
     }
 }

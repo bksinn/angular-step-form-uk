@@ -39,6 +39,8 @@ export class FormData {
     bankTimeMonths: string = '';
     accountType: string = '';
 
+    isTCAccepted: boolean = true;
+
     clear() {
         this.loanAmount = '';
         this.termPeriod = '';
@@ -126,4 +128,8 @@ export class Bank {
     bankTimeYears: string = '';
     bankTimeMonths: string = '';
     accountType: string = '';
+}
+
+export class Result {
+    isTCAccepted: boolean = true;
 }

@@ -69,11 +69,11 @@
                             <label class="control-label" for="termPeriod">Over how long?</label>
                             <select class="form-control input-md" #termPeriod="ngModel" required name="termPeriod" 
                             [(ngModel)]="personal.termPeriod">
-                                <!--<option value="" disabled selected>Select</option>-->
+                                <option value="" disabled selected>Select</option>
                                 <option value="3">3 Months</option>
                                 <option value="4">4 Months</option>
                                 <option value="5">5 Months</option>
-                                <option value="6" selected>6 Months</option>
+                                <option value="6" >6 Months</option>
                                 <option value="7">7 Months</option>
                                 <option value="8">8 Months</option>
                                 <option value="9">9 Months</option>
@@ -211,7 +211,7 @@
                                     [(ngModel)]="personal.dob">
                             <div style="font-size: 12px; color: red;" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                                 <div *ngIf="dob.errors.required">*Required</div>
-                                <div *ngIf="dob.errors.validateDOB">Must be over 18 to apply</div>
+                                <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY <br/>Must be over 18 to apply</div>
                             </div>
                         </div>
                     </div>

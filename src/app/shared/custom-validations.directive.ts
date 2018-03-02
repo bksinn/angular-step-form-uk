@@ -1,6 +1,7 @@
 import { Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+
 /** A hero's name can't match the given regular expression */
 // Testing validation function
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
@@ -222,6 +223,44 @@ export class DOBValidator implements Validator {
 
     constructor() {
         this.validator = validateAge();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}
+
+//Validate zip code
+function validateZip(): ValidatorFn {
+    return (c: AbstractControl) => {
+        let zipPattern = /^\d{5}(?:[-\s]\d{4})?$/;
+        let isValid = zipPattern.test(c.value);
+
+        if (isValid) {
+            return null;
+        } else {
+            return {
+                validateZip: {
+                    valid: false
+                }
+            };
+        }
+    }
+}
+
+@Directive({
+    selector: '[validateZip][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: ZipCodeValidator, multi: true }
+    ]
+})
+
+export class ZipCodeValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateZip();
     }
 
     validate(c: FormControl) {

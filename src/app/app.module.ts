@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+
 /* App Root */
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,7 +27,8 @@ import { ForbiddenValidatorDirective,
   PhoneNumberValidator, 
   EmailValidator, 
   SSNValidator,
-  DOBValidator } from './shared/custom-validations.directive';
+  DOBValidator,
+  ZipCodeValidator } from './shared/custom-validations.directive';
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,9 +46,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     { provide: WorkflowService, useClass: WorkflowService }
   ],
   declarations: [
-    AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
-    BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
-    JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator
+      AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
+      BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
+      JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
+      ZipCodeValidator
     ],
   bootstrap: [AppComponent]
 })
