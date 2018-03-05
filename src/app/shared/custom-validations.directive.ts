@@ -1,5 +1,5 @@
-import { Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { Directive, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
 /** A hero's name can't match the given regular expression */
@@ -305,7 +305,7 @@ function validateABA(): ValidatorFn {
         }
 
         //If the resulting sum is an even multiple of ten (but not zero),
-        //the aba routing number is SVGFEFloodElement.
+        //the aba routing number is good.
 
         if (n != 0 && n % 10 == 0)
             return null;
@@ -338,3 +338,21 @@ export class ABARoutingValidator implements Validator {
     }
 
 }
+
+@Directive({
+    selector: '[validateAccountNumber]',
+    providers: [{ provide: NG_VALIDATORS, useExisting: AccountNumberValidator, multi: true }]
+})
+export class AccountNumberValidator implements Validator {
+
+    validate(c: FormControl): ValidationErrors {
+        const validateAccountNumber = /^\d{3,3}-\d{3,3}-\d{3,3}$/.test(c.value);
+        const message = {
+            'validateAccountNumber': {
+                'message': 'The phone number must be valid (XXX-XXX-XXX, where X is a digit)'
+            }
+        };
+        return validateAccountNumber ? null : message;
+    }
+}
+

@@ -132,7 +132,7 @@
                         <div class="form-group">
                             <label class="control-label" for="homephone">Home Phone</label>
                             <input class="form-control input-md"
-                                    #homePhone="ngModel" 
+                                    #homePhone="ngModel"
                                     required 
                                     validatePhone 
                                     name="homephone" 
@@ -141,7 +141,7 @@
                                     [(ngModel)]="personal.homePhone">
                             <div style="font-size: 12px; color: red;" *ngIf="homePhone.invalid && (homePhone.dirty || homePhone.touched)" [hidden]="homePhone.valid">
                                 <div *ngIf="homePhone.errors.required">*Required</div>
-                                <div *ngIf="homePhone.errors.validatePhone">Please use format XXX-XXX-XXX</div>
+                                <div *ngIf="homePhone.errors.validatePhone">Please use format XXX-XXX-XXXX</div>
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                         <div class="form-group">
                             <label class="control-label" for="workphone">Work Phone</label>
                             <input class="form-control input-md" 
-                                    #workPhone="ngModel" 
+                                    #workPhone="ngModel"
                                     required 
                                     validatePhone 
                                     name="workphone" 

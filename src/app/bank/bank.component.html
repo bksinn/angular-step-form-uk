@@ -25,7 +25,7 @@
                         <label class="control-label" for="accountType">Account Type</label>
                         <select class="form-control input-md" 
                                 #accountType="ngModel" 
-                                required 
+                                required
                                 name="accountType" 
                                 [(ngModel)]="bank.accountType">
                             <option value="" disabled selected>Select</option>
@@ -45,12 +45,16 @@
                         <input class="form-control input-md" 
                                 #accountNumber="ngModel" 
                                 required 
+                                minlength="6"
+                                maxlength="14"
                                 name="accountNumber" 
                                 type="text" 
-                                placeholder="Account Number"
+                                placeholder="6 to 17 digits"
                                 [(ngModel)]="bank.accountNumber">
                         <div style="font-size: 12px; color: red;" *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)" [hidden]="accountNumber.valid">
                             <div *ngIf="accountNumber.errors.required">*Required</div>
+                            <div *ngIf='accountNumber.errors.minlength'>Too short</div>
+                            <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +67,7 @@
                                 required 
                                 name="routingNumber" 
                                 type="text" 
-                                placeholder="ABA/Routing Number"
+                                placeholder="9 digits"
                                 [(ngModel)]="bank.routingNumber">
                         <div style="font-size: 12px; color: red;" *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid">
                             <div *ngIf="routingNumber.errors.required">*Required</div>
