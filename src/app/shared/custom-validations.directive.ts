@@ -268,3 +268,73 @@ export class ZipCodeValidator implements Validator {
     }
 
 }
+
+// Validate ABA/Routing number
+function validateABA(): ValidatorFn {
+    return (c: AbstractControl) => {
+        let userInput = String(c.value);
+
+        let i, n, t, s;
+
+        // First, remove any non-numeric characters.
+        //s = userInput.replace(/\D/g, ''); ==>Alternative option to for loop
+        //console.log(s);
+        t = "";
+        for (i = 0; i < userInput.length; i++) {
+            s = parseInt(userInput.charAt(i), 10);
+            if (s >= 0 && s <= 9)
+                t = t + s;
+        }
+
+        // Check the length, it should be nine digits.
+
+        if (t.length !== 9) {
+            return {
+                validateABA: {
+                    valid: false
+                }
+            }
+        }
+
+        // Now run through each digit and calculate the total.
+        n = 0;
+        for (i = 0; i < t.length; i +=3) {
+            n += parseInt(t.charAt(i), 10) * 3
+                + parseInt(t.charAt(i + 1), 10) * 7
+                + parseInt(t.charAt(i + 2), 10);
+        }
+
+        //If the resulting sum is an even multiple of ten (but not zero),
+        //the aba routing number is SVGFEFloodElement.
+
+        if (n != 0 && n % 10 == 0)
+            return null;
+            else {
+                return {
+                    validateABA: {
+                        valid: false
+                    }
+                }
+            }
+    }
+}
+
+@Directive({
+    selector: '[validateABA][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: ABARoutingValidator, multi: true }
+    ]
+})
+
+export class ABARoutingValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateABA();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}

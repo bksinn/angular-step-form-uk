@@ -25,94 +25,99 @@
                         </div>
                     </div>
                 </div>
-                <div class='col-xs-12 col-sm-4'>
-                    <div class="form-group">
-                        <label class="control-label" for="workphone">Employer Name</label>
-                        <input class="form-control input-md"
-                                #employerName="ngModel" 
-                                required name="employername"
-                                type="text" 
-                                placeholder="Employer name" 
-                                [(ngModel)]="income.employerName">
-                        <div style="font-size: 12px; color: red;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
-                            <div *ngIf="employerName.errors.required">*Required</div>
+                <div 
+                *ngIf="incomeSource.value == 'EmployedFullTime' || incomeSource.value == 'EmployedPartTime' || incomeSource.value == 'EmployedTemporary' || incomeSource.value == 'SelfEmployed'"
+                >
+                    <div class='col-xs-12 col-sm-4'>
+                        <div class="form-group">
+                            <label class="control-label" for="workphone">Employer Name</label>
+                            <input class="form-control input-md"
+                                    #employerName="ngModel" 
+                                    required name="employername"
+                                    type="text" 
+                                    placeholder="Employer name" 
+                                    [(ngModel)]="income.employerName">
+                            <div style="font-size: 12px; color: red;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
+                                <div *ngIf="employerName.errors.required">*Required</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class='col-xs-12 col-sm-4'>
-                    <div class="form-group">
-                        <label class="control-label" for="paymentType">Payment Type</label>
-                        <select class="form-control input-md" 
-                                #paymentType="ngModel" 
-                                required 
-                                name="paymentType" 
-                                [(ngModel)]="income.paymentType">
-                        <option value="" disabled selected>Select</option>
-                        <option value="RegionalDirectDeposit">Direct Deposit (US Bank)</option>
-                        <option value="NonRegionalDirectDeposit">Direct Deposit (Other country)</option>
-                        <option value="Cheque">Check</option>
-                        <option value="Cash">Cash</option>
-                        </select>
-                        <div style="font-size: 12px; color: red;" *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)" [hidden]="paymentType.valid">
-                            <div *ngIf="paymentType.errors.required">*Required</div>
+                    <div class='col-xs-12 col-sm-4'>
+                        <div class="form-group">
+                            <label class="control-label" for="paymentType">Payment Type</label>
+                            <select class="form-control input-md" 
+                                    #paymentType="ngModel" 
+                                    required 
+                                    name="paymentType" 
+                                    [(ngModel)]="income.paymentType">
+                            <option value="" disabled selected>Select</option>
+                            <option value="RegionalDirectDeposit">Direct Deposit (US Bank)</option>
+                            <option value="NonRegionalDirectDeposit">Direct Deposit (Other country)</option>
+                            <option value="Cheque">Check</option>
+                            <option value="Cash">Cash</option>
+                            </select>
+                            <div style="font-size: 12px; color: red;" *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)" [hidden]="paymentType.valid">
+                                <div *ngIf="paymentType.errors.required">*Required</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class='col-xs-12 col-sm-12'>
-                    <label class="control-label" for="employmentTime">Time at employer</label>
-                </div>
-                    <div class="form-group">
-                        <div class='col-xs-12 col-sm-6 half-width'>
-                            <select class="form-control input-md" 
-                                    #employmentYears="ngModel" 
-                                    required 
-                                    name="employmentyears" 
-                                    [(ngModel)]="income.employmentYears">
-                                <option value="" disabled selected>Years</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10+</option>
-                            </select>
-                        <div style="font-size: 12px; color: red;" *ngIf="employmentYears.invalid && (employmentYears.dirty || employmentYears.touched)" [hidden]="employmentYears.valid">
-                            <div *ngIf="employmentYears.errors.required">*Required</div>
-                        </div>
-                        </div>
-                        <div class='col-xs-12 col-sm-6 half-width'>
-                            <select class="form-control input-md" 
-                                    #employmentMonths="ngModel" 
-                                    required 
-                                    name="employmentmonths" 
-                                    [(ngModel)]="income.employmentMonths">
-                                <option value="" disabled selected>Months</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
-                            <div style="font-size: 12px; color: red;" *ngIf="employmentMonths.invalid && (employmentMonths.dirty || employmentMonths.touched)" [hidden]="employmentMonths.valid">
-                                <div *ngIf="employmentMonths.errors.required">*Required</div>
-                            </div>
-                        </div>
+            <div *ngIf="incomeSource.value == 'EmployedFullTime' || incomeSource.value == 'EmployedPartTime' || incomeSource.value == 'EmployedTemporary' || incomeSource.value == 'SelfEmployed'">
+                <div class="row"> 
+                    <div class='col-xs-12 col-sm-12'>
+                        <label class="control-label" for="employmentTime">Time at employer</label>
                     </div>
-                
+                        <div class="form-group">
+                            <div class='col-xs-12 col-sm-6 half-width'>
+                                <select class="form-control input-md" 
+                                        #employmentYears="ngModel" 
+                                        required 
+                                        name="employmentyears" 
+                                        [(ngModel)]="income.employmentYears">
+                                    <option value="" disabled selected>Years</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10+</option>
+                                </select>
+                            <div style="font-size: 12px; color: red;" *ngIf="employmentYears.invalid && (employmentYears.dirty || employmentYears.touched)" [hidden]="employmentYears.valid">
+                                <div *ngIf="employmentYears.errors.required">*Required</div>
+                            </div>
+                            </div>
+                            <div class='col-xs-12 col-sm-6 half-width'>
+                                <select class="form-control input-md" 
+                                        #employmentMonths="ngModel" 
+                                        required 
+                                        name="employmentmonths" 
+                                        [(ngModel)]="income.employmentMonths">
+                                    <option value="" disabled selected>Months</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
+                                <div style="font-size: 12px; color: red;" *ngIf="employmentMonths.invalid && (employmentMonths.dirty || employmentMonths.touched)" [hidden]="employmentMonths.valid">
+                                    <div *ngIf="employmentMonths.errors.required">*Required</div>
+                                </div>
+                            </div>
+                        </div>           
+                </div>
             </div>
             <div class="row">
                 <div class='col-xs-12 col-sm-4'>

@@ -28,7 +28,8 @@ import { ForbiddenValidatorDirective,
   EmailValidator, 
   SSNValidator,
   DOBValidator,
-  ZipCodeValidator } from './shared/custom-validations.directive';
+  ZipCodeValidator,
+  ABARoutingValidator } from './shared/custom-validations.directive';
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
       JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
-      ZipCodeValidator
+      ZipCodeValidator, ABARoutingValidator
     ],
   bootstrap: [AppComponent]
 })

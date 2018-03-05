@@ -59,6 +59,7 @@
                         <label class="control-label" for="routingNumber">ABA / Routing Number</label>
                         <input class="form-control input-md" 
                                 #routingNumber="ngModel" 
+                                validateABA
                                 required 
                                 name="routingNumber" 
                                 type="text" 
@@ -66,6 +67,7 @@
                                 [(ngModel)]="bank.routingNumber">
                         <div style="font-size: 12px; color: red;" *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid">
                             <div *ngIf="routingNumber.errors.required">*Required</div>
+                            <div *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
                         </div>
                     </div>
                 </div>
