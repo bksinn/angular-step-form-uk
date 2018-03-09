@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 /* App Root */
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { ForbiddenValidatorDirective,
   DOBValidator,
   ZipCodeValidator,
   ABARoutingValidator,
-  AccountNumberValidator } from './shared/custom-validations.directive';
+  AccountNumberValidator,
+  UppercaseDirective } from './shared/custom-validations.directive';
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +43,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     { provide: FormDataService, useClass: FormDataService },
@@ -51,7 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
       JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
-      ZipCodeValidator, ABARoutingValidator, AccountNumberValidator
+    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective
     ],
   bootstrap: [AppComponent]
 })

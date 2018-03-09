@@ -101,3 +101,72 @@ form[name=bankForm] h4.head.text-center:first-child {
     color: white;
     padding: 25px;
 }
+
+.radio span.option {
+    width: 67px;
+    padding-right: 1px;
+    display: inline-block;
+    float: left;
+    line-height: 0;
+    margin: 15px;
+}
+
+.radio-militaryService span.option {
+    width: 97px;
+    margin: 10px;
+}
+
+@media (max-width: 1200px) {
+    .radio-militaryService span.option {
+        margin-right: -1px;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 990px) {
+    .radio-militaryService span.option {
+        margin-right: 35px;
+    }
+}
+
+.radio label {
+    cursor: pointer;
+    background-color: rgb(34, 194, 34);
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 25px 15px;
+    height: 50px;
+    width: 105px;
+}
+
+.radio:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.radio input[type="radio"]:hover {
+    background: rgb(34, 194, 34);
+}
+
+.radio input[type="radio"] {
+    height: 50px;
+    width: 100px;
+    color: transparent;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.radio input[type="radio"]:checked+label {
+    /*border: 2px solid rgb(34, 194, 34);
+    background-color: rgba(34, 194, 34, 0.5);*/
+    box-shadow: 0 0 4px 1px rgb(34, 194, 34);
+}
+
+.form-control {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    box-shadow: none;
+}

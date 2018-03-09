@@ -16,8 +16,8 @@
                             type="text" 
                             placeholder="Street Address"
                             [(ngModel)]="address.street">
-                    <div style="font-size: 12px; color: red;" *ngIf="street.invalid && (street.dirty || street.touched)" [hidden]="street.valid">
-                        <div *ngIf="street.errors.required">*Required</div>
+                    <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="street.invalid && (street.dirty || street.touched)" [hidden]="street.valid">
+                        <div *ngIf="street.errors.required">This field is required</div>
                     </div>
                 </div>
                 <div class="row">
@@ -32,8 +32,8 @@
                                     type="text" 
                                     placeholder="City" 
                                     [(ngModel)]="address.city">
-                            <div style="font-size: 12px; color: red;" *ngIf="city.invalid && (city.dirty || city.touched)" [hidden]="city.valid">
-                            <div *ngIf="city.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="city.invalid && (city.dirty || city.touched)" [hidden]="city.valid">
+                            <div *ngIf="city.errors.required">This field is required</div>
                             </div>
                         </div>
                     </div>
@@ -102,15 +102,16 @@
                                 <option value="AE">Armed Forces Europe</option>
                                 <option value="AP">Armed Forces Pacific</option>
                             </select>
-                            <div style="font-size: 12px; color: red;" *ngIf="state.invalid && (state.dirty || state.touched)" [hidden]="state.valid">
-                                <div *ngIf="state.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="state.invalid && (state.dirty || state.touched)" [hidden]="state.valid">
+                                <div *ngIf="state.errors.required">This field is required</div>
                             </div>
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-4'>
                         <div class="form-group">
                             <label class="control-label" for="zip">Zip</label>
-                            <input class="form-control input-md" 
+                            <input class="form-control input-md"
+                                    (click)="doGETWithHeaders()" 
                                     #zip="ngModel" 
                                     required
                                     validateZip
@@ -119,8 +120,8 @@
                                     type="text" 
                                     placeholder="Zip" 
                                     [(ngModel)]="address.zip">
-                            <div style="font-size: 12px; color: red;" *ngIf="zip.invalid && (zip.dirty || zip.touched)"[hidden]="zip.valid">
-                                <div *ngIf="zip.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="zip.invalid && (zip.dirty || zip.touched)"[hidden]="zip.valid">
+                                <div *ngIf="zip.errors.required">This field is required</div>
                                 <div *ngIf="zip.errors.validateZip">Please provide a valid zip code</div>
                             </div>
                         </div>
@@ -143,8 +144,8 @@
                                 <option value="LivingWithParents">Living With Parents</option>
                                 <option value="Other">Other</option>
                             </select>
-                            <div style="font-size: 12px; color: red;" *ngIf="residentialStatus.invalid && (residentialStatus.dirty || residentialStatus.touched)" [hidden]="residentialStatus.valid">
-                                <div *ngIf="residentialStatus.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="residentialStatus.invalid && (residentialStatus.dirty || residentialStatus.touched)" [hidden]="residentialStatus.valid">
+                                <div *ngIf="residentialStatus.errors.required">This field is required</div>
                             </div>
                         </div>
                     </div>
@@ -159,19 +160,19 @@
                                         [(ngModel)]="address.addressYears">
                                     <option value="" disabled selected>Years</option>
                                     <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10+</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years</option>
+                                    <option value="6">6 years</option>
+                                    <option value="7">7 years</option>
+                                    <option value="8">8 years</option>
+                                    <option value="9">9 years</option>
+                                    <option value="10">10+ years</option>
                             </select>
-                                <div style="font-size: 12px; color: red;" *ngIf="addressYears.invalid && (addressYears.dirty || addressYears.touched)" [hidden]="addressYears.valid">
-                                    <div *ngIf="addressYears.errors.required">*Required</div>
+                                <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="addressYears.invalid && (addressYears.dirty || addressYears.touched)" [hidden]="addressYears.valid">
+                                    <div *ngIf="addressYears.errors.required">This field is required</div>
                                 </div>
                             </div>
                             <div style="width: 49%; display:inline-block;" class='half-width'>
@@ -182,20 +183,20 @@
                                         [(ngModel)]="address.addressMonths">
                                 <option value="" disabled selected>Months</option>
                                 <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
+                                <option value="1">1 month</option>
+                                <option value="2">2 months</option>
+                                <option value="3">3 months</option>
+                                <option value="4">4 months</option>
+                                <option value="5">5 months</option>
+                                <option value="6">6 months</option>
+                                <option value="7">7 months</option>
+                                <option value="8">8 months</option>
+                                <option value="9">9 months</option>
+                                <option value="10">10 months</option>
+                                <option value="11">11 months</option>
                             </select>
-                                <div style="font-size: 12px; color: red;" *ngIf="addressMonths.invalid && (addressMonths.dirty || addressMonths.touched)" [hidden]="addressMonths.valid">
-                                <div *ngIf="addressMonths.errors.required">*Required</div>
+                                <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="addressMonths.invalid && (addressMonths.dirty || addressMonths.touched)" [hidden]="addressMonths.valid">
+                                <div *ngIf="addressMonths.errors.required">This field is required</div>
                                 </div>
                             </div>
                         </div>

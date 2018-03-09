@@ -20,8 +20,8 @@
                             <option value="DisabilityBenefits">Disability Benefits</option>
                             <option value="Pension">Pension</option>
                         </select>
-                        <div style="font-size: 12px; color: red;" *ngIf="incomeSource.invalid && (incomeSource.dirty || incomeSource.touched)" [hidden]="incomeSource.valid">
-                            <div *ngIf="incomeSource.errors.required">*Required</div>
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="incomeSource.invalid && (incomeSource.dirty || incomeSource.touched)" [hidden]="incomeSource.valid">
+                            <div *ngIf="incomeSource.errors.required">This field is required</div>
                         </div>
                     </div>
                 </div>
@@ -37,8 +37,8 @@
                                     type="text" 
                                     placeholder="Employer name" 
                                     [(ngModel)]="income.employerName">
-                            <div style="font-size: 12px; color: red;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
-                                <div *ngIf="employerName.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
+                                <div *ngIf="employerName.errors.required">This field is required</div>
                             </div>
                         </div>
                     </div>
@@ -56,8 +56,8 @@
                             <option value="Cheque">Check</option>
                             <option value="Cash">Cash</option>
                             </select>
-                            <div style="font-size: 12px; color: red;" *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)" [hidden]="paymentType.valid">
-                                <div *ngIf="paymentType.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)" [hidden]="paymentType.valid">
+                                <div *ngIf="paymentType.errors.required">This field is required</div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <label class="control-label" for="employmentTime">Time at employer</label>
                     </div>
                         <div class="form-group">
-                            <div class='col-xs-12 col-sm-6 half-width'>
+                            <div class='col-xs-12 col-sm-6 half-width' style="margin-bottom: 15px;">
                                 <select class="form-control input-md" 
                                         #employmentYears="ngModel" 
                                         required 
@@ -77,22 +77,22 @@
                                         [(ngModel)]="income.employmentYears">
                                     <option value="" disabled selected>Years</option>
                                     <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10+</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years</option>
+                                    <option value="6">6 years</option>
+                                    <option value="7">7 years</option>
+                                    <option value="8">8 years</option>
+                                    <option value="9">9 years</option>
+                                    <option value="10">10+ years</option>
                                 </select>
-                            <div style="font-size: 12px; color: red;" *ngIf="employmentYears.invalid && (employmentYears.dirty || employmentYears.touched)" [hidden]="employmentYears.valid">
-                                <div *ngIf="employmentYears.errors.required">*Required</div>
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employmentYears.invalid && (employmentYears.dirty || employmentYears.touched)" [hidden]="employmentYears.valid">
+                                <div *ngIf="employmentYears.errors.required">This field is required</div>
                             </div>
                             </div>
-                            <div class='col-xs-12 col-sm-6 half-width'>
+                            <div class='col-xs-12 col-sm-6 half-width' style="margin-bottom: 15px;">
                                 <select class="form-control input-md" 
                                         #employmentMonths="ngModel" 
                                         required 
@@ -100,20 +100,20 @@
                                         [(ngModel)]="income.employmentMonths">
                                     <option value="" disabled selected>Months</option>
                                     <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
+                                    <option value="1">1 month</option>
+                                    <option value="2">2 months</option>
+                                    <option value="3">3 months</option>
+                                    <option value="4">4 months</option>
+                                    <option value="5">5 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="7">7 months</option>
+                                    <option value="8">8 months</option>
+                                    <option value="9">9 months</option>
+                                    <option value="10">10 months</option>
+                                    <option value="11">11 months</option>
                                 </select>
-                                <div style="font-size: 12px; color: red;" *ngIf="employmentMonths.invalid && (employmentMonths.dirty || employmentMonths.touched)" [hidden]="employmentMonths.valid">
-                                    <div *ngIf="employmentMonths.errors.required">*Required</div>
+                                <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employmentMonths.invalid && (employmentMonths.dirty || employmentMonths.touched)" [hidden]="employmentMonths.valid">
+                                    <div *ngIf="employmentMonths.errors.required">This field is required</div>
                                 </div>
                             </div>
                         </div>           
@@ -134,8 +134,8 @@
                             <option>Semi-Monthly</option>
                             <option>Monthly</option>
                         </select>
-                        <div style="font-size: 12px; color: red;" *ngIf="payFrequency.invalid && (payFrequency.dirty || payFrequency.touched)" [hidden]="payFrequency.valid">
-                            <div *ngIf="payFrequency.errors.required">*Required</div>
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="payFrequency.invalid && (payFrequency.dirty || payFrequency.touched)" [hidden]="payFrequency.valid">
+                            <div *ngIf="payFrequency.errors.required">This field is required</div>
                         </div>
                     </div>
                 </div>
@@ -169,8 +169,8 @@
                             <option value="4875">$4,751 - $5,000</option>
                             <option value="5000">$5,000 +</option>
                         </select>
-                        <div style="font-size: 12px; color: red;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
-                            <div *ngIf="netAmount.errors.required">*Required</div>
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
+                            <div *ngIf="netAmount.errors.required">This field is required</div>
                         </div>
                     </div>
                 </div>
@@ -180,13 +180,14 @@
                         <input class="form-control input-md" 
                                 #jobTitle="ngModel" 
                                 required
+                                uppercase
                                 minlength="3" 
                                 name="jobtitle" 
                                 type="text" 
                                 placeholder="Job Title" 
                                 [(ngModel)]="income.jobTitle">
-                        <div style="font-size: 12px; color: red;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
-                            <div *ngIf="jobTitle.errors.required">*Required</div>
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
+                            <div *ngIf="jobTitle.errors.required">This field is required</div>
                             <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
                         </div>
                     </div>

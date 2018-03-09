@@ -1,6 +1,7 @@
 import { Directive, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { EventEmitter, HostListener, Output } from '@angular/core';
 
 /** A hero's name can't match the given regular expression */
 // Testing validation function
@@ -98,6 +99,27 @@ export class PhoneNumberValidator implements Validator {
         return this.validator(c);
     }
 
+    //Auto-format phone number
+    @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    value: any;
+
+    @HostListener('input', ['$event']) onInputChange($event) {
+        this.value = $event.target.value;
+        var v = this.value.replace(/\D/g, '');
+        if (v.match(/^\d{3}$/) !== null) {
+            this.value = '(' + v + ') ';
+        } else if (v.match(/^(\d{3})(\d{3})$/) !== null) {
+            this.value += '-';
+        }
+
+        //Adds formatting onfinal input
+        let m = v.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+        if (m) this.value = '(' + m[1] + ") " + m[2] + "-" + m[3];
+
+        this.ngModelChange.emit(this.value);
+    }
+
 }
 
 //Validate email
@@ -174,6 +196,33 @@ export class SSNValidator implements Validator {
         return this.validator(c);
     }
 
+
+    //Auto-format SSN
+    @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    value: any;
+
+    @HostListener('input', ['$event']) onInputChange($event) {
+        this.value = $event.target.value;
+        var val = this.value.replace(/\D/g, '');
+        var newVal = '';
+        if (val.length > 4) {
+            this.value = val;
+        }
+        if ((val.length > 3) && (val.length < 6)) {
+            newVal += val.substr(0, 3) + '-';
+            val = val.substr(3);
+        }
+        if (val.length > 5) {
+            newVal += val.substr(0, 3) + '-';
+            newVal += val.substr(3, 2) + '-';
+            val = val.substr(5);
+        }
+        newVal += val;
+        this.value = newVal.substring(0, 11);
+
+        this.ngModelChange.emit(this.value);
+    }
+
 }
 
 //Validate Date of Birth (over 18)
@@ -190,6 +239,10 @@ function getAge(dateString) {
 
 function validateAge(): ValidatorFn {
     return (c: AbstractControl) => {
+        //Validate proper format first MM/DD/YYYY
+        const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+        datePattern.test(c.value);
+
         const today = new Date();
         const birthDate = new Date(c.value);
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -200,7 +253,7 @@ function validateAge(): ValidatorFn {
 
         let isValid = age >= 18;
         
-        if (isValid) {
+        if (isValid && datePattern.test(c.value)) {
             return null;
         } else {
             return {
@@ -227,6 +280,22 @@ export class DOBValidator implements Validator {
 
     validate(c: FormControl) {
         return this.validator(c);
+    }
+
+    @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    value: any;
+
+    //Auto-format DOB
+    @HostListener('input', ['$event']) onInputChange($event) {
+        this.value = $event.target.value;
+        var v = this.value;
+        if (v.match(/^\d{2}$/) !== null) {
+            this.value = v + '/';
+        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+            this.value = v + '/';
+        }
+
+        this.ngModelChange.emit(this.value);
     }
 
 }
@@ -355,4 +424,22 @@ export class AccountNumberValidator implements Validator {
         return validateAccountNumber ? null : message;
     }
 }
+
+//Force uppercase
+
+@Directive({
+    selector: '[ngModel][uppercase]'
+})
+export class UppercaseDirective {
+    @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    value: any;
+
+    @HostListener('input', ['$event']) onInputChange($event) {
+        this.value = $event.target.value.toLowerCase().replace(/([^a-z]|^)([a-z])(?=[a-z]{2})/g, function (_, g1, g2) {
+            return g1 + g2.toUpperCase();
+        });
+        this.ngModelChange.emit(this.value);
+    }
+}
+
 
