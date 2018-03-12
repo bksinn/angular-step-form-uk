@@ -1,7 +1,9 @@
-import { Directive, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
+import { Directive, forwardRef, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, Validator, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { EventEmitter, HostListener, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 /** A hero's name can't match the given regular expression */
 // Testing validation function
@@ -301,41 +303,72 @@ export class DOBValidator implements Validator {
 }
 
 //Validate zip code
-function validateZip(): ValidatorFn {
-    return (c: AbstractControl) => {
-        let zipPattern = /^\d{5}(?:[-\s]\d{4})?$/;
-        let isValid = zipPattern.test(c.value);
+// function validateZip(): ValidatorFn {
+//     return (c: AbstractControl) => {
+//         let zipPattern = /^\d{5}(?:[-\s]\d{4})?$/;
+//         let isValid = zipPattern.test(c.value);
 
-        if (isValid) {
-            return null;
-        } else {
-            return {
-                validateZip: {
-                    valid: false
-                }
-            };
-        }
-    }
-}
+//         if (zipPattern) {
+//             return null;
+//         } else {
+//             return {
+//                 validateZip: {
+//                     valid: false
+//                 }
+//             };
+//         }
+//     }
+// }
 
 @Directive({
     selector: '[validateZip][ngModel]',
     providers: [
-        { provide: NG_VALIDATORS, useExisting: ZipCodeValidator, multi: true }
+        { provide: NG_ASYNC_VALIDATORS, useExisting: forwardRef(() => ZipCodeValidator), multi: true }
     ]
 })
-
 export class ZipCodeValidator implements Validator {
-    validator: ValidatorFn;
-
-    constructor() {
-        this.validator = validateZip();
+    //validator: ValidatorFn;
+    
+    constructor(private http: HttpClient) {
+        //this.validator = validateZip();        
     }
-
-    validate(c: FormControl) {
-        return this.validator(c);
+    
+    validate(c: AbstractControl) {
+        return new Promise (resolve => {
+            setTimeout(() =>{
+                if (c.value != null &&  c.value.length === 5 && Number(c.value)) {
+                    this.http.get('http://www.pingyo.com/validate/locales/zipcode/' + c.value).subscribe(
+                        res => {
+                            console.log(res);
+                            if (res) {
+                                return resolve(null);
+                            }
+                            else {
+                                return resolve({
+                                    validateZip: {
+                                        valid: false
+                                    }
+                                })
+                            }
+                        },
+                        msg => {
+                            console.error(`Error: ${msg.status} ${msg.statusText}`)
+                            return resolve({
+                                validateZip: {
+                                    valid: false
+                                }
+                            });
+                        }
+                    )
+                }
+                else {return resolve({
+                    validateZip: {
+                        valid: false
+                    }
+                })}
+            })
+        })
     }
-
 }
 
 // Validate ABA/Routing number

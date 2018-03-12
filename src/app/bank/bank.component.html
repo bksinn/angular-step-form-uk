@@ -9,12 +9,15 @@
                     <div class="form-group">
                         <label class="control-label" for="bankName">Bank Name</label>
                         <input class="form-control input-md" 
+                                (keyup)="getBankInformation()"
                                 #bankName="ngModel" 
                                 required 
                                 uppercase
                                 placeholder="Ex. Bank of America"
                                 name="bankName" 
-                                id="bankName" 
+                                id="user-bank"
+                                [ngbTypeahead]="search" 
+                                [resultFormatter]="formatter"
                                 [(ngModel)]="bank.bankName">
                         <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)" [hidden]="bankName.valid">
                             <div *ngIf="bankName.errors.required">This field is required</div>

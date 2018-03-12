@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* App Root */
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 /* Shared Service */
 import { FormDataService } from './data/formData.service';
+import {FormData} from './data/formData.model'
 import { WorkflowService } from './workflow/workflow.service';
 import { ForbiddenValidatorDirective, 
   JuriNameValidator, 
@@ -45,11 +47,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [
     { provide: FormDataService, useClass: FormDataService },
-    { provide: WorkflowService, useClass: WorkflowService }
+    { provide: WorkflowService, useClass: WorkflowService },
+    {provide: FormData, useClass: FormData}
   ],
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 

@@ -3,29 +3,10 @@ import { Router } from '@angular/router';
 import { Result } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
-// import {
-//     trigger,
-//     state,
-//     style,
-//     animate,
-//     transition
-// } from '@angular/animations';
 
 @Component({
     selector: 'mt-wizard-result',
     templateUrl: './result.component.html',
-    // animations: [
-    //     trigger('flyInOut', [
-    //         state('in', style({ transform: 'translateX(0)' })),
-    //         transition('void => *', [
-    //             style({ transform: 'translateX(-100%)' }),
-    //             animate(100)
-    //         ]),
-    //         transition('* => void', [
-    //             animate(100, style({ transform: 'translateX(100%)' }))
-    //         ])
-    //     ])
-    // ]
 })
 
 export class ResultComponent implements OnInit {

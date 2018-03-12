@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class FormData {
     loanAmount: string = '';
     termPeriod: string = '';
@@ -40,6 +43,10 @@ export class FormData {
     accountType: string = '';
 
     isTCAccepted: boolean = true;
+
+    typeAheadState: Array<any>
+    typeAheadCity: Array<any>
+    typeAheadBank: Array<any>
 
     clear() {
         this.loanAmount = '';

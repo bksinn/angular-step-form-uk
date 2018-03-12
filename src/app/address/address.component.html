@@ -24,14 +24,18 @@
                     <div class='col-xs-12 col-sm-4'>
                         <div class="form-group">
                             <label class="control-label" for="city">City</label>
-                            <input class="form-control input-md" 
+                            <input class="form-control input-md"
                                     #city="ngModel" 
                                     required 
                                     id="city" 
                                     name="city" 
                                     type="text" 
                                     placeholder="City" 
-                                    [(ngModel)]="address.city">
+                                    [(ngModel)]="address.city"
+                                    [ngbTypeahead]="search2" 
+                                    (focus)="onFocus.next($event.target.value)"
+                                    (click)="onClick.next($event.target.value)" 
+                                    #instance="ngbTypeahead">
                             <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="city.invalid && (city.dirty || city.touched)" [hidden]="city.valid">
                             <div *ngIf="city.errors.required">This field is required</div>
                             </div>
@@ -40,8 +44,17 @@
                     <div class='col-xs-12 col-sm-4'>
                         <div class="form-group">
                             <label class="control-label" for="state">State</label>
-                            <!--<input class="form-control input-md" #state="ngModel" required id="state" name="state" type="text" placeholder="State" [(ngModel)]="address.state">-->
-                            <select class="form-control input-md" 
+                            <input type="text" 
+                                    class="form-control"
+                                    name="state"
+                                    required
+                                    #state="ngModel"
+                                    [(ngModel)]="address.state" 
+                                    
+                                    [ngbTypeahead]="search" 
+                                    [resultFormatter]="formatter"
+                                    placeholder="State" />
+                            <!--<select class="form-control input-md" 
                                     #state="ngModel" 
                                     required 
                                     name="state" 
@@ -101,7 +114,7 @@
                                 <option value="AA">Armed Forces Americas</option>
                                 <option value="AE">Armed Forces Europe</option>
                                 <option value="AP">Armed Forces Pacific</option>
-                            </select>
+                            </select>-->
                             <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="state.invalid && (state.dirty || state.touched)" [hidden]="state.valid">
                                 <div *ngIf="state.errors.required">This field is required</div>
                             </div>
@@ -111,18 +124,19 @@
                         <div class="form-group">
                             <label class="control-label" for="zip">Zip</label>
                             <input class="form-control input-md"
-                                    (click)="doGETWithHeaders()" 
+                                    (keyup)="getZipInformation()"
+                                    id="user-zipcode"
                                     #zip="ngModel" 
                                     required
                                     validateZip
-                                    id="zip" 
+                                    apiCall
                                     name="zip" 
                                     type="text" 
                                     placeholder="Zip" 
                                     [(ngModel)]="address.zip">
                             <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="zip.invalid && (zip.dirty || zip.touched)"[hidden]="zip.valid">
                                 <div *ngIf="zip.errors.required">This field is required</div>
-                                <div *ngIf="zip.errors.validateZip">Please provide a valid zip code</div>
+                                <div *ngIf="zip.invalid">Please provide a valid zip code</div>
                             </div>
                         </div>
                     </div>
