@@ -103,6 +103,14 @@ export class FormDataService {
         return bank;
     }
 
+    clearRoutingNumber(data: Bank) {
+        this.formData.routingNumber = '';
+    }
+
+    setRoutingNumber(data: Bank) {
+        this.formData.routingNumber = data.routingNumber;
+    }
+
     setBank(data: Bank) {
         // Update the bank type only when the Bank Form had been validated successfully
         this.isBankFormValid = true;
@@ -128,6 +136,14 @@ export class FormDataService {
             addressMonths: this.formData.addressMonths
         };
         return address;
+    }
+
+    setCity(data: Address) {
+        this.formData.city = data.city;
+    }
+
+    setState(data: Address) {
+        this.formData.state = data.state;
     }
 
     setAddress(data: Address) {

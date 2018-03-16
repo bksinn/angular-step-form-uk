@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Bank } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import { FormData } from '../data/formData.model';
+
 
 import { HttpClient } from '@angular/common/http';
 //Ng-Bootstrap
@@ -49,20 +51,21 @@ export class BankComponent implements OnInit {
     bank: Bank;
     form: any;
     bankArray: Array<any> = []
-    bankResponse: Object
+    bankNameArray: Array<any> = []
+    bankNameArrayFiltered: Array<any> = []
+    bankRoutingNumbers: Array<any> = []
     apiRootBank: string = "http://www.pingyo.com/find/bank/names/";
+    apiFindBankData: string = "http://www.pingyo.com/find/banks/name/";
     searching = false;
     searchFailed = false;
     hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
-    constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient) {
+    constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, public formData: FormData) {
     }
 
     ngOnInit() {
         this.bank = this.formDataService.getBank();
         console.log('Bank feature loaded!');
-
-        this.http.get('something')
     }
 
     getBankInformation() {
@@ -77,21 +80,89 @@ export class BankComponent implements OnInit {
                 res => {
                     this.bankArray = [];
                     this.bankArray.push(res);
-                    console.log(res)
-                    this.bankResponse = res;
                 },
                 msg => {
                     console.error(`Error: ${msg.status} ${msg.statusText}`)
                 }
             );
         }
-        console.log(this.bankResponse);
-        console.log(this.bankArray);
+    }
+
+    getBankRoutingInformation () {
+        let element: HTMLElement = document.getElementById('user-bank');
+        let elementRouting: HTMLElement = document.getElementById('routing-div');
+        let bankElement: HTMLInputElement = element as HTMLInputElement;
+        let routingElement: HTMLInputElement = elementRouting as HTMLInputElement;
+        let routingNumber = this.bank.routingNumber;
+        //elementRouting.removeAttribute('validateABA')
+        console.log(elementRouting);
+
+        let promise = new Promise((resolve, reject) => {
+            this.http.get(`${this.apiFindBankData}` + bankElement.value)
+                .toPromise()
+                .then(
+                    res => { // Success
+                        this.bankNameArray = [];
+                        this.bankNameArray.push(res);
+                        this.bankNameArrayFiltered = [];
+
+                        //Matches bank names to user's city/state
+                        for (var i = 0; i < this.bankNameArray.length; i++) {
+                            this.bankNameArrayFiltered = []; //Clears array
+                            this.bankNameArray[i].filter((element) => {
+                                
+                                if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
+                                    console.log(element);
+                                    this.bankNameArrayFiltered.push(element);
+                                }
+                                else if (element.StateAbbreviation.includes(this.formData.typeAheadState[0])) {                                
+                                    this.bankNameArrayFiltered.push(element);
+                                }
+                            })
+                        }
+                        //End matches bank names to user's city/state
+
+                        this.bankRoutingNumbers = [];
+                        this.bank.routingNumber = '';
+                        this.formDataService.clearRoutingNumber(this.bank);
+
+                        //Prefills routing number if only one exists for user's city and/or state
+                        if (this.bankNameArrayFiltered.length) {
+                            elementRouting.setAttribute('style', 'display: none;');
+                            this.bankRoutingNumbers = []; //Clears array
+
+                            this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
+                            this.bank.routingNumber = this.bankRoutingNumbers[0].slice(0,9);
+                    
+                            //Check if routing number is unique                        
+                            this.bankNameArrayFiltered.forEach((element) => {
+                                if (this.bank.routingNumber != element.RoutingNumber) {
+                                    elementRouting.removeAttribute('style');
+                                    this.bankRoutingNumbers.push(element.RoutingNumber + " " + element.City + " " + 'Branch');
+                                }
+                                this.formDataService.setRoutingNumber(this.bank);
+                            })
+                            //End routing number check
+                        }
+                        else {
+                            elementRouting.removeAttribute('style');
+                        }
+                        console.log(this.bankNameArray);
+                        console.log(this.bankNameArrayFiltered);
+                        resolve();
+                    },
+                    msg => {
+                        this.bank.routingNumber = '';
+                        this.formDataService.clearRoutingNumber(this.bank);
+                        elementRouting.removeAttribute('style');
+                        console.error(`Error: ${msg.status} ${msg.statusText}`)
+                    },
+                );
+        });
     }
 
     //Typeahead for Bank Names
     formatter = (result: string) => result;
-
 
     search = (text$: Observable<string>) =>
         text$
@@ -101,6 +172,18 @@ export class BankComponent implements OnInit {
 
 
     //End Typeahead for Bank names
+
+    //Typeahead for Routing number
+    formatter2 = (result: string) => result;
+
+    search2 = (text$: Observable<string>) =>
+        text$
+            .debounceTime(200)
+            .distinctUntilChanged()
+            .map(term => term === '' ? [] : this.bankRoutingNumbers);
+
+
+    //End Typeahead for Routing Number
 
     save(form: any): boolean {
         if (!form.valid) {

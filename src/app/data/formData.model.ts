@@ -17,7 +17,6 @@ export class FormData {
     issuingState: string = '';
     militaryService: string = '';
 
-
     incomeSource: string = '';
     employerName: string = '';
     paymentType: string = '';
@@ -44,9 +43,11 @@ export class FormData {
 
     isTCAccepted: boolean = true;
 
-    typeAheadState: Array<any>
-    typeAheadCity: Array<any>
-    typeAheadBank: Array<any>
+    typeAheadAreaCode: Array<any> = [];
+    typeAheadState: Array<any> = [];
+    typeAheadCity: Array<any> = [];
+    typeAheadBank: Array<any> = [];
+    typeAheadRouting: Array<any> = [];
 
     clear() {
         this.loanAmount = '';

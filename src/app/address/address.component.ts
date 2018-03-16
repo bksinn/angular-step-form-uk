@@ -79,8 +79,16 @@ export class AddressComponent implements OnInit {
         if (zipcodeElement.value.length == 5 && Number(zipcodeElement.value)) {
             this.http.get(url).subscribe(
                 res => {
-                    this.formData.city = res[0].City;
-                    this.cityArr.push(res[0].City);
+                    this.address.city = res[0].City;
+                    this.address.state = res[0].StateAbbreviation;
+
+                    this.formDataService.setCity(this.address);
+                    this.formDataService.setState(this.address);
+
+                    this.formData.typeAheadState = [];
+                    this.formData.typeAheadCity = [];
+                    this.formData.typeAheadState.push(res[0].StateAbbreviation);
+                    this.formData.typeAheadCity.push(res[0].City);
                     console.log(res);
                 },
                 msg => {

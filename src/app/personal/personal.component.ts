@@ -47,6 +47,13 @@ export class PersonalComponent implements OnInit {
         console.log(this.personal);
     }
 
+    smoothScroll () {
+        let element: HTMLElement = document.getElementById('personal-info');
+        (element).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
     save(form: any): boolean {
         if (!form.valid) {
             return false;
