@@ -254,7 +254,6 @@ function validateAge(): ValidatorFn {
         }
 
         let isValid = age >= 18;
-        
         if (isValid && datePattern.test(c.value)) {
             return null;
         } else {
@@ -475,4 +474,82 @@ export class UppercaseDirective {
     }
 }
 
+function validateState(): ValidatorFn {
+    return (c: AbstractControl) => {
+        const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
+            'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
+            'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+            'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+            'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+            'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
+            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
+            'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+        const stateAbbrev = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
+        //let isValid = emailPattern.test(c.value);
+        let isValid = states.find((element) => c.value == element) || stateAbbrev.find((element) => c.value == element);
+        if (isValid) {
+            return null;
+        } else {
+            return {
+                validateState: {
+                    valid: false
+                }
+            };
+        }
+    }
+}
+
+@Directive({
+    selector: '[validateState][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: StateValidator, multi: true }
+    ]
+})
+export class StateValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateState();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}
+
+function validateMonthyAmount(): ValidatorFn {
+    return (c: AbstractControl) => {
+        let isValid = c.value >= 500
+
+        if (isValid) {
+            return null;
+        } else {
+            return {
+                validateMonthyAmount: {
+                    valid: false
+                }
+            };
+        }
+    }
+}
+
+@Directive({
+    selector: '[validateMonthlyAmount][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: MonthlyAmountValidator, multi: true }
+    ]
+})
+export class MonthlyAmountValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateMonthyAmount();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}
 

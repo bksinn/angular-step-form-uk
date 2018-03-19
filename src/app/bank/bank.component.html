@@ -1,11 +1,11 @@
 <!--<form #workForm="ngForm" class="editForm" novalidate>-->
 <form #bankForm="ngForm" name="bankForm" class="editForm" novalidate>
     <div class="tab-pane fade in active">
-        <h4 class="head text-center">{{title}}</h4>
+        <h3 class="head text-center">{{title}}</h3>
         <br/>
-        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8'>
+        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
             <div class="row">
-                <div class='col-xs-12 col-sm-6'>
+                <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="bankName">Bank Name</label>
                         <input class="form-control input-md" 
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class='col-xs-12 col-sm-6'>
+                <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="accountType">Account Type</label>
                         <select class="form-control input-md" 
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class='col-xs-12 col-sm-6'>
+                <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="accountNumber">Account Number</label>
                         <input class="form-control input-md" 
@@ -64,10 +64,10 @@
                     </div>
                 </div>
                 <!--<div *ngIf="accountNumber.valid">-->
-                    <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-6'>
+                    <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="routingNumber">ABA / Routing Number</label>
-                            <label style="font-size: 12px;" class="control-label" for="routingNumberMessage">Please verify your routing number</label>
+                            <label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
                             <input class="form-control input-md"
                                     id="user-routing" 
                                     #routingNumber="ngModel" 
@@ -87,7 +87,105 @@
             </div>
             <div class="row">
                 <div>
-                    <div class="col-xs-12 col-sm-12">
+                    <div class='col-xs-12 col-sm-12'>
+                        <label class="control-label" for="title">Years at this bank</label>
+                    </div>
+                    <div class='col-xs-12 col-sm-12'>
+                        <div class="form-group">
+                            <!--<label class="control-label" for="title">Title</label>-->
+                            <div class="radio radio-bankTime" type="radio">
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="0" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>
+                                        0
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="1" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>
+                                        1
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="2" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>
+                                        2
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="3" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>                                
+                                        3
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="4" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>                                
+                                        4
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="5" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>                                
+                                        5
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="6" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>                                
+                                        6
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="7+" [(ngModel)]="bank.bankTimeYears" type="radio">
+                                    <label>                                
+                                        7+
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeYears.valid">
+                            Please select your your payment type before continuing ^
+                        </div>
+                    </div>
+                    <div class='col-xs-12 col-sm-12'>
+                        <label class="control-label" for="title">Months at this bank</label>
+                    </div>
+                    <div class='col-xs-12 col-sm-12'>
+                        <div class="form-group">
+                            <!--<label class="control-label" for="title">Title</label>-->
+                            <div class="radio radio-bankTime" type="radio">
+                                <span class="option">
+                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="0" [(ngModel)]="bank.bankTimeMonths" type="radio">
+                                    <label>
+                                        0
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="3" [(ngModel)]="bank.bankTimeMonths" type="radio">
+                                    <label>
+                                        3
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="6" [(ngModel)]="bank.bankTimeMonths" type="radio">
+                                    <label>
+                                       6
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="9" [(ngModel)]="bank.bankTimeMonths" type="radio">
+                                    <label>                                
+                                        9
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeMonths.valid">
+                            Please select your your payment type before continuing ^
+                        </div>
+                    </div>
+                    <!--<div class="col-xs-12 col-sm-12">
                         <label class="control-label" for="bankTimeYears">Time at Bank</label>
                     </div>
                     <div class="form-group">
@@ -141,11 +239,15 @@
                                 <div *ngIf="bankTimeMonths.errors.required">This field is required</div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
         <div class="form-group text-center space-20">
+            <div class="text-danger" style="clear:both;">
+                <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be filled in
+                before proceeding
+            </div>
             <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(bankForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
             <button class="btn btn-outline-rounded btn-info" [disabled]="!bankForm.valid" (click)="goToNext(bankForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
         </div>

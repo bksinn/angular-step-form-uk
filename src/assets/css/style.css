@@ -73,30 +73,34 @@
     background-position: -168px 0;
 }
 
-h4.head.text-center:not(:first-child) {
+h4.head.text-center {
     margin-top: 25px;
     text-align: left;
 }
 
-form[name=personalForm] h4.head.text-center:first-child {
+/*h4.large-width {
+    margin: 60px -60px;
+}*/
+
+form[name=personalForm] h3.head.text-center:first-child {
     background-color: rgb(34, 194, 34);
     color: white;
     padding: 25px;
 }
 
-form[name=incomeForm] h4.head.text-center:first-child {
+form[name=incomeForm] h3.head.text-center:first-child {
     background-color:#febe29;
     color: white;
     padding: 25px;
 }
 
-form[name=addressForm] h4.head.text-center:first-child {
+form[name=addressForm] h3.head.text-center:first-child {
     background-color:#3e5e9a;
     color: white;
     padding: 25px;
 }
 
-form[name=bankForm] h4.head.text-center:first-child {
+form[name=bankForm] h3.head.text-center:first-child {
     background-color:#f1685e;
     color: white;
     padding: 25px;
@@ -139,7 +143,80 @@ form[name=bankForm] h4.head.text-center:first-child {
     width: 105px;
 }
 
-.radio:after {
+.radio span.option {
+    width: 45%;
+    margin: 5px;
+}
+
+.radio input[type="radio"] {
+    width: 45%;
+}
+
+form[name=personalForm] .radio-prefix span.option,
+form[name=personalForm] .radio-employmentTime input[type="radio"], 
+form[name=incomeForm] .radio-employmentTime span.option, 
+form[name=incomeForm] .radio-employmentTime input[type="radio"],
+form[name=addressForm] .radio-addressTime span.option, 
+form[name=addressForm] .radio-addressTime input[type="radio"],
+form[name=bankForm] .radio-bankTime span.option, 
+form[name=bankForm] .radio-bankTime input[type="radio"] {
+    width: 21%;
+}
+
+@media (min-width: 990px) {
+    .radio span.option, .radio input[type="radio"]  {
+        width: 23%!important;
+    }
+}
+
+@media (min-width: 1200px) {
+    form[name=incomeForm] .radio span.option, form[name=incomeForm] .radio input[type="radio"] {
+        width: 13.5%;
+    }
+
+    form[name=incomeForm] .radio-payFrequency span.option, form[name=incomeForm] .radio-payFrequency input[type="radio"] {
+        width: 21%;
+    } 
+
+    form[name=addressForm] .radio-residentialStatus span.option,
+    form[name=addressForm] .radio input[type="radio"], 
+    form[name=incomeForm] .radio-paymentType span.option, 
+    form[name=incomeForm] .radio input[type="radio"] {
+        width: 21%;
+    }
+}
+
+form .radio label {
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: 700;
+    padding: 25px 0;
+    width: 100%;
+}
+
+form[name=personalForm] .radio label {
+    background-color: rgb(34, 194, 34);
+}
+
+form[name=incomeForm] .radio label {
+    background-color: #febe29;
+}
+
+form[name=addressForm] .radio label {
+    background-color: #3e5e9a;
+}
+
+form[name=bankForm] .radio label {
+    font-weight: 700;
+    background-color: #f1685e;
+}
+
+p.radio-label {
+    margin: 15px 0;
+}
+
+.radio:after, .radio:before {
   content: "";
   display: table;
   clear: both;
@@ -151,7 +228,6 @@ form[name=bankForm] h4.head.text-center:first-child {
 
 .radio input[type="radio"] {
     height: 50px;
-    width: 100px;
     color: transparent;
     opacity: 0;
     cursor: pointer;
@@ -161,7 +237,7 @@ form[name=bankForm] h4.head.text-center:first-child {
 .radio input[type="radio"]:checked+label {
     /*border: 2px solid rgb(34, 194, 34);
     background-color: rgba(34, 194, 34, 0.5);*/
-    box-shadow: 0 0 4px 1px rgb(34, 194, 34);
+    box-shadow: 0 0 5px 3px rgb(34, 194, 34);
 }
 
 .form-control {
@@ -225,4 +301,44 @@ select.form-control {
 
 .show {
     display: block;
+}
+
+/*input.big-checkbox {
+    zoom: 1.5;
+}*/
+
+.checkbox-div {
+    font-size: 16px;
+    font-weight: 700;
+    /*zoom: 1.5;*/
+}
+
+.big-checkbox {
+    position: relative;
+    bottom: 2px;
+    margin-right: 10px!important;
+    cursor: pointer;
+    /*zoom: 1.5;*/
+}
+
+.glyphicon-info-sign {
+    font-size: 2rem;
+    top: 5px;
+    color: #337ab7;
+}
+
+.glyphicon-question-sign {
+    margin-left: 5px;
+    font-size: 2rem;
+    top: 5px;
+}
+
+.tooltip {
+    opacity: 1;
+}
+
+.tooltip-inner {
+    max-width: 300px;
+    background-color: #337ab7;
+    padding: 10px;
 }

@@ -94,6 +94,9 @@ export class FormData {
 export class Personal {
     loanAmount: string = '';
     termPeriod: string = '';
+    zip: string = '';
+    city: string = '';
+    state: string = '';
     prefix: string = '';
     firstName: string = '';
     lastName: string = '';

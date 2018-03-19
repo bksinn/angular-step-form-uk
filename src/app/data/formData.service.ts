@@ -23,6 +23,9 @@ export class FormDataService {
         var personal: Personal = {
             loanAmount: this.formData.loanAmount,
             termPeriod: this.formData.termPeriod,
+            zip: this.formData.zip,
+            city: this.formData.city,
+            state: this.formData.state,
             prefix: this.formData.prefix,
             firstName: this.formData.firstName,
             lastName: this.formData.lastName,
@@ -37,6 +40,16 @@ export class FormDataService {
             militaryService: this.formData.militaryService
         };
         return personal;
+    }
+
+    setUserLocation(data: Personal) {
+        this.formData.city = data.city;
+        this.formData.state = data.state;
+        this.formData.issuingState = data.issuingState;
+        this.formData.zip = data.zip;
+        this.formData.homePhone = data.homePhone;
+        this.formData.mobilePhone = data.mobilePhone;
+        this.formData.workPhone = data.workPhone;
     }
 
     setPersonal(data: Personal) {

@@ -97,6 +97,12 @@ export class BankComponent implements OnInit {
         //elementRouting.removeAttribute('validateABA')
         console.log(elementRouting);
 
+        //CHECKBOX My bank is located in the same State as me
+        //function onclick located on the checkbox
+        //if (checkbox is clicked) {do promise} 
+        //else{
+        //      show elementRouting, clear value, add validateABA if not there 
+        //}
         let promise = new Promise((resolve, reject) => {
             this.http.get(`${this.apiFindBankData}` + bankElement.value)
                 .toPromise()
@@ -128,7 +134,7 @@ export class BankComponent implements OnInit {
 
                         //Prefills routing number if only one exists for user's city and/or state
                         if (this.bankNameArrayFiltered.length) {
-                            elementRouting.setAttribute('style', 'display: none;');
+                            //elementRouting.setAttribute('style', 'display: none;');
                             this.bankRoutingNumbers = []; //Clears array
 
                             this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
@@ -141,6 +147,7 @@ export class BankComponent implements OnInit {
                                     this.bankRoutingNumbers.push(element.RoutingNumber + " " + element.City + " " + 'Branch');
                                 }
                                 this.formDataService.setRoutingNumber(this.bank);
+                                elementRouting.removeAttribute('style');
                             })
                             //End routing number check
                         }

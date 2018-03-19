@@ -11,6 +11,7 @@ import { Input } from '@angular/core';
 // } from '@angular/animations';
 import { Income } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'mt-wizard-income',
@@ -34,7 +35,13 @@ export class IncomeComponent implements OnInit {
     income: Income;
     form: any;
 
-    constructor(private router: Router, private formDataService: FormDataService) {
+    constructor(private router: Router, private formDataService: FormDataService, private config: NgbTooltipConfig) {
+        config.placement = 'right';
+        config.triggers = 'hover';
+    }
+
+    forceNumeric ($event) {
+        $event.target.value = $event.target.value.replace(/[^0-9\.]+/g, '');
     }
 
     ngOnInit() {

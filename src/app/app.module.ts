@@ -34,7 +34,9 @@ import { ForbiddenValidatorDirective,
   ZipCodeValidator,
   ABARoutingValidator,
   AccountNumberValidator,
-  UppercaseDirective } from './shared/custom-validations.directive';
+  UppercaseDirective,
+  StateValidator,
+  MonthlyAmountValidator } from './shared/custom-validations.directive';
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -59,7 +61,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
       JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
-    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective
+    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator,
+    MonthlyAmountValidator
     ],
   bootstrap: [AppComponent]
 })
