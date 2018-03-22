@@ -193,23 +193,23 @@
                             </div>
                         </div>
                     </div>
-                    <div id="personal-info"></div>
-                    <div *ngIf="lastname.valid && firstName.valid && prefix.valid && termPeriod.valid && loanAmount.valid" style="transition: height 2s">
-                        <h4 class="head text-center large-width">{{title3}}</h4>
-                        <div class="row">
-                            <div class='col-xs-12 col-sm-12'>
-                                <div class="form-group">
-                                    <label class="control-label" for="dob">Date of Birth</label>
-                                    <input class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="text" placeholder="MM/DD/YYYY"
-                                        [(ngModel)]="personal.dob">
-                                    <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
-                                        <div *ngIf="dob.errors.required">This field is required</div>
-                                        <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY <br/>Must be over 18 to apply</div>
-                                    </div>
+                    <div class="row">
+                        <div class='col-xs-12 col-sm-12'>
+                            <div class="form-group">
+                                <label class="control-label" for="dob">Date of Birth</label>
+                                <input class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="text" placeholder="MM/DD/YYYY"
+                                    [(ngModel)]="personal.dob">
+                                <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
+                                    <div *ngIf="dob.errors.required">This field is required</div>
+                                    <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY <br/>Must be over 18 to apply</div>
                                 </div>
                             </div>
-
                         </div>
+
+                    </div>
+                    <div id="personal-info"></div>
+                    <div *ngIf="lastname.valid && firstName.valid && prefix.valid && termPeriod.valid && loanAmount.valid && dob.valid" style="transition: height 2s">
+                        <h4 class="head text-center large-width">{{title3}}</h4>
                         <div class="row">
                             <div class='col-xs-12 col-sm-12'>
                                 <div class="form-group">
@@ -230,7 +230,7 @@
                                     <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="mobilePhone.invalid && (mobilePhone.touched)"
                                         [hidden]="mobilePhone.valid">
                                         <div *ngIf="mobilePhone.errors.required">This field is required</div>
-                                        <div *ngIf="mobilePhone.errors.validatePhone">Please provide a valid phone number</div>
+                                        <div *ngIf="mobilePhone.errors.validatePhone">Please provide a valid phone number<br>Example: (123) 456-789</div>
                                     </div>
                                 </div>
                             </div>
@@ -482,14 +482,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group text-center">
-                    <div class="text-danger"> 
-                        <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be filled in before proceeding
-                    </div>
-                    <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!personalForm.valid" (click)="goToNext(personalForm)">
-                         Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
-                    </button>
+            </div>
+            <div class="form-group text-center">
+                <div class="text-danger" style="clear:both;"> 
+                    <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered before proceeding
                 </div>
+                <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!personalForm.valid" (click)="goToNext(personalForm)">
+                        Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
+                </button>
             </div>             
         </div>
     </div>

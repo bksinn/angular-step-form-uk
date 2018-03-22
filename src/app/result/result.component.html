@@ -35,7 +35,7 @@
                         <span style="padding-top: 5px; font-size: 12px">I agree that by submitting this application and clicking Apply Now, I provide my signature expressly consenting to receive recurring communication from PingYo and 3rd Party partners via telephone, text message or email against the number provided on the application. &nbsp;I am not required to enter into this agreement as a condition for obtaining a loan.</span>
                     </label>
                     </p>
-                    <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="isTCAccepted.invalid && (isTCAccepted.dirty || isTCAccepted.touched)"
+                    <div style="padding-top: 5px; font-size: 12px; font-style: italic; color: red;" *ngIf="isTCAccepted.invalid && (isTCAccepted.dirty || isTCAccepted.touched)"
                     [hidden]="isTCAccepted.valid">You must agree to the terms before submitting. </div>
 
                     <input type="hidden" id="emailconsent2" name="emailconsent2">

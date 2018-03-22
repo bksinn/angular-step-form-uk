@@ -350,8 +350,7 @@
 
             <div class="form-group text-center">
                 <div class="text-danger" style="clear:both;">
-                    <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be filled
-                    in before proceeding
+                    <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered before proceeding
                 </div>
                 <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(addressForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
                 <button class="btn btn-outline-rounded btn-info" [disabled]="!addressForm.valid" (click)="goToNext(addressForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
