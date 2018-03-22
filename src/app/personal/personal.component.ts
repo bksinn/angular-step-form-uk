@@ -58,6 +58,8 @@ export class PersonalComponent implements OnInit {
     personal: Personal;
     form: any;
     apiRoot: string = "http://www.pingyo.com/find/locales/zipcode/";
+    response: Array<any> = [];
+    areaCode: string = '';
 
     constructor(
         private router: Router,
@@ -75,14 +77,29 @@ export class PersonalComponent implements OnInit {
         let element: HTMLElement = document.getElementById('user-zipcode');
         let zipcodeElement: HTMLInputElement = element as HTMLInputElement;
         url = url + zipcodeElement.value;
-
         if (zipcodeElement.value.length == 5 && Number(zipcodeElement.value)) {
             this.http.get(url).subscribe(
                 res => {
-                    console.log(this.personal);
-                    this.personal.homePhone = "(" + res[0].AreaCode + ") ";
-                    this.personal.workPhone = "(" + res[0].AreaCode + ") ";
-                    this.personal.mobilePhone = "(" + res[0].AreaCode + ") ";
+
+                    //Check to see if all area codes match, then auto fill ==> else, don't auto fill
+                    this.response = [];
+                    this.response.push(res);
+                    this.areaCode = res[0].AreaCode;
+
+                    this.response[0].forEach((obj) => {
+                        if (this.areaCode == obj.AreaCode) {
+                            this.personal.homePhone = "(" + this.areaCode + ") ";
+                            this.personal.workPhone = "(" + this.areaCode + ") ";
+                            this.personal.mobilePhone = "(" + this.areaCode + ") ";
+                        }
+                        else {
+                            this.personal.homePhone = ""
+                            this.personal.workPhone = ""
+                            this.personal.mobilePhone = ""
+                        }
+                    })
+                    //End Check to see if all area codes match
+
                     this.personal.city = res[0].City;
                     this.personal.state = res[0].StateAbbreviation;
                     this.personal.issuingState = res[0].StateAbbreviation;
@@ -93,7 +110,6 @@ export class PersonalComponent implements OnInit {
                     this.formData.typeAheadCity = [];
                     this.formData.typeAheadState.push(res[0].StateAbbreviation);
                     this.formData.typeAheadCity.push(res[0].City);
-                    console.log(res);
                 },
                 msg => {
                     console.error(`Error: ${msg.status} ${msg.statusText}`)

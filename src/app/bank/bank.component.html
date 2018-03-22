@@ -10,14 +10,15 @@
                         <label class="control-label" for="bankName">Bank Name</label>
                         <input class="form-control input-md" 
                                 (keyup)="getBankInformation()"
-                                (blur)="getBankRoutingInformation()"
+                                (keydown)="clearBankRoutingInformation()"
                                 #bankName="ngModel" 
                                 required 
                                 uppercase
                                 placeholder="Ex. Bank of America"
                                 name="bankName" 
                                 id="user-bank"
-                                [ngbTypeahead]="search" 
+                                [ngbTypeahead]="search"
+                                (selectItem)="selectedItem($event)"
                                 [resultFormatter]="formatter"
                                 [(ngModel)]="bank.bankName">
                         <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)" [hidden]="bankName.valid">
@@ -28,7 +29,22 @@
                 <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="accountType">Account Type</label>
-                        <select class="form-control input-md" 
+                            <!--<label class="control-label" for="title">Title</label>-->
+                            <div (click)="getBankRoutingInformation()" class="radio radio-accountType" type="radio">
+                                <span class="option">
+                                    <input #accountType="ngModel" required name="accountType" id="accountType" value="Checking" [(ngModel)]="bank.accountType" type="radio">
+                                    <label>
+                                        Checking
+                                    </label>
+                                </span>
+                                <span class="option">
+                                    <input #accountType="ngModel" required name="accountType" id="accountType" value="Savings" [(ngModel)]="bank.accountType" type="radio">
+                                    <label>
+                                        Savings
+                                    </label>
+                                </span>
+                            </div>
+                        <!--<select class="form-control input-md" 
                                 #accountType="ngModel" 
                                 required
                                 name="accountType" 
@@ -36,7 +52,10 @@
                             <option value="" disabled selected>Select</option>
                             <option value="Checking">Checking</option>
                             <option value="Savings">Savings</option>
-                        </select>
+                        </select>-->
+                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="accountType.valid">
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your account type before continuing
+                        </div>
                         <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)" [hidden]="accountType.valid">
                             <div *ngIf="accountType.errors.required">This field is required</div>
                         </div>
@@ -144,8 +163,8 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeYears.valid">
-                            Please select your your payment type before continuing ^
+                        <div class="prefix-error-message" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeYears.valid">
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years at this bank before continuing
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
@@ -181,8 +200,8 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeMonths.valid">
-                            Please select your your payment type before continuing ^
+                        <div class="prefix-error-message" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeMonths.valid">
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months at this bank before continuing
                         </div>
                     </div>
                     <!--<div class="col-xs-12 col-sm-12">

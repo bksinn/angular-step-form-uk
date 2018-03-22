@@ -20,9 +20,7 @@
   box-shadow: 0 0 4px 1px rgba(34, 194, 34, 0.5);
 }
 
-.ng-invalid.phone:not(form) {
-  border: 1px solid orange;
-  transition: border .2s orange;
+.ng-dirty.phone:not(form) {
   box-shadow: 0 0 4px 1px orange; 
 }
 

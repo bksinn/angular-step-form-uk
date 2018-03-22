@@ -59,6 +59,7 @@ export class BankComponent implements OnInit {
     searching = false;
     searchFailed = false;
     hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
+    clickedItem: string;
 
     constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, public formData: FormData) {
     }
@@ -88,12 +89,19 @@ export class BankComponent implements OnInit {
         }
     }
 
+    clearBankRoutingInformation () {
+        this.bank.routingNumber = '';
+        this.formDataService.clearRoutingNumber(this.bank);
+    }
+
     getBankRoutingInformation () {
         let element: HTMLElement = document.getElementById('user-bank');
         let elementRouting: HTMLElement = document.getElementById('routing-div');
         let bankElement: HTMLInputElement = element as HTMLInputElement;
         let routingElement: HTMLInputElement = elementRouting as HTMLInputElement;
         let routingNumber = this.bank.routingNumber;
+        let bankName;
+
         //elementRouting.removeAttribute('validateABA')
         console.log(elementRouting);
 
@@ -103,8 +111,10 @@ export class BankComponent implements OnInit {
         //else{
         //      show elementRouting, clear value, add validateABA if not there 
         //}
+        bankName = this.clickedItem || bankElement.value
+
         let promise = new Promise((resolve, reject) => {
-            this.http.get(`${this.apiFindBankData}` + bankElement.value)
+            this.http.get(`${this.apiFindBankData}` + bankName)
                 .toPromise()
                 .then(
                     res => { // Success
@@ -116,8 +126,10 @@ export class BankComponent implements OnInit {
                         for (var i = 0; i < this.bankNameArray.length; i++) {
                             this.bankNameArrayFiltered = []; //Clears array
                             this.bankNameArray[i].filter((element) => {
-                                
-                                if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
+                                if (this.bankNameArray[i].length < 50) {
+                                    this.bankNameArrayFiltered.push(element);
+                                }
+                                else if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
                                     console.log(element);
                                     this.bankNameArrayFiltered.push(element);
                                 }
@@ -127,19 +139,24 @@ export class BankComponent implements OnInit {
                             })
                         }
                         //End matches bank names to user's city/state
-
+                        this.clickedItem = '';
                         this.bankRoutingNumbers = [];
                         this.bank.routingNumber = '';
                         this.formDataService.clearRoutingNumber(this.bank);
 
                         //Prefills routing number if only one exists for user's city and/or state
                         if (this.bankNameArrayFiltered.length) {
-                            //elementRouting.setAttribute('style', 'display: none;');
                             this.bankRoutingNumbers = []; //Clears array
 
-                            this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
-                            this.bank.routingNumber = this.bankRoutingNumbers[0].slice(0,9);
-                    
+                            //Typeahead for Routing Numbers: this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
+                            //Typeahead for Routing Numbers: this.bank.routingNumber = this.bankRoutingNumbers[0].slice(0,9);
+                            this.bank.routingNumber = this.bankNameArrayFiltered[0].RoutingNumber
+
+                            //Adds 0 in front of routing number if length is 8 (for Bank of America that omits number '0' at the beginning )
+                            if (this.bank.routingNumber.length == 8) {
+                                this.bank.routingNumber = "0" + this.bankNameArrayFiltered[0].RoutingNumber;
+                            }
+
                             //Check if routing number is unique                        
                             this.bankNameArrayFiltered.forEach((element) => {
                                 if (this.bank.routingNumber != element.RoutingNumber) {
@@ -176,6 +193,13 @@ export class BankComponent implements OnInit {
             .debounceTime(200)
             .distinctUntilChanged()
             .map(term => term === '' ? [] : this.bankArray[0]);
+
+    selectedItem(item) {
+        this.clickedItem = item.item;
+        console.log("CLICKED!");
+        this.getBankRoutingInformation()
+
+    }
 
 
     //End Typeahead for Bank names

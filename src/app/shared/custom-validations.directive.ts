@@ -69,12 +69,16 @@ export class JuriNameValidator implements Validator {
 
 function validatePhoneNumber(): ValidatorFn {
     return (c: AbstractControl) => {
+        c.markAsPristine();
         let phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
         let isValid = phoneNumberPattern.test(c.value);
-
         if (isValid) {
             return null;
-        } else {
+        }
+        else {
+            if (c.value !== null && c.value.length) {
+                c.markAsDirty();
+            }
             return {
                 validatePhone: {
                     valid: false
@@ -387,7 +391,7 @@ function validateABA(): ValidatorFn {
                 t = t + s;
         }
 
-        // Check the length, it should be nine digits.
+        // Check the length, it should be nine digits (or eight for certain banks, i.e. Bank of America).
 
         if (t.length !== 9) {
             return {
@@ -486,7 +490,7 @@ function validateState(): ValidatorFn {
             'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
         const stateAbbrev = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
         //let isValid = emailPattern.test(c.value);
-        let isValid = states.find((element) => c.value == element) || stateAbbrev.find((element) => c.value == element);
+        let isValid = states.find((element) => c.value == element) || stateAbbrev.find((element) => c.value == element || c.value == element.toLowerCase());
         if (isValid) {
             return null;
         } else {

@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="prefix-error-message" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="incomeSource.valid">
-                                Please select your income source before continuing ^
+                                <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your income source before continuing
                             </div>
                         </div>
                 <div 
@@ -61,6 +61,7 @@
                         <div class="form-group">
                             <label class="control-label" for="workphone">Employer Name</label>
                             <input class="form-control input-md"
+                                    uppercase
                                     #employerName="ngModel" 
                                     required name="employername"
                                     type="text" 
@@ -105,7 +106,7 @@
                             </div>
                         </div>
                         <div class="prefix-error-message" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="paymentType.valid">
-                            Please select your payment type before continuing ^
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your payment type before continuing
                         </div>
                     </div>
                 </div>
@@ -170,7 +171,7 @@
                             </div>
                         </div>
                         <div class="prefix-error-message" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="employmentYears.valid">
-                            Please select years at employer before continuing ^
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years at employer before continuing
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
@@ -207,7 +208,7 @@
                             </div>
                         </div>
                         <div class="prefix-error-message" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="employmentYears.valid">
-                            Please select months at employer before continuing ^
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months at employer before continuing
                         </div>
                     </div>
                 </div>
@@ -247,7 +248,7 @@
                             </div>
                         </div>
                         <div class="prefix-error-message" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="payFrequency.valid">
-                            Please select your your payment type before continuing ^
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your your payment type before continuing
                         </div>
                     </div>                
                 <!--<div class='col-xs-12 col-sm-12'>

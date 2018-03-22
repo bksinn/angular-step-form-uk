@@ -96,7 +96,7 @@ export class AddressComponent implements OnInit {
                 }
             );
         }
-        console.log(this.formData);
+        //console.log(this.formData);
     }
 
     //Typeahead for States

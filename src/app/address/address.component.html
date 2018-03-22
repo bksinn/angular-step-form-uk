@@ -174,8 +174,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="prefix-error-message" *ngIf="(zip.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="residentialStatus.valid">
-                                    Please select your your payment type before continuing ^
+                                <div class="prefix-error-message" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="residentialStatus.valid">
+                                    <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your residential status before continuing
                                 </div>
                             </div>
                             <!--<select class="form-control input-md" 
@@ -252,8 +252,8 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(zip.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="addressYears.valid">
-                            Please select your your payment type before continuing ^
+                        <div class="prefix-error-message" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="addressYears.valid">
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years at this address before continuing
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
@@ -289,8 +289,8 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(zip.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="addressMonths.valid">
-                            Please select your your payment type before continuing ^
+                        <div class="prefix-error-message" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="addressMonths.valid">
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months at this address before continuing
                         </div>
                     </div>
                     <!--<div class='col-xs-12 col-sm-12'>
