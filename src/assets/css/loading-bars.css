@@ -23,3 +23,40 @@
 .color-line {
     border-radius:4px 4px 0 0
 }
+
+/*Spinning animation for loading*/
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; 
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+.loading-ripple {
+    display: inline-block;
+    height: 85px;
+    position: relative;
+    bottom: 35px;
+}
+
+p.countdown {
+    position: relative;
+    font-size: 100px;
+    color: #3498db;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

@@ -163,7 +163,7 @@ form[name=bankForm] .radio-bankTime input[type="radio"] {
     width: 21%;
 }
 
-@media (min-width: 990px) {
+@media (min-width: 993px) {
     .radio span.option, .radio input[type="radio"]  {
         width: 23%!important;
     }
@@ -236,9 +236,9 @@ p.radio-label {
 }
 
 .radio input[type="radio"]:checked+label {
-    /*border: 2px solid rgb(34, 194, 34);
-    background-color: rgba(34, 194, 34, 0.5);*/
     box-shadow: 0 0 5px 3px rgb(34, 194, 34);
+    opacity: 0.9;
+    font-size: 16px;
 }
 
 .form-control {
@@ -314,6 +314,13 @@ select.form-control {
     /*zoom: 1.5;*/
 }
 
+.checkbox input[type=checkbox] {
+    position: relative;
+    display: inline;
+    zoom: 2;
+    margin: 0 5px 0 0;
+}
+
 .big-checkbox {
     position: relative;
     bottom: 2px;
@@ -343,3 +350,46 @@ select.form-control {
     background-color: #337ab7;
     padding: 10px;
 }
+
+.email-domain .btn {
+    margin: 5px;
+    width: 145px;
+    height: 50px;
+}
+
+@media (max-width: 500px) {
+    .email-domain .btn {
+        display: block;
+        width: 48%;
+        margin: 2px;
+    }
+}
+
+p.progress-class {
+    height: 50px;
+}
+
+.progress {
+    display: inline-block;
+    height: 42px;
+    width: 75%;
+}
+
+@media (max-width: 400px) {
+    .progress {
+        width: 65%;
+    }
+}
+
+.progress-bar span {
+    position: relative;
+    top: 10px;
+    font-size: 25px;
+}
+
+@media (max-width: 500px) {
+    .loading-screen p {
+        font-size: 18px;
+    }
+}
+

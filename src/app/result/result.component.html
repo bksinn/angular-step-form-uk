@@ -1,12 +1,47 @@
-<form #resultForm="ngForm" name="resultForm" class="editForm result-form" novalidate>
+
+
+<div class="jumbotron text-center loading-screen" *ngIf="submitted && percentComplete != 100 && !submitSuccess && !submitFail">
+    <h2>Searching...</h2>
+    <p>We are currently checking our large panel to source the best option for you.</p>
+    <p>This can take a few minutes so please be patient and do not close your browser.</p>
+    <p class="progress-class">
+        <ngb-progressbar showValue="true" type="success" [value]="percentComplete"></ngb-progressbar>
+        <span>
+            <img class="loading-ripple" src="../../assets/images/loading-ripple.svg" alt="Loading Animation">
+        </span>
+    </p>
+    <p>
+        <strong>Note: </strong>Progress may appear paused as individual lenders may take as long as 40 seconds to respond with a decision.
+    </p>
+    <p class="hide">{{countDown | async}}</p>
+</div>
+
+<div class="jumbotron text-center" *ngIf="submitSuccess || percentComplete == 100">
+    <h2>Congratulations, you are matched to a lender! </h2>
+    <p class="countdown">{{countDown2 | async}}</p>
+    <p>You will now be redirected to your match.</p>
+    <button class="btn btn-outline-rounded btn-default" (click)="resetSubmit()"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+
+</div>
+
+<div class="jumbotron text-center" *ngIf="submitFail">
+    <h2>ERROR!</h2>
+    <p>This application is declined</p>
+    <button class="btn btn-outline-rounded btn-default" (click)="resetSubmit()"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+
+</div>
+
+
+
+<form (ngSubmit)="processForm()" #resultForm="ngForm" name="resultForm" class="editForm result-form" novalidate *ngIf="!submitted">
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title}}</h3>
-        <h4 class="text-center">
+        <!--<h4 class="text-center">
             Reference: <a href="https://www.cc28tech.com/introducing-angular-ui-router-series" target="_blank">here.</a>
         </h4>
         <p class="narrow text-center">
             Here is a copy of the information you have entered:
-        </p>
+        </p>-->
         <div class='row'>
             <div class="col-xs-offset-1">
                 <div class='col-xs-12 col-sm-10'>
@@ -24,19 +59,19 @@
                         <label>
                         <input
                             class="form-control"
-                            #isTCAccepted="ngModel"
+                            #consentToCreditSearch="ngModel"
                             required 
                             type="checkbox" 
                             class="checkbox" 
                             id="emailconsent" 
-                            name="isTCAccepted" 
-                            [(ngModel)]="result.isTCAccepted"
+                            name="consentToCreditSearch" 
+                            [(ngModel)]="result.consentToCreditSearch"
                             checked="">
                         <span style="padding-top: 5px; font-size: 12px">I agree that by submitting this application and clicking Apply Now, I provide my signature expressly consenting to receive recurring communication from PingYo and 3rd Party partners via telephone, text message or email against the number provided on the application. &nbsp;I am not required to enter into this agreement as a condition for obtaining a loan.</span>
                     </label>
                     </p>
-                    <div style="padding-top: 5px; font-size: 12px; font-style: italic; color: red;" *ngIf="isTCAccepted.invalid && (isTCAccepted.dirty || isTCAccepted.touched)"
-                    [hidden]="isTCAccepted.valid">You must agree to the terms before submitting. </div>
+                    <div style="padding-top: 5px; font-size: 12px; font-style: italic; color: red;" *ngIf="consentToCreditSearch.invalid && (consentToCreditSearch.dirty || consentToCreditSearch.touched)"
+                    [hidden]="consentToCreditSearch.valid">You must agree to the terms before submitting. </div>
 
                     <input type="hidden" id="emailconsent2" name="emailconsent2">
                     <p style="padding-top: 5px; font-size: 11px; line-height: 17px">
@@ -55,7 +90,7 @@
                     </p>-->
                 </div>
             </div>
-            <div class='col-xs-offset-1' style="display:block; clear: both;">      
+            <!--<div class='col-xs-offset-1' style="display:block; clear: both;">      
                 <div class="row">
                     <div class='col-xs-3 col-sm-2'>
                         <div class="form-group">
@@ -97,13 +132,14 @@
                         <br/> {{formData.city + ' ' + formData.state + ' ' + formData.zip}}
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="text-center">
-            <button class="btn btn-success btn-outline-rounded" [disabled]="!isFormValid" (click)="submit(resultForm)"> Submit <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(resultForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
+            <button class="btn btn-success btn-outline-rounded" (click)="submit(resultForm)"> Submit <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
     </div>
 </form>
 
 <!--[disabled]="!isFormValid"-->
-<!--[disabled]="!resultForm.valid"-->
+<!--(click)="submit(resultForm)"-->

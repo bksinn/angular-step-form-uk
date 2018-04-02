@@ -13,26 +13,7 @@ import { Personal } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { ForbiddenValidatorDirective } from '../shared/custom-validations.directive';
-
-import { NgbTypeahead, NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
-const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-    'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-    'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-    'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-    'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-    'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-    'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
-
+import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'mt-wizard-personal', 
@@ -116,24 +97,62 @@ export class PersonalComponent implements OnInit {
                 }
             );
         }
+    }
+
+    addGmail () {
+        let emailElement: HTMLElement = document.getElementById('email');
+        let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
+
+        let emailDomain = emailInput.value.indexOf('@');
+        if (emailDomain !== -1) {
+            emailInput.value = emailInput.value.slice(0, emailDomain);
+        }
+
+        emailInput.value += "@gmail.com"
+        this.personal.email = emailInput.value;
         console.log(this.formData);
     }
 
-    checkMatchingPhoneNumbers () {
-        let elementMobile: HTMLElement = document.getElementById('mobilePhone');
-        let mobileValue: HTMLInputElement = elementMobile as HTMLInputElement;
+    addYahoo () {
+        let emailElement: HTMLElement = document.getElementById('email');
+        let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
 
-        let elementWork: HTMLElement = document.getElementById('workPhone');
-        let workValue: HTMLInputElement = elementWork as HTMLInputElement;
-
-        let phoneMessageElement: HTMLElement = document.getElementById('phoneMessage');
-        let phoneMessage: HTMLInputElement = phoneMessageElement as HTMLInputElement
-
-
-        if (mobileValue.value == workValue.value) {
-            phoneMessageElement.innerHTML = '<div>NOTE: Your work and home or cell numbers match, many lenders will treat you as self - employed and many will decline to consider your application due to lack of detailed information.This decreases your chance for acceptance. We encourage you to provide a real work number which is separate from your mobile to gain the highest possible chance for acceptance</div>'
+        let emailDomain = emailInput.value.indexOf('@');
+        if (emailDomain !== -1) {
+            emailInput.value = emailInput.value.slice(0, emailDomain);
         }
-        else {phoneMessageElement.innerHTML = ''}
+
+        emailInput.value += "@yahoo.com"
+        this.personal.email = emailInput.value;
+        console.log(this.formData)
+    }
+
+    addHotmail () {
+        let emailElement: HTMLElement = document.getElementById('email');
+        let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
+        
+        let emailDomain = emailInput.value.indexOf('@');
+        if (emailDomain !== -1) {
+            emailInput.value = emailInput.value.slice(0, emailDomain);
+        }
+
+        emailInput.value += "@hotmail.com"
+        this.personal.email = emailInput.value;
+        console.log(this.formData)
+    }
+
+    addAol () {
+        let emailElement: HTMLElement = document.getElementById('email');
+        let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
+
+        let emailDomain = emailInput.value.indexOf('@');
+        if (emailDomain !== -1) {
+            emailInput.value = emailInput.value.slice(0, emailDomain);
+        }
+
+        emailInput.value += "@aol.com"
+        this.personal.email = emailInput.value;
+        console.log(this.formData)
     }
 
     ngOnInit() {
@@ -149,21 +168,6 @@ export class PersonalComponent implements OnInit {
         });
     }
 
-
-    //Typeahead for States
-    model: any;
-
-    formatter = (result: string) => result.toUpperCase();
-
-    search = (text$: Observable<string>) =>
-        text$
-            .debounceTime(200)
-            .distinctUntilChanged()
-            .map(term => term === '' ? []
-                : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
-
-    //End Typeahead for States
-
     save(form: any): boolean {
         if (!form.valid) {
             return false;
@@ -175,6 +179,7 @@ export class PersonalComponent implements OnInit {
 
     goToNext(form: any) {
         window.scrollTo(0, 0);
+
         if (this.save(form)) {
             // Navigate to the income page
             this.router.navigate(['/income']);

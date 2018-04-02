@@ -82,8 +82,8 @@ export class BankComponent implements OnInit {
                     this.bankArray = [];
                     this.bankArray.push(res);
                 },
-                msg => {
-                    console.error(`Error: ${msg.status} ${msg.statusText}`)
+                error => {
+                    console.error(`Error: ${error.status} ${error.statusText}`)
                 }
             );
         }

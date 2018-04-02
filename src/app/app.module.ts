@@ -55,7 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     { provide: FormDataService, useClass: FormDataService },
     { provide: WorkflowService, useClass: WorkflowService },
-    {provide: FormData, useClass: FormData}
+    { provide: FormData, useClass: FormData}
   ],
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 

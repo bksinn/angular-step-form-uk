@@ -32,28 +32,19 @@
                             <!--<label class="control-label" for="title">Title</label>-->
                             <div (click)="getBankRoutingInformation()" class="radio radio-accountType" type="radio">
                                 <span class="option">
-                                    <input #accountType="ngModel" required name="accountType" id="accountType" value="Checking" [(ngModel)]="bank.accountType" type="radio">
+                                    <input #accountType="ngModel" required name="accountType" id="accountType" value=1 [(ngModel)]="bank.accountType" type="radio">
                                     <label>
                                         Checking
                                     </label>
                                 </span>
                                 <span class="option">
-                                    <input #accountType="ngModel" required name="accountType" id="accountType" value="Savings" [(ngModel)]="bank.accountType" type="radio">
+                                    <input #accountType="ngModel" required name="accountType" id="accountType" value=2 [(ngModel)]="bank.accountType" type="radio">
                                     <label>
                                         Savings
                                     </label>
                                 </span>
                             </div>
-                        <!--<select class="form-control input-md" 
-                                #accountType="ngModel" 
-                                required
-                                name="accountType" 
-                                [(ngModel)]="bank.accountType">
-                            <option value="" disabled selected>Select</option>
-                            <option value="Checking">Checking</option>
-                            <option value="Savings">Savings</option>
-                        </select>-->
-                        <div class="prefix-error-message" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="accountType.valid">
+                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="accountType.valid">
                             <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your account type before continuing
                         </div>
                         <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)" [hidden]="accountType.valid">
@@ -63,26 +54,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class='col-xs-12 col-sm-12'>
+                <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-12'>
                     <div class="form-group">
-                        <label class="control-label" for="accountNumber">Account Number</label>
-                        <input class="form-control input-md" 
-                                #accountNumber="ngModel" 
-                                required 
-                                minlength="6"
-                                maxlength="14"
-                                name="accountNumber" 
-                                type="text" 
-                                placeholder="6 to 17 digits"
-                                [(ngModel)]="bank.accountNumber">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)" [hidden]="accountNumber.valid">
-                            <div *ngIf="accountNumber.errors.required">This field is required</div>
-                            <div *ngIf='accountNumber.errors.minlength'>Too short</div>
-                            <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
+                        <label class="control-label" for="routingNumber">ABA / Routing Number</label>
+                        <label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
+                        <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
+                            type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)"
+                            [hidden]="routingNumber.valid">
+                            <div *ngIf="routingNumber.errors.required">This field is required</div>
+                            <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
                         </div>
                     </div>
                 </div>
-                <!--<div *ngIf="accountNumber.valid">-->
+                <div class='col-xs-12 col-sm-12'>
                     <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="routingNumber">ABA / Routing Number</label>
@@ -101,13 +86,30 @@
                                 <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
                             </div>
                         </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label class="control-label" for="accountNumber">Account Number</label>
+                        <input class="form-control input-md" 
+                                #accountNumber="ngModel" 
+                                required 
+                                minlength="6"
+                                maxlength="14"
+                                name="accountNumber" 
+                                type="text" 
+                                placeholder="6 to 17 digits"
+                                [(ngModel)]="bank.accountNumber">
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)" [hidden]="accountNumber.valid">
+                            <div *ngIf="accountNumber.errors.required">This field is required</div>
+                            <div *ngIf='accountNumber.errors.minlength'>Too short</div>
+                            <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
+                        </div>
                     </div>
-                <!--</div>-->
+                </div>
             </div>
             <div class="row">
                 <div>
                     <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Years at this bank</label>
+                        <label class="control-label" for="title">Years At This Bank</label>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
@@ -163,12 +165,12 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeYears.valid">
+                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="bankTimeYears.valid">
                             <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years at this bank before continuing
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Months at this bank</label>
+                        <label class="control-label" for="title">Months At This Bank</label>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
@@ -195,75 +197,20 @@
                                 <span class="option">
                                     <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="9" [(ngModel)]="bank.bankTimeMonths" type="radio">
                                     <label>                                
-                                        9
+                                        9+
                                     </label>
                                 </span>
                             </div>
                         </div>
-                        <div class="prefix-error-message" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px; color: red;" [hidden]="bankTimeMonths.valid">
+                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="bankTimeMonths.valid">
                             <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months at this bank before continuing
                         </div>
                     </div>
-                    <!--<div class="col-xs-12 col-sm-12">
-                        <label class="control-label" for="bankTimeYears">Time at Bank</label>
-                    </div>
-                    <div class="form-group">
-                        <div class='col-xs-6 col-sm-6'>
-                            <select class="form-control input-md" 
-                                    #bankTimeYears="ngModel" 
-                                    required 
-                                    name="bankTimeYears" 
-                                    [(ngModel)]="bank.bankTimeYears">
-                                <option value="" disabled selected>Years</option>
-                                <option value="0">0</option>
-                                <option value="1">1 year</option>
-                                <option value="2">2 years</option>
-                                <option value="3">3 years</option>
-                                <option value="4">4 years</option>
-                                <option value="5">5 years</option>
-                                <option value="6">6 years</option>
-                                <option value="7">7 years</option>
-                                <option value="8">8 years</option>
-                                <option value="9">9 years</option>
-                                <option value="10">10 years</option>
-                                <option value="12">12 years</option>
-                                <option value="15">15 years</option>
-                                <option value="20">20+ years</option>
-                            </select>
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="bankTimeYears.invalid && (bankTimeYears.dirty || bankTimeYears.touched)" [hidden]="bankTimeYears.valid">
-                            <div *ngIf="bankTimeYears.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                        <div class='col-xs-6 col-sm-6'>
-                            <select class="form-control input-md" 
-                                    #bankTimeMonths="ngModel" 
-                                    required 
-                                    name="bankTimeMonths" 
-                                    [(ngModel)]="bank.bankTimeMonths">
-                                <option value="" disabled selected>Months</option>
-                                <option value="0">0</option>
-                                <option value="1">1 month</option>
-                                <option value="2">2 months</option>
-                                <option value="3">3 months</option>
-                                <option value="4">4 months</option>
-                                <option value="5">5 months</option>
-                                <option value="6">6 months</option>
-                                <option value="7">7 months</option>
-                                <option value="8">8 months</option>
-                                <option value="9">9 months</option>
-                                <option value="10">10 months</option>
-                                <option value="11">11 months</option>
-                            </select>
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="bankTimeMonths.invalid && (bankTimeMonths.dirty || bankTimeMonths.touched)" [hidden]="bankTimeMonths.valid">
-                                <div *ngIf="bankTimeMonths.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>
         <div class="form-group text-center space-20">
-            <div class="text-danger" style="clear:both;">
+            <div *ngIf="!bankForm.valid" class="text-danger" style="clear:both;">
                 <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered before proceeding
             </div>
             <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(bankForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>

@@ -12,17 +12,22 @@ export class FormData {
     mobilePhone: string = '';
     email: string = '';
     dob: string = '';
-    ssn: string = '';
+    DateofBirth: string = "\/Date(" + String(new Date(this.dob).getTime()) + ")\/";
+    nationalIdentityNumber: string = '';
+    nationalIdentityNumberType: number = 2;
     driversLicense: string = '';
     issuingState: string = '';
     militaryService: string = '';
 
     incomeSource: string = '';
+    employmentStarted: string = '';
     employerName: string = '';
     paymentType: string = '';
     employmentYears: string = '';
     employmentMonths: string = '';
     payFrequency: string = '';
+    nextPayDate: string = '';
+    followingPayDate: string = '';
     netAmount: string = '';
     jobTitle: string = '';
 
@@ -33,6 +38,7 @@ export class FormData {
     addressMonths: string = '';
     addressYears: string = '';
     residentialStatus: string = '';
+    addressMoveIn: string = '';
 
     bankName: string = '';
     accountNumber: string = '';
@@ -40,8 +46,9 @@ export class FormData {
     bankTimeYears: string = '';
     bankTimeMonths: string = '';
     accountType: string = '';
+    bankAccountOpened: string = '';
 
-    isTCAccepted: boolean = true;
+    consentToCreditSearch: boolean = true;
 
     typeAheadAreaCode: Array<any> = [];
     typeAheadState: Array<any> = [];
@@ -60,17 +67,20 @@ export class FormData {
         this.mobilePhone = '';
         this.email = '';
         this.dob = '';
-        this.ssn = '';
+        this.nationalIdentityNumber = '';
         this.driversLicense = '';
         this.issuingState = '';
         this.driversLicense = '';
 
         this.incomeSource = '';
+        this.employmentStarted = '';
         this.employerName = '';
         this.paymentType = '';
         this.employmentYears = '';
         this.employmentMonths = '';
         this.payFrequency = '';
+        this.nextPayDate = '';
+        this.followingPayDate = '';
         this.netAmount = '';
         this.jobTitle = '';
 
@@ -81,6 +91,7 @@ export class FormData {
         this.addressMonths = '';
         this.addressYears = '';
         this.residentialStatus = '';
+        this.addressMoveIn = '';
 
         this.bankName = '';
         this.accountNumber = '';
@@ -88,6 +99,7 @@ export class FormData {
         this.bankTimeYears = '';
         this.bankTimeMonths = '';
         this.accountType = '';
+        this.bankAccountOpened = '';
     }
 }
 
@@ -105,7 +117,8 @@ export class Personal {
     mobilePhone: string = '';
     email: string = '';
     dob: string = '';
-    ssn: string = '';
+    DateofBirth: string = "\/Date(" + String(new Date(this.dob).getTime()) + ")\/";
+    nationalIdentityNumber: string = '';
     driversLicense: string = '';
     issuingState: string = '';
     militaryService: string = '';
@@ -113,11 +126,14 @@ export class Personal {
 
 export class Income {
     incomeSource: string = '';
+    employmentStarted: string = '';
     employerName: string = '';
     paymentType: string = '';
     employmentYears: string = '';
     employmentMonths: string = '';
     payFrequency: string = '';
+    nextPayDate: string = '';
+    followingPayDate: string = '';
     netAmount: string = '';
     jobTitle: string = '';
 }
@@ -130,6 +146,7 @@ export class Address {
     addressMonths: string = '';
     addressYears: string = '';
     residentialStatus: string = '';
+    addressMoveIn: string = '';
 }
 
 export class Bank {
@@ -139,8 +156,9 @@ export class Bank {
     bankTimeYears: string = '';
     bankTimeMonths: string = '';
     accountType: string = '';
+    bankAccountOpened: string = '';
 }
 
 export class Result {
-    isTCAccepted: boolean = true;
+    consentToCreditSearch: boolean = true;
 }

@@ -34,7 +34,8 @@ export class FormDataService {
             mobilePhone: this.formData.mobilePhone,
             email: this.formData.email,
             dob: this.formData.dob,
-            ssn: this.formData.ssn,
+            DateofBirth: this.formData.DateofBirth,
+            nationalIdentityNumber: this.formData.nationalIdentityNumber,
             driversLicense: this.formData.driversLicense,
             issuingState: this.formData.issuingState,
             militaryService: this.formData.militaryService
@@ -65,7 +66,8 @@ export class FormDataService {
         this.formData.mobilePhone = data.mobilePhone;
         this.formData.email = data.email;
         this.formData.dob = data.dob;
-        this.formData.ssn = data.ssn;
+        this.formData.DateofBirth = "\/Date(" + String(new Date(data.dob).getTime()) + ")\/";
+        this.formData.nationalIdentityNumber = data.nationalIdentityNumber;
         this.formData.driversLicense = data.driversLicense;
         this.formData.issuingState = data.issuingState;
         this.formData.militaryService = data.militaryService;
@@ -77,11 +79,14 @@ export class FormDataService {
         // Return the Income data
         var income: Income = {
             incomeSource: this.formData.incomeSource,
+            employmentStarted: this.formData.employmentStarted,
             employerName: this.formData.employerName,
             paymentType: this.formData.paymentType,
             employmentYears: this.formData.employmentYears,
             employmentMonths: this.formData.employmentMonths,
             payFrequency: this.formData.payFrequency,
+            nextPayDate: this.formData.nextPayDate,
+            followingPayDate: this.formData.followingPayDate,
             netAmount: this.formData.netAmount,
             jobTitle: this.formData.jobTitle,
         };
@@ -92,11 +97,14 @@ export class FormDataService {
         // Update the Income data only when the Income Form had been validated successfully
         this.isIncomeFormValid = true;
         this.formData.incomeSource = data.incomeSource;
+        this.formData.employmentStarted = data.employmentStarted;
         this.formData.employerName = data.employerName;
         this.formData.paymentType = data.paymentType;
         this.formData.employmentYears = data.employmentYears;
         this.formData.employmentMonths = data.employmentMonths;
         this.formData.payFrequency = data.payFrequency;
+        this.formData.nextPayDate = data.nextPayDate;
+        this.formData.followingPayDate = data.followingPayDate;
         this.formData.netAmount = data.netAmount;
         this.formData.jobTitle = data.jobTitle;
         // Validate Income Step in Workflow
@@ -111,7 +119,8 @@ export class FormDataService {
             routingNumber: this.formData.routingNumber,
             bankTimeYears: this.formData.bankTimeYears,
             bankTimeMonths: this.formData.bankTimeMonths,
-            accountType: this.formData.accountType
+            accountType: this.formData.accountType,
+            bankAccountOpened: this.formData.bankAccountOpened
         };
         return bank;
     }
@@ -133,6 +142,7 @@ export class FormDataService {
         this.formData.bankTimeYears = data.bankTimeYears;
         this.formData.bankTimeMonths = data.bankTimeMonths;
         this.formData.accountType = data.accountType;
+        this.formData.bankAccountOpened = data.bankAccountOpened;
         // Validate Bank Step in Workflow
         this.workflowService.validateStep(STEPS.bank);
     }
@@ -146,7 +156,8 @@ export class FormDataService {
             zip: this.formData.zip,
             residentialStatus: this.formData.residentialStatus,
             addressYears: this.formData.addressYears,
-            addressMonths: this.formData.addressMonths
+            addressMonths: this.formData.addressMonths,
+            addressMoveIn: this.formData.addressMoveIn
         };
         return address;
     }
@@ -169,6 +180,7 @@ export class FormDataService {
         this.formData.addressMonths = data.addressMonths;
         this.formData.addressYears = data.addressYears;
         this.formData.residentialStatus = data.residentialStatus;
+        this.formData.addressMoveIn = data.addressMoveIn;
         // Validate Address Step in Workflow
         this.workflowService.validateStep(STEPS.address);
     }
@@ -176,8 +188,7 @@ export class FormDataService {
     getResult(): Result {
         // Return the Address data
         var result: Result = {
-            isTCAccepted: this.formData.isTCAccepted,
-
+            consentToCreditSearch: this.formData.consentToCreditSearch
         };
         return result;
     }
@@ -185,7 +196,7 @@ export class FormDataService {
     setResult(data: Result) {
         // Update the Address data only when the Address Form had been validated successfully
         this.isResultFormValid = true;
-        this.formData.isTCAccepted = data.isTCAccepted;
+        this.formData.consentToCreditSearch = data.consentToCreditSearch;
 
         // Validate Address Step in Workflow
         this.workflowService.validateStep(STEPS.result);
