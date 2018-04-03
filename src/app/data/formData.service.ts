@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 import { FormData, Personal, Address, Income, Bank, Result } from './formData.model';
 import { WorkflowService } from '../workflow/workflow.service';
@@ -95,9 +96,89 @@ export class FormDataService {
 
     setIncome(data: Income) {
         // Update the Income data only when the Income Form had been validated successfully
+
+        //Calculate what day users started working
+        let years1 = Number(data.employmentMonths.replace(/\D/g, '')) / 12;
+        let years2 = Number(data.employmentYears.replace(/\D/g, ''));
+        let totalDays = (years1 + years2) * 365;
+        console.log(totalDays);
+
+        let employmentStarted = moment.utc().subtract(totalDays, 'days').format('ll');
+        console.log(employmentStarted);
+        //End calculation for what day users started working
+
+        //Calculate next payday and following payday
+
+        //1 = Weekly  
+        if (data.payFrequency == '1') {
+            let endOfWeek = moment.utc().endOf('week').subtract(1, 'days').format('ll') //returns first Friday's date
+            let followingEndofWeek = moment.utc().endOf('week').subtract(1, 'days').add(7, 'days').format('ll');
+
+            data.nextPayDate = "\/Date(" + String(new Date(endOfWeek).getTime()) + ")\/"
+            data.followingPayDate = "\/Date(" + String(new Date(followingEndofWeek).getTime()) + ")\/"
+        }
+        //2 = BiWeekly
+        else if (data.payFrequency == '2') {
+            //Payday is two weeks after start date, at the end of the week (Friday)
+            let payDay = moment(employmentStarted).utc().add(2, 'weeks').endOf('week').subtract(1, 'days').format('ll'); //returns Friday of week 2
+            let payDayEpoch = new Date(payDay).getTime();
+
+            let now = moment.utc().format('ll');
+            let nowEpoch = new Date(now).getTime();
+
+            let nowPlusFourWeeks = moment.utc().add(4, 'weeks').endOf('week').subtract(1, 'days').format('ll');
+            let nowPlusFourWeeksEpoch = new Date(nowPlusFourWeeks).getTime();
+
+            var i = 0;
+            let payArray = [];
+            //While loop clocks every biweekly payday from start date until four weeks from now
+            while (payDayEpoch < nowPlusFourWeeksEpoch) {
+                i += 2
+                //payday is every two weeks from when user started, at the end of the week (Friday)
+                payDay = moment(employmentStarted).utc().add(i, 'weeks').endOf('week').subtract(1, 'days').format('ll');
+                payDayEpoch = new Date(payDay).getTime();
+
+                //Adds biweekly payday to array if paydays are after today
+                if (payDayEpoch > nowEpoch) {
+                    payArray.push(payDay);
+                    console.log(payDay);
+                }
+            }
+            //Assigns the first two biweekly paydays after today's date 
+            data.nextPayDate = "\/Date(" + String(new Date(moment(payArray[0]).utc().format('ll')).getTime()) + ")\/";
+            data.followingPayDate = "\/Date(" + String(new Date(moment(payArray[1]).utc().format('ll')).getTime()) + ")\/";
+            console.log(payArray);
+        }
+        //3 = Fortnightly or Semi-Monthly
+        else if (data.payFrequency == '3') {
+            //something
+        }
+        // 4 = LastDayMonth
+        else if (data.payFrequency == '4') {
+            let endOfMonth = moment().endOf('month').format('ll'); //returns last day of month
+            let endOfMonthDay = moment().endOf('month').format('llll').slice(0, 3); //returns Day of Month i.e. Sun, Mon, Tues, etc...
+
+            let followingEndOfMonth = moment().add(1, 'months').endOf('month').format('ll'); //returns last day of month
+            let followingEndOfMonthDay = moment().add(1, 'months').endOf('month').format('llll').slice(0,3);
+
+            if (endOfMonthDay == 'Sun' || followingEndOfMonthDay == 'Sun') {
+                endOfMonth = moment().endOf('month').subtract(2, 'days').format('ll');
+                followingEndOfMonth = moment().add(1, 'months').endOf('month').subtract(2, 'days').format('ll');
+            }
+            else if (endOfMonthDay == 'Sat' || followingEndOfMonthDay == 'Sat') {
+                endOfMonth = moment().endOf('month').subtract(1, 'days').format('ll');
+                followingEndOfMonth = moment().add(1, 'months').endOf('month').subtract(1, 'days').format('ll');
+            }
+
+            data.nextPayDate = "\/Date(" + String(new Date(endOfMonth).getTime()) + ")\/";
+            data.followingPayDate = "\/Date(" + String(new Date(followingEndOfMonth).getTime()) + ")\/";
+        }
+        //End calculate next payday and following payday
+
+
         this.isIncomeFormValid = true;
         this.formData.incomeSource = data.incomeSource;
-        this.formData.employmentStarted = data.employmentStarted;
+        this.formData.employmentStarted = "\/Date(" + String(new Date(employmentStarted).getTime()) + ")\/";
         this.formData.employerName = data.employerName;
         this.formData.paymentType = data.paymentType;
         this.formData.employmentYears = data.employmentYears;
@@ -135,6 +216,18 @@ export class FormDataService {
 
     setBank(data: Bank) {
         // Update the bank type only when the Bank Form had been validated successfully
+
+        //Calculate day
+        let years1 = Number(data.bankTimeMonths.replace(/\D/g, '')) / 12;
+        let years2 = Number(data.bankTimeYears.replace(/\D/g, ''));
+        let totalDays = (years1 + years2) * 365;
+        console.log(totalDays);
+
+        let accountCreated = moment().subtract(totalDays, 'days').calendar();
+        console.log(accountCreated);
+        //End calculation for day
+
+
         this.isBankFormValid = true;
         this.formData.bankName = data.bankName;
         this.formData.accountNumber = data.accountNumber;
@@ -142,7 +235,7 @@ export class FormDataService {
         this.formData.bankTimeYears = data.bankTimeYears;
         this.formData.bankTimeMonths = data.bankTimeMonths;
         this.formData.accountType = data.accountType;
-        this.formData.bankAccountOpened = data.bankAccountOpened;
+        this.formData.bankAccountOpened = "\/Date(" + String(new Date(accountCreated).getTime()) + ")\/";
         // Validate Bank Step in Workflow
         this.workflowService.validateStep(STEPS.bank);
     }
@@ -172,6 +265,17 @@ export class FormDataService {
 
     setAddress(data: Address) {
         // Update the Address data only when the Address Form had been validated successfully
+
+        //Calculate what day users moved into their house/apartment
+        let years1 = Number(data.addressMonths.replace(/\D/g, '')) / 12;
+        let years2 = Number(data.addressYears.replace(/\D/g, ''));
+        let totalDays = (years1 + years2) * 365;
+        console.log(totalDays);
+
+        let moveInDate = moment().subtract(totalDays, 'days').calendar();
+        console.log(moveInDate);
+        //End calculation for what day users moved into their house/apartment
+
         this.isAddressFormValid = true;
         this.formData.street = data.street;
         this.formData.city = data.city;
@@ -180,7 +284,7 @@ export class FormDataService {
         this.formData.addressMonths = data.addressMonths;
         this.formData.addressYears = data.addressYears;
         this.formData.residentialStatus = data.residentialStatus;
-        this.formData.addressMoveIn = data.addressMoveIn;
+        this.formData.addressMoveIn = "\/Date(" + String(new Date(moveInDate).getTime()) + ")\/";
         // Validate Address Step in Workflow
         this.workflowService.validateStep(STEPS.address);
     }
@@ -225,3 +329,37 @@ export class FormDataService {
             this.isAddressFormValid;
     }
 }
+
+// let userStartDate = new Date('01/2/2018');
+// let userDateEpoch = userStartDate.getTime();
+
+// let payDay = moment(userStartDate).utc().add(2, 'weeks').endOf('week').subtract(1, 'days').format('llll'); //returns Friday of week 2
+// console.log(payDay);
+// let payDayEpoch = new Date(payDay).getTime();
+
+// let now = moment.utc().format('ll');
+// let nowEpoch = new Date(now).getTime();
+
+// let nowPlusFourWeeks = moment.utc().add(4, 'weeks').endOf('week').subtract(1, 'days').format('llll');
+// let nowPlusFourWeeksEpoch = new Date(nowPlusFourWeeks).getTime();
+
+// var i = 0;
+// let payArray = [];
+// while (payDayEpoch < nowPlusFourWeeksEpoch) {
+//     i += 2
+//     payDay = moment(userStartDate).utc().add(i, 'weeks').endOf('week').subtract(1, 'days').format('llll');
+//     payDayEpoch = new Date(payDay).getTime();
+
+//     if (payDayEpoch > new Date().getTime()) {
+//         payArray.push(payDay);
+//         console.log(payDay);
+//     }
+// }
+// console.log(payArray);
+
+
+
+
+
+
+
