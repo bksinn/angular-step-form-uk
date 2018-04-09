@@ -12,7 +12,6 @@ import { HttpClient } from '@angular/common/http';
 import { Personal } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
-import { ForbiddenValidatorDirective } from '../shared/custom-validations.directive';
 import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -83,6 +82,7 @@ export class PersonalComponent implements OnInit {
 
                     this.personal.city = res[0].City;
                     this.personal.state = res[0].StateAbbreviation;
+                    this.personal.county = res[0].County;
                     this.personal.issuingState = res[0].StateAbbreviation;
 
                     this.formDataService.setUserLocation(this.personal);
@@ -99,6 +99,10 @@ export class PersonalComponent implements OnInit {
         }
     }
 
+    forceNumeric($event) {
+        $event.target.value = $event.target.value.replace(/[^0-9\.]+/g, '');
+    }
+
     addGmail () {
         let emailElement: HTMLElement = document.getElementById('email');
         let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
@@ -110,7 +114,6 @@ export class PersonalComponent implements OnInit {
 
         emailInput.value += "@gmail.com"
         this.personal.email = emailInput.value;
-        console.log(this.formData);
     }
 
     addYahoo () {
@@ -124,7 +127,6 @@ export class PersonalComponent implements OnInit {
 
         emailInput.value += "@yahoo.com"
         this.personal.email = emailInput.value;
-        console.log(this.formData)
     }
 
     addHotmail () {
@@ -138,7 +140,6 @@ export class PersonalComponent implements OnInit {
 
         emailInput.value += "@hotmail.com"
         this.personal.email = emailInput.value;
-        console.log(this.formData)
     }
 
     addAol () {
@@ -152,20 +153,10 @@ export class PersonalComponent implements OnInit {
 
         emailInput.value += "@aol.com"
         this.personal.email = emailInput.value;
-        console.log(this.formData)
     }
 
     ngOnInit() {
         this.personal = this.formDataService.getPersonal();
-        console.log('Personal feature loaded!');
-        console.log(this.personal);
-    }
-
-    smoothScroll () {
-        let element: HTMLElement = document.getElementById('personal-info');
-        (element).scrollIntoView({
-            behavior: 'smooth'
-        });
     }
 
     save(form: any): boolean {

@@ -25,8 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormDataService } from './data/formData.service';
 import {FormData} from './data/formData.model'
 import { WorkflowService } from './workflow/workflow.service';
-import { ForbiddenValidatorDirective, 
-  JuriNameValidator, 
+import {
   PhoneNumberValidator, 
   EmailValidator, 
   SSNValidator,
@@ -59,8 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
-      BankComponent, AddressComponent, ResultComponent, ForbiddenValidatorDirective,
-      JuriNameValidator, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
+      BankComponent, AddressComponent, ResultComponent, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
     ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator,
     MonthlyAmountValidator
     ],

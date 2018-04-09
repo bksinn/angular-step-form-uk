@@ -12,22 +12,22 @@
 
 
 {
-    "Campaign": null,
-    "AffiliateId": "TOMJ-A",
+    "Campaign": "Test",
+    "AffiliateId": "TEST",
     "SubAffiliate": null,
     "Timeout": 120,
-    "TestOnly": false,
+    "TestOnly": true,
     "Application": {
         "Title": 1,
         "FirstName": "Christine",
         "LastName": "Aldis",
         "DateOfBirth": "\/Date(158716800000)\/",
         "Email": "christinealdis@hotmail.com",
-        "HomePhoneNumber": "07504 417732",
-        "MobilePhoneNumber": "07504 417732",
-        "WorkPhoneNumber": "07504 417732",
+        "HomePhoneNumber": "07504417732",
+        "MobilePhoneNumber": "07504417732",
+        "WorkPhoneNumber": "07504417732",
         "EmployerName": "Fishersltd",
-        "JobTitle": null,
+        "JobTitle": "Astronaut",
         "EmploymentStarted": "\/Date(1453507200000)\/",
         "EmployerIndustry": 14,
         "IncomeSource": 2,
@@ -37,13 +37,13 @@
         "NextPayDate": "\/Date(1522368000000)\/",
         "FollowingPayDate": "\/Date(1523577600000)\/",
         "LoanAmount": "350",
-        "NationalIdentityNumber": null,
-        "NationalIdentityNumberType": 1,
+        "NationalIdentityNumber": "234532345",
+        "NationalIdentityNumberType": 2,
         "ConsentToCreditSearch": true,
         "ConsentToMarketingEmails": false,
         "ResidentialStatus": 1,
         "HouseNumber": "48",
-        "HouseName": null,
+        "HouseName": "10 Morning Glory Dr.",
         "AddressStreet1": "st duntans  road",
         "AddressCity": "Hounslow",
         "AddressCountryCode": "GB",
@@ -67,9 +67,9 @@
     },
     "SourceDetails": {
         "Address": "94.0.62.230",
-        "ClientUserAgent": "Mozilla\/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko\/20100101 Firefox\/47.0 Mozilla\/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko\/20100101 Firefox\/42.0",
-        "CreationUrl": "https:\/\/www.my-loans.co.uk\/",
-        "LanguageCodes": null,
-        "ReferringUrl": "https:\/\/www.my-loans.co.uk\/"
+        "ClientUserAgent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0 Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",
+        "CreationUrl": "www.my-loans.co.uk",
+        "LanguageCodes": [],
+        "ReferringUrl": "www.my-loans.co.uk"
     }
 }

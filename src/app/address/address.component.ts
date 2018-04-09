@@ -47,8 +47,6 @@ export class AddressComponent implements OnInit {
 
     ngOnInit() {
         this.address = this.formDataService.getAddress();
-        console.log('Address feature loaded!');
-        console.log(this.formData);
     }
 
     //Get request for zip code field
@@ -63,22 +61,22 @@ export class AddressComponent implements OnInit {
                 res => {
                     this.address.city = res[0].City;
                     this.address.state = res[0].StateAbbreviation;
+                    this.address.county = res[0].County;
 
                     this.formDataService.setCity(this.address);
                     this.formDataService.setState(this.address);
+                    this.formDataService.setCounty(this.address);
 
                     this.formData.typeAheadState = [];
                     this.formData.typeAheadCity = [];
                     this.formData.typeAheadState.push(res[0].StateAbbreviation);
                     this.formData.typeAheadCity.push(res[0].City);
-                    console.log(res);
                 },
                 msg => {
                     console.error(`Error: ${msg.status} ${msg.statusText}`)
                 }
             );
         }
-        //console.log(this.formData);
     }
 
     save(form: any): boolean {

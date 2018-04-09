@@ -4,74 +4,9 @@ import { Result } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 
 import { timer } from 'rxjs/observable/timer';
 import { take, map } from 'rxjs/operators';
-
-let mockObj = {
-    "Campaign": null,
-    "AffiliateId": "TOMJ-A",
-    "SubAffiliate": null,
-    "Timeout": 120,
-    "TestOnly": false,
-    "Application": {
-        "Title": 1,
-        "FirstName": "Christine",
-        "LastName": "Aldis",
-        "DateOfBirth": "/Date(158716800000)/",
-        "Email": "christinealdis@hotmail.com",
-        "HomePhoneNumber": "07504 417732",
-        "MobilePhoneNumber": "07504 417732",
-        "WorkPhoneNumber": "07504 417732",
-        "EmployerName": "Fishersltd",
-        "JobTitle": null,
-        "EmploymentStarted": "/Date(1453507200000)/",
-        "EmployerIndustry": 14,
-        "IncomeSource": 2,
-        "PayFrequency": 3,
-        "PayAmount": "1900",
-        "IncomePaymentType": 4,
-        "NextPayDate": "/Date(1522368000000)/",
-        "FollowingPayDate": "/Date(1523577600000)/",
-        "LoanAmount": "350",
-        "NationalIdentityNumber": null,
-        "NationalIdentityNumberType": 1,
-        "ConsentToCreditSearch": true,
-        "ConsentToMarketingEmails": false,
-        "ResidentialStatus": 1,
-        "HouseNumber": "48",
-        "HouseName": null,
-        "AddressStreet1": "st duntans  road",
-        "AddressCity": "Hounslow",
-        "AddressCountryCode": "GB",
-        "AddressCounty": "Middlesex",
-        "AddressMoveIn": "/Date(1453507200000)/",
-        "AddressPostcode": "TW4 7QP",
-        "BankAccountNumber": "10245563",
-        "BankCardType": 4,
-        "BankRoutingNumber": "111371",
-        "MonthlyMortgageRent": "220",
-        "MonthlyCreditCommitments": "100",
-        "OtherExpenses": "100",
-        "Transport": "60",
-        "Food": "80",
-        "Utilities": "60",
-        "MinimumCommissionAmount": 0,
-        "MaximumCommissionAmount": 0,
-        "ApplicationExtensions": null,
-        "LoanAmountCurrencyCode": null,
-        "PayAmountCurrencyCode": null
-    },
-    "SourceDetails": {
-        "Address": "94.0.62.230",
-        "ClientUserAgent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0 Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",
-        "CreationUrl": "https://www.my-loans.co.uk/",
-        "LanguageCodes": null,
-        "ReferringUrl": "https://www.my-loans.co.uk/"
-    }
-}
-
 
 @Component({
     selector: 'mt-wizard-result',
@@ -88,17 +23,22 @@ export class ResultComponent implements OnInit {
     submitted: boolean = false; //Check if form is submitted
     submitSuccess: boolean = false;
     submitFail: boolean = false;
+    errorList;
     countDown;
     count = 10;
     testUrl: string = 'https://jsonplaceholder.typicode.com/posts';
-    postUrl: string = 'https://leads.pingyo.co.uk/application/submit/';
-    getUrl: string = 'http://leads.pingyo.co.uk/application/status/';
-    correlationId: string = 'b3486376-d50b-4dc4-bea7-fdaaf13b4e22';
+    postUrl: string = 'https://leads.pingyo.com/application/submit';
+    status;
+    getUrl: string = 'http://leads.pingyo.com/application/status/';
+    correlationId;
     redirectionUrl;
+    noLenderMatch: boolean = false;
     percentComplete = 0;
     countDown2;
     count2 = 5;
-
+    ipAddress;
+    clientUserAgent = navigator.userAgent;
+    
     constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient) {
         // this.countDown = timer(0, 1000).pipe(
         //     take(this.count),
@@ -113,7 +53,7 @@ export class ResultComponent implements OnInit {
             map(() => {
                 if (this.count2 < 2) {
                     console.log(this.redirectionUrl);
-                    //window.location.href = this.redirectionUrl;
+                    window.location.href = this.redirectionUrl;
                 }
                 return --this.count2;
             })
@@ -124,8 +64,13 @@ export class ResultComponent implements OnInit {
         this.result = this.formDataService.getResult();
         this.formData = this.formDataService.getFormData();
         this.isFormValid = this.formDataService.isFormValid();
-        console.log('Result feature loaded!');
-        console.log(this.result)
+
+        //Retrieve user's IP address => Limited to 150 requests per day
+        this.http.get('http://ip-api.com/json').subscribe(
+            (res: any) => {
+                this.ipAddress = res.query;
+            }
+        )
     }
 
     save(form: any): boolean {
@@ -151,9 +96,11 @@ export class ResultComponent implements OnInit {
         this.submitted = false;
         this.submitFail = false;
         this.submitSuccess = false;
+        this.noLenderMatch = false;
         this.count = 10;
         this.count2 = 5;
         this.percentComplete = 0;
+        this.errorList = null;
 
         //Replaces Nav Bar
         document.getElementById('status-buttons').removeAttribute('style');
@@ -164,41 +111,109 @@ export class ResultComponent implements OnInit {
         if (this.save(form)) {
             // Navigate to the result page
             //this.router.navigate(['/personal']);
-            console.log("FINISHED!");
         }
         else {
             console.log("FORM INCOMPLETE");
         }
     }
 
+    processFormData () {
+        let applicationData = {
+            "Campaign": 'Test',
+            "AffiliateId": "usa_test",
+            "SubAffiliate": null,
+            "Timeout": 120,
+            "TestOnly": true,
+            "Application": {
+                "Title": 1,
+                "FirstName": this.formData.firstName,
+                "LastName": this.formData.lastName,
+                "DateOfBirth": this.formData.DateofBirth,
+                "Email": this.formData.email,
+                "HomePhoneNumber": this.formData.homePhone.length == 10 ? Number(this.formData.homePhone.replace(/\D/g, '')) : Number(this.formData.mobilePhone.replace(/\D/g, '')),
+                "MobilePhoneNumber": Number(this.formData.mobilePhone.replace(/\D/g, '')),
+                "WorkPhoneNumber": Number(this.formData.workPhone.replace(/\D/g, '')),
+                "DriversLicenseNumber": this.formData.driversLicense,
+                "DriversLicenseState": this.formData.issuingState,
+                "EmployerName": this.formData.employerName,
+                "JobTitle": this.formData.jobTitle,
+                "EmploymentStarted": this.formData.employmentStarted,
+                "IncomeSource": Number(this.formData.incomeSource),
+                "PayFrequency": Number(this.formData.payFrequency),
+                "PayAmount": Number(this.formData.netAmount),
+                "IncomePaymentType": this.formData.paymentType,
+                "NextPayDate": this.formData.nextPayDate,
+                "FollowingPayDate": this.formData.followingPayDate,
+                "LoanAmount": Number(this.formData.loanAmount),
+                "Term": Number(this.formData.termPeriod),
+                "MilitaryService": Number(this.formData.militaryService),
+                "NationalIdentityNumber": this.formData.nationalIdentityNumber.replace(/\D/g, ''),
+                "NationalIdentityNumberType": this.formData.nationalIdentityNumberType,
+                "ConsentToCreditSearch": this.formData.consentToCreditSearch,
+                "ResidentialStatus": Number(this.formData.residentialStatus),
+                "HouseNumber": this.formData.street,
+                "HouseName": this.formData.street,
+                "AddressStreet1": this.formData.street,
+                "AddressCity": this.formData.city,
+                "AddressCountryCode": "US",
+                "AddressCounty": this.formData.county,
+                "AddressState": this.formData.state,
+                "AddressMoveIn": this.formData.addressMoveIn,
+                "AddressPostcode": this.formData.zip,
+                "BankName": this.formData.bankName,
+                "BankAccountNumber": Number(this.formData.accountNumber),
+                "BankCardType": this.formData.bankCardType,
+                "BankRoutingNumber": this.formData.routingNumber,
+                "MinimumCommissionAmount": 0,
+                "MaximumCommissionAmount": 0,
+                "ApplicationExtensions": null,
+                "LoanAmountCurrencyCode": null,
+                "PayAmountCurrencyCode": null
+            },
+            "SourceDetails": {
+                "Address": this.ipAddress,
+                "ClientUserAgent": this.clientUserAgent,
+                "CreationUrl": "www.my-loans.co.uk",
+                "LanguageCodes": ["en-US"],
+                "ReferringUrl": "www.my-loans.co.uk"
+            }
+        }
+
+        return JSON.stringify(applicationData);
+    }
+
     processForm () {
-        let jsonMockObj = JSON.stringify(mockObj);
-        const jsonFormData = JSON.stringify(this.formData);
+        //Status message on progress page
+        this.status = this.status ? this.status : "Searching";
+        const applicationData = this.processFormData();
         //Hides Nav Bar
         let nav = document.getElementById('status-buttons');
         nav.setAttribute('style', 'display: none');
 
         let randomNumber = Math.ceil(Math.random() * 10);
         this.submitted = true;
-        let mockData;
+        let responseData;
         
         //randomNumber < 5 ? this.submitFail = true : this.submitSuccess = true;
-        let headers = new HttpHeaders();
-        headers = headers.append('Content-Type', 'application/json; charset=utf-8');
+        let headers = new HttpHeaders().append('Content-Type', 'application/json');
 
         const options = {
             headers: headers
         }
 
-        this.http.post(this.postUrl, jsonFormData).subscribe(
-            (data: any) => {
-                console.log(data);
-                //Read Correlation ID here
-                //this.correlationId = Object's Correlation ID
+        this.http.post(this.postUrl, applicationData, options).subscribe(
+            (res: any) => {
+                console.log(res);
+                console.log(res.CorrelationId);
+                this.correlationId = res.CorrelationId;
             },
-            (error: any )=> {
+            (error: any) => {
                 console.log(error);
                 console.error(`Error: ${error.status} ${error.statusText}`)
+
+                this.errorList = error.error.Errors;
+                console.log(this.errorList);
+                this.correlationId = `${error.CorrelationId}`;
                 this.submitSuccess = false;
                 this.submitFail = true;
             }
@@ -206,27 +221,30 @@ export class ResultComponent implements OnInit {
 
         //Fire this after correlation id is retrieved from http.post
         const checkStatus = setInterval(() => {
-            console.log("Set interval fired");
-
+            console.log("url: " + this.getUrl + this.correlationId);
             //Send get request with correlation id retrieved from http.post
             this.http.get(this.getUrl + this.correlationId).subscribe(
                 res => {
                     //randomNumber < 5 ? this.submitFail = true : this.submitSuccess = true;
                     console.log(res);
-                    mockData = res;
-                    console.log(mockData.PercentageComplete);
-                    console.log(mockData.RedirectionUrl.length);
-                    this.percentComplete = mockData.PercentageComplete;
-                    //this.correlationId = mockData.CorrelationId;
-                    //this.redirectionUrl = mockData.RedirectionUrl;
+                    responseData = res;
+                    console.log(responseData.PercentageComplete);
+                    console.log(responseData.RedirectionUrl);
+                    this.status = responseData.Status
+                    this.percentComplete = responseData.PercentageComplete;
+                    this.redirectionUrl = responseData.RedirectionUrl;
                     console.log(this.redirectionUrl);
 
-                    console.log('Sucess function triggered');
-                    if (this.percentComplete == 100 || this.redirectionUrl != undefined) {
+                    if (this.percentComplete == 100 && !this.redirectionUrl) {
+                        this.noLenderMatch = true;
+                        clearInterval(checkStatus);
+                        this.status = null;
+                    }
+                    else if (this.percentComplete == 100 || this.redirectionUrl != null) {
                         this.submitSuccess = true;
                         //Clears Interval
                         clearInterval(checkStatus);
-                        console.log("Interval should be cleared");
+                        this.status = null;
                     }
                 },
                 error => {

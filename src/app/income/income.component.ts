@@ -46,8 +46,6 @@ export class IncomeComponent implements OnInit {
 
     ngOnInit() {
         this.income = this.formDataService.getIncome();
-        console.log('Income feature loaded!');
-        console.log(this.income);
     }
 
     save(form: any): boolean {

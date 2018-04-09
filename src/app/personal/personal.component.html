@@ -10,7 +10,6 @@
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
-                            <!--<label class="control-label" for="loanAmount">How much would you like to borrow?</label>-->
                             <select class="form-control input-md" #loanAmount="ngModel" required name="loanAmount" 
                             [(ngModel)]="personal.loanAmount">
                                 <option value="" disabled selected>Select</option>                            
@@ -100,7 +99,6 @@
                     <div class="row">
                         <div class='col-xs-12 col-sm-12'>
                             <div class="form-group checkbox-div control-label">
-                                <!--<label class="control-label" for="checkboxFlexible">I'm flexible with terms</label>-->
                                 <input type="checkbox" checked name="flexible-terms" class="big-checkbox"> I'm flexible with
                                 terms
                             </div>
@@ -111,8 +109,17 @@
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="zip">What's your zipcode?</label>
-                            <input class="form-control input-md" (keyup)="getZipInformation()" id="user-zipcode" #zip="ngModel" required validateZip
-                                apiCall name="zip" type="text" placeholder="Zip" [(ngModel)]="personal.zip">
+                            <input class="form-control input-md"
+                                    (keyup)="getZipInformation()" 
+                                    id="user-zipcode" 
+                                    #zip="ngModel" 
+                                    required 
+                                    validateZip
+                                    apiCall
+                                    name="zip" 
+                                    type="text" 
+                                    placeholder="Zip" 
+                                    [(ngModel)]="personal.zip">
                             <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid">
                                 <div *ngIf="zip.errors.required">This field is required</div>
                                 <div *ngIf="zip.invalid">Please provide a valid zip code</div>
@@ -128,7 +135,6 @@
                         </div>
                         <div class='col-xs-12 col-sm-12'>
                             <div class="form-group">
-                                <!--<label class="control-label" for="title">Title</label>-->
                                 <div class="radio radio-prefix" type="radio">
                                     <span class="option">
                                         <input #prefix="ngModel" required name="prefix" id="prefix" value=1 [(ngModel)]="personal.prefix" type="radio">
@@ -186,7 +192,6 @@
                                         name="lastname" 
                                         type="text" 
                                         placeholder="Last Name"
-                                        (focus)="smoothScroll()" 
                                         [(ngModel)]="personal.lastName">
                                 <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
                                     [hidden]="lastname.valid">This field is required</div>
@@ -197,8 +202,14 @@
                         <div class='col-xs-12 col-sm-12'>
                             <div class="form-group">
                                 <label class="control-label" for="dob">Date of Birth</label>
-                                <input class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="text" placeholder="MM/DD/YYYY"
-                                    [(ngModel)]="personal.dob">
+                                <input class="form-control input-md"
+                                        #dob="ngModel" 
+                                        required 
+                                        name="dob"
+                                        validateDOB 
+                                        type="text" 
+                                        placeholder="MM/DD/YYYY"
+                                        [(ngModel)]="personal.dob">
                                 <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                                     <div *ngIf="dob.errors.required">This field is required</div>
                                     <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY <br/>Must be over 18 to apply</div>
@@ -216,7 +227,6 @@
                                     <label class="control-label" for="mobilephone">Mobile Phone</label>
                                     <input class="form-control input-md phone" 
                                         id="mobilePhone"
-
                                         #mobilePhone="ngModel" 
                                         required 
                                         validatePhone 
@@ -241,7 +251,6 @@
                                     <label class="control-label" for="workphone">Work Phone</label>
                                     <input class="form-control input-md phone" 
                                         id="workPhone" 
-
                                         #workPhone="ngModel" 
                                         required 
                                         validatePhone 
@@ -281,7 +290,7 @@
                         </div>
                         <div class="row">
                             <div class='col-xs-12 col-sm-12'>
-                                <div class="text-danger" *ngIf="mobilePhone.value == workPhone.value && mobilePhone.valid && workPhone.valid">
+                                <div class="text-danger" *ngIf="(mobilePhone.value == workPhone.value || homePhone.value == workPhone.value) && mobilePhone.valid && workPhone.valid">
                                     <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>Your work and home or cell numbers match, many lenders will treat you as self - employed and many will decline to consider
                                     your application due to lack of detailed information.This decreases your chance for acceptance.
                                     We encourage you to provide a real work number which is separate from your mobile to
@@ -334,24 +343,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--<div class='col-xs-12 col-sm-4'>
-                            <div class="form-group">
-                                <label class="control-label" for="dob">Date of Birth</label>
-                                <input class="form-control input-md"
-                                        #dob="ngModel" 
-                                        required 
-                                        name="dob"
-                                        validateDOB
-                                        type="text"
-                                        placeholder="MM/DD/YYYY"
-                                        [(ngModel)]="personal.dob">
-                                <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
-                                    <div *ngIf="dob.errors.required">This field is required</div>
-                                    <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY <br/>Must be over 18 to apply</div>
-                                </div>
-                            </div>
-                        </div>-->
-
                         </div>
                         <div class="row">
                             <div class='col-xs-12 col-sm-12'>

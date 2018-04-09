@@ -39,16 +39,6 @@
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="state">State</label>
-                            <!--<input type="text" 
-                                    class="form-control"
-                                    name="state"
-                                    required
-                                    #state="ngModel"
-                                    [(ngModel)]="address.state" 
-                                    validateState
-                                    [ngbTypeahead]="search" 
-                                    [resultFormatter]="formatter"
-                                    placeholder="State" />-->
                             <select class="form-control input-md" 
                                     #state="ngModel" 
                                     required 
@@ -143,7 +133,6 @@
                             <label class="control-label" for="title">Residential Status</label>
                             <div class=''>
                                 <div class="form-group">
-                                    <!--<label class="control-label" for="title">Title</label>-->
                                     <div class="radio radio-residentialStatus" type="radio">
                                         <span class="option">
                                             <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=1 [(ngModel)]="address.residentialStatus" type="radio">
@@ -185,7 +174,6 @@
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
-                            <!--<label class="control-label" for="title">Title</label>-->
                             <div class="radio radio-addressTime" type="radio">
                                 <span class="option">
                                     <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="0" [(ngModel)]="address.addressYears" type="radio">
@@ -246,7 +234,6 @@
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
-                            <!--<label class="control-label" for="title">Title</label>-->
                             <div class="radio radio-addressTime" type="radio">
                                 <span class="option">
                                     <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="0" [(ngModel)]="address.addressMonths" type="radio">

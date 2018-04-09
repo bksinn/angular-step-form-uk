@@ -200,17 +200,45 @@ form[name=personalForm] .radio label {
     background-color: rgb(34, 194, 34);
 }
 
+form[name=personalForm] .radio input[type="radio"]:checked+label {
+    box-shadow: 0 0 4px 1px rgb(34, 194, 34);
+    background-color: #fff;
+    color: rgb(34, 194, 34);
+    font-size: larger;
+}
+
 form[name=incomeForm] .radio label {
     background-color: #febe29;
+}
+
+form[name=incomeForm] .radio input[type="radio"]:checked+label {
+    box-shadow: 0 0 4px 1px #febe29;
+    background-color: #fff;
+    color: #febe29;
+    font-size: larger;
 }
 
 form[name=addressForm] .radio label {
     background-color: #3e5e9a;
 }
 
+form[name=addressForm] .radio input[type="radio"]:checked+label {
+    box-shadow: 0 0 4px 1px #3e5e9a;
+    background-color: #fff;
+    color: #3e5e9a;
+    font-size: larger;
+}
+
 form[name=bankForm] .radio label {
     font-weight: 700;
     background-color: #f1685e;
+}
+
+form[name=bankForm] .radio input[type="radio"]:checked+label {
+    box-shadow: 0 0 4px 1px #f1685e;
+    background-color: #fff;
+    color: #f1685e;
+    font-size: larger;
 }
 
 p.radio-label {
@@ -233,12 +261,6 @@ p.radio-label {
     opacity: 0;
     cursor: pointer;
     margin: 0;
-}
-
-.radio input[type="radio"]:checked+label {
-    box-shadow: 0 0 5px 3px rgb(34, 194, 34);
-    opacity: 0.9;
-    font-size: 16px;
 }
 
 .form-control {

@@ -6,7 +6,6 @@ import { STEPS } from './workflow.model';
 export class WorkflowService {
     private workflow = [
         { step: STEPS.personal, valid: true },
-        //{ step: STEPS.work, valid: false },
         { step: STEPS.income, valid: true },
         { step: STEPS.address, valid: true },
         { step: STEPS.bank, valid: true },

@@ -13,7 +13,7 @@ export class FormData {
     mobilePhone: string = '';
     email: string = '';
     dob: string = '';
-    DateofBirth: string = "\/Date(" + String(new Date(this.dob).getTime()) + ")\/";
+    DateofBirth: string = "";
     nationalIdentityNumber: string = '';
     nationalIdentityNumberType: number = 2;
     driversLicense: string = '';
@@ -35,6 +35,7 @@ export class FormData {
     street: string = '';
     city: string = '';
     state: string = '';
+    county: string = '';
     zip: string = '';
     addressMonths: string = '';
     addressYears: string = '';
@@ -47,6 +48,7 @@ export class FormData {
     bankTimeYears: string = '';
     bankTimeMonths: string = '';
     accountType: string = '';
+    bankCardType: number = 5; //Visa Debit
     bankAccountOpened: string = '';
 
     consentToCreditSearch: boolean = true;
@@ -88,6 +90,7 @@ export class FormData {
         this.street = '';
         this.city = '';
         this.state = '';
+        this.county = '';
         this.zip = '';
         this.addressMonths = '';
         this.addressYears = '';
@@ -110,6 +113,7 @@ export class Personal {
     zip: string = '';
     city: string = '';
     state: string = '';
+    county: string = '';
     prefix: string = '';
     firstName: string = '';
     lastName: string = '';
@@ -118,7 +122,7 @@ export class Personal {
     mobilePhone: string = '';
     email: string = '';
     dob: string = '';
-    DateofBirth: string = "\/Date(" + String(new Date(this.dob).getTime()) + ")\/";
+    DateofBirth: string = "";
     nationalIdentityNumber: string = '';
     driversLicense: string = '';
     issuingState: string = '';
@@ -143,6 +147,7 @@ export class Address {
     street: string = '';
     city: string = '';
     state: string = '';
+    county: string = '';
     zip: string = '';
     addressMonths: string = '';
     addressYears: string = '';
@@ -157,6 +162,7 @@ export class Bank {
     bankTimeYears: string = '';
     bankTimeMonths: string = '';
     accountType: string = '';
+    bankCardType: number = 5; //Visa Debit
     bankAccountOpened: string = '';
 }
 

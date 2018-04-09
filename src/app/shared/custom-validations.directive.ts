@@ -4,67 +4,6 @@ import { FormControl } from '@angular/forms';
 import { EventEmitter, HostListener, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-/** A hero's name can't match the given regular expression */
-// Testing validation function
-export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
-        const forbidden = nameRe.test(control.value);
-        return forbidden ? { 'forbiddenName': { value: control.value } } : null;
-    };
-}
-
-@Directive({
-    selector: '[appForbiddenName][ngModel]',
-    providers: [{ provide: NG_VALIDATORS, useExisting: ForbiddenValidatorDirective, multi: true }]
-})
-export class ForbiddenValidatorDirective implements Validator {
-    @Input('appForbiddenName') forbiddenName: string;
-
-    validate(control: AbstractControl): { [key: string]: any } {
-        return this.forbiddenName ? forbiddenNameValidator(new RegExp(this.forbiddenName, 'i'))(control)
-            : null;
-    }
-}
-
-// testing validation function
-function validateJuriNameFactory(): ValidatorFn {
-    return (c: AbstractControl) => {
-
-        let isValid = c.value === 'Juri';
-
-        if (isValid) {
-            return null;
-        } else {
-            return {
-                juriName: {
-                    valid: false
-                }
-            };
-        }
-
-    }
-}
-
-@Directive({
-    selector: '[juriName][ngModel]',
-    providers: [
-        { provide: NG_VALIDATORS, useExisting: JuriNameValidator, multi: true }
-    ]
-})
-export class JuriNameValidator implements Validator {
-    validator: ValidatorFn;
-
-    constructor() {
-        this.validator = validateJuriNameFactory();
-    }
-
-    validate(c: FormControl) {
-        return this.validator(c);
-    }
-
-}
-
 // Validate phone numbers
 
 function validatePhoneNumber(): ValidatorFn {
@@ -342,7 +281,6 @@ export class ZipCodeValidator implements Validator {
                 if (c.value != null &&  c.value.length === 5 && Number(c.value)) {
                     this.http.get('http://www.pingyo.com/validate/locales/zipcode/' + c.value).subscribe(
                         res => {
-                            console.log(res);
                             if (res) {
                                 return resolve(null);
                             }
@@ -355,7 +293,7 @@ export class ZipCodeValidator implements Validator {
                             }
                         },
                         msg => {
-                            console.error(`Error: ${msg.status} ${msg.statusText}`)
+                            //console.error(`Error: ${msg.status} ${msg.statusText}`)
                             return resolve({
                                 validateZip: {
                                     valid: false
@@ -383,7 +321,6 @@ function validateABA(): ValidatorFn {
 
         // First, remove any non-numeric characters.
         //s = userInput.replace(/\D/g, ''); ==>Alternative option to for loop
-        //console.log(s);
         t = "";
         for (i = 0; i < userInput.length; i++) {
             s = parseInt(userInput.charAt(i), 10);

@@ -66,7 +66,6 @@ export class BankComponent implements OnInit {
 
     ngOnInit() {
         this.bank = this.formDataService.getBank();
-        console.log('Bank feature loaded!');
     }
 
     getBankInformation() {
@@ -74,7 +73,6 @@ export class BankComponent implements OnInit {
         let element: HTMLElement = document.getElementById('user-bank');
         let bankElement: HTMLInputElement = element as HTMLInputElement;
         url = url + bankElement.value;
-        console.log(bankElement.value);
 
         if (bankElement.value.length) {
             this.http.get(url).subscribe(
@@ -103,7 +101,7 @@ export class BankComponent implements OnInit {
         let bankName;
 
         //elementRouting.removeAttribute('validateABA')
-        console.log(elementRouting);
+
 
         //CHECKBOX My bank is located in the same State as me
         //function onclick located on the checkbox
@@ -130,7 +128,6 @@ export class BankComponent implements OnInit {
                                     this.bankNameArrayFiltered.push(element);
                                 }
                                 else if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
-                                    console.log(element);
                                     this.bankNameArrayFiltered.push(element);
                                 }
                                 else if (element.StateAbbreviation.includes(this.formData.typeAheadState[0])) {                                
@@ -171,8 +168,7 @@ export class BankComponent implements OnInit {
                         else {
                             elementRouting.removeAttribute('style');
                         }
-                        console.log(this.bankNameArray);
-                        console.log(this.bankNameArrayFiltered);
+
                         resolve();
                     },
                     msg => {
@@ -196,7 +192,6 @@ export class BankComponent implements OnInit {
 
     selectedItem(item) {
         this.clickedItem = item.item;
-        console.log("CLICKED!");
         this.getBankRoutingInformation()
 
     }
