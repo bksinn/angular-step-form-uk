@@ -29,7 +29,7 @@ export class ResultComponent implements OnInit {
     testUrl: string = 'https://jsonplaceholder.typicode.com/posts';
     postUrl: string = 'https://leads.pingyo.com/application/submit';
     status;
-    getUrl: string = 'http://leads.pingyo.com/application/status/';
+    getUrl: string = 'https://leads.pingyo.com/application/status/';
     correlationId;
     redirectionUrl;
     noLenderMatch: boolean = false;
@@ -66,9 +66,9 @@ export class ResultComponent implements OnInit {
         this.isFormValid = this.formDataService.isFormValid();
 
         //Retrieve user's IP address => Limited to 150 requests per day
-        this.http.get('http://ip-api.com/json').subscribe(
+        this.http.get('https://api.ipify.org/?format=json').subscribe(
             (res: any) => {
-                this.ipAddress = res.query;
+                this.ipAddress = res.ip;
             }
         )
     }

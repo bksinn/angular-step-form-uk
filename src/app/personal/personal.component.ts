@@ -37,7 +37,7 @@ export class PersonalComponent implements OnInit {
     title3 = "Please fill in your personal details";
     personal: Personal;
     form: any;
-    apiRoot: string = "http://www.pingyo.com/find/locales/zipcode/";
+    apiRoot: string = "https://www.pingyo.com/find/locales/zipcode/";
     response: Array<any> = [];
     areaCode: string = '';
 

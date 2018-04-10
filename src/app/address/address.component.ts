@@ -35,11 +35,10 @@ export class AddressComponent implements OnInit {
     title2 = 'How long at this address?';
     address: Address;
     form: any;
-    //apiRoot: string = "http://httpbin.org/get";
-    apiRootBank: string = "http://www.pingyo.com/find/bank/names/CitiC";
-    apiRootValidate: string = "http://www.pingyo.com/validate/locales/areacode/";
-    apiRoot: string = "http://www.pingyo.com/find/locales/zipcode/";
-    apiValidateZip: string = "http://www.pingyo.com/validate/locales/zipcode/";
+    apiRootBank: string = "https://www.pingyo.com/find/bank/names/CitiC";
+    apiRootValidate: string = "https://www.pingyo.com/validate/locales/areacode/";
+    apiRoot: string = "https://www.pingyo.com/find/locales/zipcode/";
+    apiValidateZip: string = "https://www.pingyo.com/validate/locales/zipcode/";
     cityArr: Array<any> = []
 
     constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient, public formData: FormData) {

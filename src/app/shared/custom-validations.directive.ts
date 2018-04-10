@@ -279,7 +279,7 @@ export class ZipCodeValidator implements Validator {
         return new Promise (resolve => {
             setTimeout(() =>{
                 if (c.value != null &&  c.value.length === 5 && Number(c.value)) {
-                    this.http.get('http://www.pingyo.com/validate/locales/zipcode/' + c.value).subscribe(
+                    this.http.get('https://www.pingyo.com/validate/locales/zipcode/' + c.value).subscribe(
                         res => {
                             if (res) {
                                 return resolve(null);

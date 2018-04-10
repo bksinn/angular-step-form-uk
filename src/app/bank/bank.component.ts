@@ -54,8 +54,8 @@ export class BankComponent implements OnInit {
     bankNameArray: Array<any> = []
     bankNameArrayFiltered: Array<any> = []
     bankRoutingNumbers: Array<any> = []
-    apiRootBank: string = "http://www.pingyo.com/find/bank/names/";
-    apiFindBankData: string = "http://www.pingyo.com/find/banks/name/";
+    apiRootBank: string = "https://www.pingyo.com/find/bank/names/";
+    apiFindBankData: string = "https://www.pingyo.com/find/banks/name/";
     searching = false;
     searchFailed = false;
     hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
