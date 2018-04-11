@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Result } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import { PingYoService } from '../shared/pingyo.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { timer } from 'rxjs/observable/timer';
@@ -39,7 +40,7 @@ export class ResultComponent implements OnInit {
     ipAddress;
     clientUserAgent = navigator.userAgent;
     
-    constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient) {
+    constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient, private pingYoService: PingYoService) {
         // this.countDown = timer(0, 1000).pipe(
         //     take(this.count),
         //     map(() => {
@@ -71,6 +72,7 @@ export class ResultComponent implements OnInit {
                 this.ipAddress = res.ip;
             }
         )
+        console.log(this.pingYoService);
     }
 
     save(form: any): boolean {
@@ -119,9 +121,9 @@ export class ResultComponent implements OnInit {
 
     processFormData () {
         let applicationData = {
-            "Campaign": 'Test',
-            "AffiliateId": "usa_test",
-            "SubAffiliate": null,
+            "Campaign": this.pingYoService.defaultCampaign,
+            "AffiliateId": this.pingYoService.defaultAffiliate,
+            "SubAffiliate": this.pingYoService.defaultSubAffiliate,
             "Timeout": 120,
             "TestOnly": true,
             "Application": {
@@ -166,16 +168,16 @@ export class ResultComponent implements OnInit {
                 "BankRoutingNumber": this.formData.routingNumber,
                 "MinimumCommissionAmount": 0,
                 "MaximumCommissionAmount": 0,
-                "ApplicationExtensions": null,
+                "ApplicationExtensions": this.pingYoService.defaultApplicationExtension,
                 "LoanAmountCurrencyCode": null,
-                "PayAmountCurrencyCode": null
+                "PayAmountCurrencyCode": null,
             },
             "SourceDetails": {
                 "Address": this.ipAddress,
                 "ClientUserAgent": this.clientUserAgent,
                 "CreationUrl": "www.my-loans.co.uk",
                 "LanguageCodes": ["en-US"],
-                "ReferringUrl": "www.my-loans.co.uk"
+                "ReferringUrl": "www.my-loans.co.uk",
             }
         }
 

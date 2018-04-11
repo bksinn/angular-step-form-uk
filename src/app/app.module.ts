@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormDataService } from './data/formData.service';
 import {FormData} from './data/formData.model'
 import { WorkflowService } from './workflow/workflow.service';
+import { PingYoService } from './shared/pingyo.service';
 import {
   PhoneNumberValidator, 
   EmailValidator, 
@@ -54,7 +55,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     { provide: FormDataService, useClass: FormDataService },
     { provide: WorkflowService, useClass: WorkflowService },
-    { provide: FormData, useClass: FormData}
+    { provide: FormData, useClass: FormData},
+    { provide: PingYoService, useClass: PingYoService }
   ],
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 

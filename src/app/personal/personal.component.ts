@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { Personal } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
+import { PingYoService } from '../shared/pingyo.service';
 import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -45,7 +46,8 @@ export class PersonalComponent implements OnInit {
         private router: Router,
         private formDataService: FormDataService, 
         private http:HttpClient, 
-        public formData: FormData, 
+        public formData: FormData,
+        private pingYoService: PingYoService,
         private config: NgbTooltipConfig
         ) {
         config.placement = 'right';
@@ -156,7 +158,28 @@ export class PersonalComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.pingYoService.getUrlVars().la);
+        
         this.personal = this.formDataService.getPersonal();
+        let loanAmountFromUrl = Number(this.pingYoService.getUrlVars().la);
+        let termFromUrl = Number(this.pingYoService.getUrlVars().term);
+        let firstNameFromUrl = this.pingYoService.getUrlVars().fn ? this.pingYoService.getUrlVars().fn : '';
+        let lastNameFromUrl = this.pingYoService.getUrlVars().ln ? this.pingYoService.getUrlVars().ln : '';
+        let emailFromUrl = this.pingYoService.getUrlVars().em ? this.pingYoService.getUrlVars().em : '';
+
+        if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl >= 250) {
+            this.personal.loanAmount = String(loanAmountFromUrl);
+        }
+        if (termFromUrl % 1 == 0 && termFromUrl >= 3 && termFromUrl < 18) {
+            this.personal.termPeriod = String(termFromUrl);
+        }
+        else if (termFromUrl % 1 == 0 && termFromUrl > 18) {
+            this.personal.termPeriod = '18';
+        }
+
+        this.personal.firstName = firstNameFromUrl;
+        this.personal.lastName = lastNameFromUrl;
+        this.personal.email = emailFromUrl;
     }
 
     save(form: any): boolean {

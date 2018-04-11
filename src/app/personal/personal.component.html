@@ -10,8 +10,12 @@
                     </div>
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
-                            <select class="form-control input-md" #loanAmount="ngModel" required name="loanAmount" 
-                            [(ngModel)]="personal.loanAmount">
+                            <select class="form-control input-md"
+                                    id="la"
+                                    #loanAmount="ngModel" 
+                                    required 
+                                    name="loanAmount" 
+                                    [(ngModel)]="personal.loanAmount">
                                 <option value="" disabled selected>Select</option>                            
                                 <option value="250">$250</option>
                                 <option value="300">$300</option>
@@ -71,8 +75,12 @@
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="termPeriod">Over how long?</label>
-                            <select class="form-control input-md" #termPeriod="ngModel" required name="termPeriod" 
-                            [(ngModel)]="personal.termPeriod">
+                            <select class="form-control input-md"
+                                    id="term"
+                                    #termPeriod="ngModel" 
+                                    required 
+                                    name="termPeriod" 
+                                    [(ngModel)]="personal.termPeriod">
                                 <option value="" disabled selected>Select</option>
                                 <option value="3">3 Months</option>
                                 <option value="4">4 Months</option>
@@ -162,7 +170,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="prefix-error-message text-danger" *ngIf="(firstName.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="prefix.valid">
+                            <div class="prefix-error-message text-danger" *ngIf="(firstName.touched || dob.touched || dob.dirty)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="prefix.valid">
                                 <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your title before continuing
                             </div>
                         </div>
@@ -171,8 +179,16 @@
                         <div class='col-xs-12 col-sm-12'>
                             <div class="form-group">
                                 <label class="control-label" for="firstName">First Name</label>
-                                <input class="form-control input-md" #firstName="ngModel" required uppercase name="firstName" minlength="1" type="text" placeholder="First Name"
-                                    [(ngModel)]="personal.firstName">
+                                <input class="form-control input-md"
+                                        id="firstname"
+                                        #firstName="ngModel" 
+                                        required 
+                                        uppercase 
+                                        name="firstName" 
+                                        minlength="1" 
+                                        type="text" 
+                                        placeholder="First Name"
+                                        [(ngModel)]="personal.firstName">
                                 <div style="padding: 5px 0; font-size: 12px; font-style: italic;" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
                                     [hidden]="firstName.valid">
                                     <div *ngIf="firstName.errors.required">This field is required</div>
@@ -185,7 +201,8 @@
                         <div class='col-xs-12 col-sm-12'>
                             <div class="form-group">
                                 <label class="control-label" for="lastname">Last Name</label>
-                                <input class="form-control input-md" 
+                                <input class="form-control input-md"
+                                        id="lastname" 
                                         #lastname="ngModel" 
                                         required 
                                         uppercase 
