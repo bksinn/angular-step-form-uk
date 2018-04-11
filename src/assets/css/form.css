@@ -23,12 +23,14 @@
 
 .ng-dirty.phone:not(form) {
   border: 2px solid orange;
+  border-radius: 4px;
   box-shadow: 0 0 4px 1px orange; 
 }
 
 .ng-touched.ng-invalid:not(form){
   /*background-color: #ffd1d1;*/
   border: 2px solid red;
+  border-radius: 4px;
   transition: border .2s linear;
   box-shadow: 0 0 4px 1px red;
 }
