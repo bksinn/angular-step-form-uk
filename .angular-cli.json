@@ -19,12 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../src/assets/css/form.css",
-        "../src/assets/css/loading-bars.css",
-        "../src/assets/css/riliwan-rabo.css",
-        "../src/assets/css/style.css"
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
