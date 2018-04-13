@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'mt-wizard-address', 
-    templateUrl: './address.component.html',
+    templateUrl: './address.component.html'
     // animations: [
     //     trigger('flyInOut', [
     //         state('in', style({ transform: 'translateX(0)' })),

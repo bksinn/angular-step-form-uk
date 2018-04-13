@@ -408,7 +408,7 @@ export class UppercaseDirective {
     value: any;
 
     @HostListener('input', ['$event']) onInputChange($event) {
-        this.value = $event.target.value.toLowerCase().replace(/([^a-z]|^)([a-z])(?=[a-z]{2})/g, function (_, g1, g2) {
+        this.value = $event.target.value.toLowerCase().replace(/([^a-z]|^)([a-z])(?=[a-z]{0})/g, function (_, g1, g2) {
             return g1 + g2.toUpperCase();
         });
         this.ngModelChange.emit(this.value);
