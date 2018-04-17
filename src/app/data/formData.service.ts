@@ -383,6 +383,10 @@ export class FormDataService {
         return this.formData;
     }
 
+    updatePercentFormData() {
+        return this.formData.percentFormComplete += 20;
+    }
+
     isFormValid() {
         // Return true if all forms had been validated successfully; otherwise, return false
         return this.isPersonalFormValid &&

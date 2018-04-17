@@ -1,7 +1,14 @@
 <section style="background:#efefe9;">
   <div class="container">
     <div class="board">
-      <msw-header></msw-header>
+      <!-- Simple header html) -->
+      <div id="header-status" class="header row">
+        <div class='col-xs-offset-1 col-xs-10 col-sm-10'>
+          <img class="onlyloanz-logo" src="assets/images/logo.png" alt="OnlyLoanz Logo">
+          <ngb-progressbar showValue="true" type="success" (change)="updatePercent()" [value]="formData.percentFormComplete">
+          </ngb-progressbar>
+        </div>
+      </div>
       <!-- Navigation Area (Circular Tabs) -->
       <msw-navbar></msw-navbar>
       <!-- End Navigation Area (Circular Tabs) -->

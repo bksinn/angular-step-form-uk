@@ -59,6 +59,8 @@ export class FormData {
     typeAheadBank: Array<any> = [];
     typeAheadRouting: Array<any> = [];
 
+    percentFormComplete: number = 20;
+
     clear() {
         this.loanAmount = '';
         this.termPeriod = '';
