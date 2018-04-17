@@ -84,25 +84,25 @@ h4.head.text-center {
 
 form[name=personalForm] h3.head.text-center:first-child {
     background-color: rgb(34, 194, 34);
-    color: white;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=incomeForm] h3.head.text-center:first-child {
-    background-color:#febe29;
-    color: white;
+    background-color: #febe29;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=addressForm] h3.head.text-center:first-child {
-    background-color:#3e5e9a;
-    color: white;
+    background-color: #3e5e9a;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=bankForm] h3.head.text-center:first-child {
-    background-color:#f1685e;
-    color: white;
+    background-color: #f1685e;
+    color: #fff;
     padding: 25px;
 }
 
@@ -413,5 +413,22 @@ p.progress-class {
     .loading-screen p {
         font-size: 18px;
     }
+}
+
+.header {
+    background-color: #d1d1cf;
+    margin: 0 auto;
+}
+
+.header img.onlyloanz-logo {
+    float: left;
+    margin: 20px 0;
+    height: 50px;;
+}
+
+.header div.progress {
+    float: right;
+    margin: 20px 0;
+    width: 33%;
 }
 

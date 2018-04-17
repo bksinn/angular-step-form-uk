@@ -192,7 +192,7 @@ export class PersonalComponent implements OnInit {
     }
 
     goToNext(form: any) {
-        window.scrollTo(0, 0);
+        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
 
         if (this.save(form)) {
             // Navigate to the income page

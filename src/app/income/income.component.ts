@@ -59,7 +59,7 @@ export class IncomeComponent implements OnInit {
 
     goToPrevious(form: any) {
         // Scrolls to top of the page
-        window.scrollTo(0, 0);
+        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
 
         if (this.save(form)) {
             // Navigate to the personal page
@@ -69,7 +69,7 @@ export class IncomeComponent implements OnInit {
 
     goToNext(form: any) {
         // Scrolls to top of the page
-        window.scrollTo(0, 0);
+        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
 
         if (this.save(form)) {
             // Navigate to the address page
