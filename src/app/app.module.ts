@@ -40,6 +40,7 @@ import {
 
 /* Animation Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -62,7 +63,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
     ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator,
-    MonthlyAmountValidator
+    MonthlyAmountValidator,
+    HeaderComponent
     ],
   bootstrap: [AppComponent]
 })
