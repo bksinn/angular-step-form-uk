@@ -384,7 +384,13 @@ export class FormDataService {
     }
 
     updatePercentFormData() {
-        return this.formData.percentFormComplete += 20;
+        console.log(this.formData.percentFormComplete);
+        this.formData.percentFormComplete += 20;
+        console.log(this.formData.percentFormComplete);
+    }
+
+    decrementPercentFormData() {
+        this.formData.percentFormComplete -= 20;
     }
 
     isFormValid() {

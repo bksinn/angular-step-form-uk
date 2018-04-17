@@ -226,6 +226,7 @@ export class BankComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the personal page
+            this.formDataService.decrementPercentFormData();
             this.router.navigate(['/address']);
         }
     }
@@ -236,6 +237,7 @@ export class BankComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the address page
+            this.formDataService.updatePercentFormData();
             this.router.navigate(['/result']);
         }
     }

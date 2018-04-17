@@ -196,6 +196,7 @@ export class PersonalComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the income page
+            this.formDataService.updatePercentFormData();
             this.router.navigate(['/income']);
         }
     }

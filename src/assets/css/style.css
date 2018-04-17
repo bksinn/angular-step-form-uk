@@ -1,3 +1,7 @@
+html {
+    background-color: #d1d1cf;
+}
+
 .btn-default {
     border-color: #ccc;
 }
@@ -418,12 +422,34 @@ p.progress-class {
 .header {
     background-color: #d1d1cf;
     margin: 0 auto;
+
+    background-color: #d1d1cf;
+    margin: 0 auto 90px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999999;
+}
+
+.header .progress-bar span {
+    color: #d1d1cf;
+    padding-left: 5px;
 }
 
 .header img.onlyloanz-logo {
     float: left;
     margin: 20px 0;
     height: 50px;;
+}
+
+@media (max-width: 650px) {
+    .header img.onlyloanz-logo {
+        height: 60%;
+        width: 60%;
+    }
+    .header .progress-bar span {
+        font-size: 12.5px;
+    }
 }
 
 .header div.progress {

@@ -63,6 +63,7 @@ export class IncomeComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the personal page
+            this.formDataService.decrementPercentFormData();
             this.router.navigate(['/personal']);
         }
     }
@@ -70,7 +71,6 @@ export class IncomeComponent implements OnInit {
     goToNext(form: any) {
         // Scrolls to top of the page
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-        this.formDataService.updatePercentFormData();
         if (this.save(form)) {
             // Navigate to the address page
             this.formDataService.updatePercentFormData();

@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* App Root */
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 /* Feature Components */
@@ -63,8 +62,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
     ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator,
-    MonthlyAmountValidator,
-    HeaderComponent
+    MonthlyAmountValidator
     ],
   bootstrap: [AppComponent]
 })

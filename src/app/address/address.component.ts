@@ -92,6 +92,7 @@ export class AddressComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the income page
+            this.formDataService.decrementPercentFormData();
             this.router.navigate(['/income']);
         }
     }
@@ -102,6 +103,7 @@ export class AddressComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the bank page
+            this.formDataService.updatePercentFormData();
             this.router.navigate(['/bank']);
         }
     }
