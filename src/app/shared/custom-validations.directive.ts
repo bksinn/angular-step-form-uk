@@ -196,7 +196,7 @@ function validateAge(): ValidatorFn {
             age--;
         }
 
-        let isValid = age >= 18;
+        let isValid = age >= 18 && age <= 110;
         if (isValid && datePattern.test(c.value)) {
             return null;
         } else {
@@ -495,4 +495,3 @@ export class MonthlyAmountValidator implements Validator {
     }
 
 }
-

@@ -12,43 +12,43 @@
                     <div class="form-group">
                         <div class="radio radio-incomeSource" type="radio">
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=1 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=1 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 15px;">
                                             Self <p class="radio-label">Employed</p>
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=2 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=2 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>
                                             Full Time
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=3 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=3 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>
                                             Part Time
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=4 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=4 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 19px 0 31px">
                                             Employed <p class="radio-label">Temporarily</p>
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=5 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=5 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>                                
                                             Retired
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=6 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=6 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 18px 0;">                                
                                             Disability <p class="radio-label">Benefits</p>
                                         </label>
                                     </span>
                             <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=7 [(ngModel)]="income.incomeSource" type="radio">
+                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=7 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 19px 0 31px">                                
                                             Unemployed <p class="radio-label">Benefits</p>
                                         </label>
@@ -60,6 +60,7 @@
                         source before continuing
                     </div>
                 </div>
+                <div id="employer-name"></div>
                 <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">

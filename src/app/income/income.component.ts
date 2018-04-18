@@ -40,6 +40,18 @@ export class IncomeComponent implements OnInit {
         config.triggers = 'hover';
     }
 
+    scrollToEmployerName() {
+        document.querySelector('#employer-name').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    scrollToPayFrequency() {
+        document.querySelector('.radio-payFrequency').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
     forceNumeric($event) {
         $event.target.value = $event.target.value.replace(/[^0-9\.]+/g, '');
     }
@@ -63,6 +75,7 @@ export class IncomeComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the personal page
+            document.getElementById('one').classList.remove('completed-tabs')
             this.formDataService.decrementPercentFormData();
             this.router.navigate(['/personal']);
         }
@@ -73,6 +86,7 @@ export class IncomeComponent implements OnInit {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
         if (this.save(form)) {
             // Navigate to the address page
+            document.getElementById('two').classList.add('completed-tabs')
             this.formDataService.updatePercentFormData();
             this.router.navigate(['/address']);
         }

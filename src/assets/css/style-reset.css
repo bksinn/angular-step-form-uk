@@ -222,7 +222,7 @@ input[type="text"],select,.control-label{
 
 #status-buttons a.active span.round-tabs {
 	color: #fff;
-	background:rgba(255,255,255,.2);
+	background:rgba(255,255,255,.4);
 }
 
 a span.round-tabs {
@@ -396,4 +396,21 @@ input:-webkit-autofill{background-color: transparent !important;}
 	.email-domain button {
 		width: 49%;
 		margin-top: 5px;}
+}
+
+a span.completed-tabs {
+	color: #000!important;
+	background-color: #fff!important;
+}
+
+.progress {
+    display: inline-block;
+    height: 42px;
+    width: 75%;
+}
+
+.progress-bar span {
+    position: relative;
+    top: 10px;
+    font-size: 25px;
 }

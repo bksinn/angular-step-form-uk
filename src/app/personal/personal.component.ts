@@ -54,6 +54,14 @@ export class PersonalComponent implements OnInit {
         config.triggers = 'hover';
     }
 
+    scrollToPersonalInfo($event) {
+        if ($event.target.value.length > 9) {
+            document.querySelector('#personal-info').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    }
+
     getZipInformation() {
         let url = `${this.apiRoot}`;
         let element: HTMLElement = document.getElementById('user-zipcode');
@@ -62,6 +70,9 @@ export class PersonalComponent implements OnInit {
         if (zipcodeElement.value.length == 5 && Number(zipcodeElement.value)) {
             this.http.get(url).subscribe(
                 res => {
+                    document.querySelector('#title-2').scrollIntoView({
+                        behavior: 'smooth'
+                    });
 
                     //Check to see if all area codes match, then auto fill ==> else, don't auto fill
                     this.response = [];
@@ -196,6 +207,8 @@ export class PersonalComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the income page
+            document.getElementById('one').classList.add('completed-tabs')
+
             this.formDataService.updatePercentFormData();
             this.router.navigate(['/income']);
         }

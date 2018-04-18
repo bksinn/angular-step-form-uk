@@ -101,7 +101,7 @@
             </div>
         </div>
         <div *ngIf="loanAmount.valid && termPeriod.valid && zip.valid">
-            <h4 class="head text-center large-width">{{title2}}</h4>
+            <h4 id="title-2" class="head text-center large-width">{{title2}}</h4>
 
             <div class="form-group">
                 <label class="control-label" for="title">Title</label>
@@ -155,7 +155,7 @@
 
             <div class="form-group">
                 <label class="control-label" for="dob">Date of Birth</label>
-                <input class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="text" placeholder="MM/DD/YYYY"
+                <input (keyup)="scrollToPersonalInfo($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="text" placeholder="MM/DD/YYYY"
                     [(ngModel)]="personal.dob">
                 <div class="warning-text" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                     <div *ngIf="dob.errors.required">This field is required</div>

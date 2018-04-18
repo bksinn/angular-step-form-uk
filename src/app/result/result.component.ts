@@ -90,6 +90,7 @@ export class ResultComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the personal page
+            document.getElementById('four').classList.remove('completed-tabs')
             this.formDataService.decrementPercentFormData();
             this.router.navigate(['/bank']);
         }

@@ -226,6 +226,7 @@ export class BankComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the personal page
+            document.getElementById('three').classList.remove('completed-tabs')
             this.formDataService.decrementPercentFormData();
             this.router.navigate(['/address']);
         }
@@ -237,6 +238,7 @@ export class BankComponent implements OnInit {
 
         if (this.save(form)) {
             // Navigate to the address page
+            document.getElementById('four').classList.add('completed-tabs')
             this.formDataService.updatePercentFormData();
             this.router.navigate(['/result']);
         }
