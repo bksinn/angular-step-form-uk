@@ -107,6 +107,8 @@ export class ResultComponent implements OnInit {
 
         //Replaces Nav Bar
         document.getElementById('status-buttons').removeAttribute('style');
+        //Replaces Header
+        document.getElementById('header-status').removeAttribute('style');
     }
 
     submit(form: any) {
@@ -192,6 +194,10 @@ export class ResultComponent implements OnInit {
         //Hides Nav Bar
         let nav = document.getElementById('status-buttons');
         nav.setAttribute('style', 'display: none');
+
+        //Hides Header
+        let header = document.getElementById('header-status');
+        header.setAttribute('style', 'display: none');
 
         let randomNumber = Math.ceil(Math.random() * 10);
         this.submitted = true;
