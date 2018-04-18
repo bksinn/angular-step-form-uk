@@ -9,7 +9,8 @@
         </span>
     </p>
     <p>
-        <strong>Note: </strong>Progress may appear paused as individual lenders may take as long as 40 seconds to respond with a decision.
+        <strong>Note: </strong>Progress may appear paused as individual lenders may take as long as 40 seconds to respond
+        with a decision.
     </p>
     <p class="hide">{{countDown | async}}</p>
 </div>
@@ -65,14 +66,14 @@
                     </label>
                     </p>
                     <div style="padding-top: 5px; font-size: 12px; font-style: italic; color: red;" *ngIf="consentToCreditSearch.invalid && (consentToCreditSearch.dirty || consentToCreditSearch.touched)"
-                    [hidden]="consentToCreditSearch.valid">You must agree to the terms before submitting. </div>
+                        [hidden]="consentToCreditSearch.valid">You must agree to the terms before submitting. </div>
 
                     <input type="hidden" id="emailconsent2" name="emailconsent2">
                     <p style="padding-top: 5px; font-size: 11px; line-height: 17px">
                         I understand that I will receive a maximum of 10 SMS messages per month and that I can text STOP to opt-out anytime. &nbsp;I
                         understand that I may incur charges from my telephone operator and that&nbsp;<strong>message and data rates may apply</strong>.
-                        No one from this site will call you directly, we will never request upfront payments, we'll never ask
-                        you for money, and we will never ask you to purchase vouchers of any kind.
+                        No one from this site will call you directly, we will never request upfront payments, we'll never
+                        ask you for money, and we will never ask you to purchase vouchers of any kind.
                     </p>
 
                     <p>

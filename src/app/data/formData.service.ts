@@ -203,7 +203,7 @@ export class FormDataService {
             let endOfMonthDay = moment.utc().endOf('month').format('llll').slice(0, 3); //returns Day of Month i.e. Sun, Mon, Tues, etc...
 
             let followingEndOfMonth = moment.utc().add(1, 'months').endOf('month').format('ll'); //returns last day of month
-            let followingEndOfMonthDay = moment.utc().add(1, 'months').endOf('month').format('llll').slice(0,3);
+            let followingEndOfMonthDay = moment.utc().add(1, 'months').endOf('month').format('llll').slice(0, 3);
 
             if (endOfMonthDay == 'Sun' || followingEndOfMonthDay == 'Sun') {
                 endOfMonth = moment.utc().endOf('month').subtract(2, 'days').format('ll');

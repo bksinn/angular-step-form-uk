@@ -16,7 +16,7 @@ import { PingYoService } from '../shared/pingyo.service';
 import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'mt-wizard-personal', 
+    selector: 'mt-wizard-personal',
     templateUrl: './personal.component.html',
     // animations: [
     //     trigger('flyInOut', [
@@ -44,12 +44,12 @@ export class PersonalComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private formDataService: FormDataService, 
-        private http:HttpClient, 
+        private formDataService: FormDataService,
+        private http: HttpClient,
         public formData: FormData,
         private pingYoService: PingYoService,
         private config: NgbTooltipConfig
-        ) {
+    ) {
         config.placement = 'right';
         config.triggers = 'hover';
     }
@@ -105,7 +105,7 @@ export class PersonalComponent implements OnInit {
         $event.target.value = $event.target.value.replace(/[^0-9\.]+/g, '');
     }
 
-    addGmail () {
+    addGmail() {
         let emailElement: HTMLElement = document.getElementById('email');
         let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
 
@@ -118,7 +118,7 @@ export class PersonalComponent implements OnInit {
         this.personal.email = emailInput.value;
     }
 
-    addYahoo () {
+    addYahoo() {
         let emailElement: HTMLElement = document.getElementById('email');
         let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
 
@@ -131,10 +131,10 @@ export class PersonalComponent implements OnInit {
         this.personal.email = emailInput.value;
     }
 
-    addHotmail () {
+    addHotmail() {
         let emailElement: HTMLElement = document.getElementById('email');
         let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
-        
+
         let emailDomain = emailInput.value.indexOf('@');
         if (emailDomain !== -1) {
             emailInput.value = emailInput.value.slice(0, emailDomain);
@@ -144,7 +144,7 @@ export class PersonalComponent implements OnInit {
         this.personal.email = emailInput.value;
     }
 
-    addAol () {
+    addAol() {
         let emailElement: HTMLElement = document.getElementById('email');
         let emailInput: HTMLInputElement = emailElement as HTMLInputElement;
 
@@ -159,7 +159,7 @@ export class PersonalComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.pingYoService.getUrlVars().la);
-        
+
         this.personal = this.formDataService.getPersonal();
         let loanAmountFromUrl = Number(this.pingYoService.getUrlVars().la);
         let termFromUrl = Number(this.pingYoService.getUrlVars().term);

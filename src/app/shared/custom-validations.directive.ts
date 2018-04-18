@@ -270,15 +270,15 @@ export class DOBValidator implements Validator {
 })
 export class ZipCodeValidator implements Validator {
     //validator: ValidatorFn;
-    
+
     constructor(private http: HttpClient) {
         //this.validator = validateZip();        
     }
-    
+
     validate(c: AbstractControl) {
-        return new Promise (resolve => {
-            setTimeout(() =>{
-                if (c.value != null &&  c.value.length === 5 && Number(c.value)) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                if (c.value != null && c.value.length === 5 && Number(c.value)) {
                     this.http.get('https://www.pingyo.com/validate/locales/zipcode/' + c.value).subscribe(
                         res => {
                             if (res) {
@@ -302,11 +302,13 @@ export class ZipCodeValidator implements Validator {
                         }
                     )
                 }
-                else {return resolve({
-                    validateZip: {
-                        valid: false
-                    }
-                })}
+                else {
+                    return resolve({
+                        validateZip: {
+                            valid: false
+                        }
+                    })
+                }
             })
         })
     }
@@ -340,7 +342,7 @@ function validateABA(): ValidatorFn {
 
         // Now run through each digit and calculate the total.
         n = 0;
-        for (i = 0; i < t.length; i +=3) {
+        for (i = 0; i < t.length; i += 3) {
             n += parseInt(t.charAt(i), 10) * 3
                 + parseInt(t.charAt(i + 1), 10) * 7
                 + parseInt(t.charAt(i + 2), 10);
@@ -351,13 +353,13 @@ function validateABA(): ValidatorFn {
 
         if (n != 0 && n % 10 == 0)
             return null;
-            else {
-                return {
-                    validateABA: {
-                        valid: false
-                    }
+        else {
+            return {
+                validateABA: {
+                    valid: false
                 }
             }
+        }
     }
 }
 

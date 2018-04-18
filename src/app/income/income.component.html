@@ -4,75 +4,70 @@
         <br/>
         <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
             <div class='row'>
-                    
-                        <div class='col-xs-12 col-sm-12'>
-                            <label class="control-label" for="title">Income Source</label>
-                        </div>
-                        <div class='col-xs-12 col-sm-12'>
-                            <div class="form-group">
-                                <div class="radio radio-incomeSource" type="radio">
-                                    <span class="option">
+
+                <div class='col-xs-12 col-sm-12'>
+                    <label class="control-label" for="title">Income Source</label>
+                </div>
+                <div class='col-xs-12 col-sm-12'>
+                    <div class="form-group">
+                        <div class="radio radio-incomeSource" type="radio">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=1 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 15px;">
                                             Self <p class="radio-label">Employed</p>
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=2 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>
                                             Full Time
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=3 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>
                                             Part Time
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=4 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 19px 0 31px">
                                             Employed <p class="radio-label">Temporarily</p>
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=5 [(ngModel)]="income.incomeSource" type="radio">
                                         <label>                                
                                             Retired
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=6 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 18px 0;">                                
                                             Disability <p class="radio-label">Benefits</p>
                                         </label>
                                     </span>
-                                    <span class="option">
+                            <span class="option">
                                         <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" value=7 [(ngModel)]="income.incomeSource" type="radio">
                                         <label style="padding: 19px 0 31px">                                
                                             Unemployed <p class="radio-label">Benefits</p>
                                         </label>
                                     </span>
-                                </div>
-                            </div>
-                            <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="incomeSource.valid">
-                                <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your income source before continuing
-                            </div>
                         </div>
-                <div 
-                *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1"
-                >
+                    </div>
+                    <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="incomeSource.valid">
+                        <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your income
+                        source before continuing
+                    </div>
+                </div>
+                <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
                     <div class='col-xs-12 col-sm-12'>
                         <div class="form-group">
                             <label class="control-label" for="workphone">Employer Name</label>
-                            <input class="form-control input-md"
-                                    uppercase
-                                    #employerName="ngModel" 
-                                    required name="employername"
-                                    type="text" 
-                                    placeholder="Employer name" 
-                                    [(ngModel)]="income.employerName">
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
+                            <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" type="text" placeholder="Employer name"
+                                [(ngModel)]="income.employerName">
+                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)"
+                                [hidden]="employerName.valid">
                                 <div *ngIf="employerName.errors.required">This field is required</div>
                             </div>
                         </div>
@@ -104,7 +99,8 @@
                             </div>
                         </div>
                         <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="paymentType.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your payment type before continuing
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your
+                            payment type before continuing
                         </div>
                     </div>
                 </div>
@@ -168,7 +164,8 @@
                             </div>
                         </div>
                         <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="employmentYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years at employer before continuing
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years
+                            at employer before continuing
                         </div>
                     </div>
                     <div class='col-xs-12 col-sm-12'>
@@ -204,48 +201,50 @@
                             </div>
                         </div>
                         <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="employmentYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months at employer before continuing
+                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months
+                            at employer before continuing
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Payment Frequency</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-payFrequency" type="radio">
-                                <span class="option">
+                <div class='col-xs-12 col-sm-12'>
+                    <label class="control-label" for="title">Payment Frequency</label>
+                </div>
+                <div class='col-xs-12 col-sm-12'>
+                    <div class="form-group">
+                        <div class="radio radio-payFrequency" type="radio">
+                            <span class="option">
                                     <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=1 [(ngModel)]="income.payFrequency" type="radio">
                                     <label>
                                         Weekly
                                     </label>
                                 </span>
-                                <span class="option">
+                            <span class="option">
                                     <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=2 [(ngModel)]="income.payFrequency" type="radio">
                                     <label>
                                         Bi-Weekly
                                     </label>
                                 </span>
-                                <span class="option">
+                            <span class="option">
                                     <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=3 [(ngModel)]="income.payFrequency" type="radio">
                                     <label>
                                         Semi-Monthly
                                     </label>
                                 </span>
-                                <span class="option">
+                            <span class="option">
                                     <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=4 [(ngModel)]="income.payFrequency" type="radio">
                                     <label>                                
                                         Monthly
                                     </label>
                                 </span>
-                            </div>
                         </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;;" [hidden]="payFrequency.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your your payment type before continuing
-                        </div>
-                    </div>                
+                    </div>
+                    <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;;" [hidden]="payFrequency.valid">
+                        <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your your
+                        payment type before continuing
+                    </div>
+                </div>
                 <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="netamount">Net Monthly Amount 
@@ -254,19 +253,10 @@
                                 <span style="margin-left: 5px" class="glyphicon glyphicon-question-sign"></span>
                             </a>
                         </label>
-                        <input class="form-control input-md"
-                                id="monthlyAmount"
-                                validateMonthlyAmount
-                                (keyup)="forceNumeric($event)" 
-                                #netAmount="ngModel" 
-                                required
-                                uppercase
-                                minlength="3"
-                                name="netAmount" 
-                                type="text" 
-                                placeholder="Minimum $500" 
-                                [(ngModel)]="income.netAmount">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
+                        <input class="form-control input-md" id="monthlyAmount" validateMonthlyAmount (keyup)="forceNumeric($event)" #netAmount="ngModel"
+                            required uppercase minlength="3" name="netAmount" type="text" placeholder="Minimum $500" [(ngModel)]="income.netAmount">
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)"
+                            [hidden]="netAmount.valid">
                             <div *ngIf="netAmount.errors.required">This field is required</div>
                             <div *ngIf="netAmount.invalid">Minimum monthly amount is $500, only enter numbers</div>
                         </div>
@@ -275,16 +265,10 @@
                 <div class='col-xs-12 col-sm-12'>
                     <div class="form-group">
                         <label class="control-label" for="jobtitle">Job Title</label>
-                        <input class="form-control input-md" 
-                                #jobTitle="ngModel" 
-                                required
-                                uppercase
-                                minlength="3" 
-                                name="jobtitle" 
-                                type="text" 
-                                placeholder="Job Title" 
-                                [(ngModel)]="income.jobTitle">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
+                        <input class="form-control input-md" #jobTitle="ngModel" required uppercase minlength="3" name="jobtitle" type="text" placeholder="Job Title"
+                            [(ngModel)]="income.jobTitle">
+                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)"
+                            [hidden]="jobTitle.valid">
                             <div *ngIf="jobTitle.errors.required">This field is required</div>
                             <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
                         </div>
@@ -294,10 +278,11 @@
         </div>
         <div class="form-group text-center">
             <div *ngIf="!incomeForm.valid" class="text-danger" style="clear:both;">
-                <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered before proceeding
+                <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered
+                before proceeding
             </div>
             <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(incomeForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
             <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!incomeForm.valid" (click)="goToNext(incomeForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
-    </div>               
+    </div>
 </form>

@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 // } from '@angular/animations';
 
 @Component({
-    selector: 'mt-wizard-address', 
+    selector: 'mt-wizard-address',
     templateUrl: './address.component.html'
     // animations: [
     //     trigger('flyInOut', [
@@ -41,7 +41,7 @@ export class AddressComponent implements OnInit {
     apiValidateZip: string = "https://www.pingyo.com/validate/locales/zipcode/";
     cityArr: Array<any> = []
 
-    constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient, public formData: FormData) {
+    constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, public formData: FormData) {
     }
 
     ngOnInit() {
@@ -51,7 +51,7 @@ export class AddressComponent implements OnInit {
     //Get request for zip code field
     getZipInformation() {
         let url = `${this.apiRoot}`;
-        let element: HTMLElement = document.getElementById('user-zipcode'); 
+        let element: HTMLElement = document.getElementById('user-zipcode');
         let zipcodeElement: HTMLInputElement = element as HTMLInputElement;
         url = url + zipcodeElement.value;
 

@@ -40,7 +40,7 @@ export class IncomeComponent implements OnInit {
         config.triggers = 'hover';
     }
 
-    forceNumeric ($event) {
+    forceNumeric($event) {
         $event.target.value = $event.target.value.replace(/[^0-9\.]+/g, '');
     }
 

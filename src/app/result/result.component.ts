@@ -39,8 +39,8 @@ export class ResultComponent implements OnInit {
     count2 = 5;
     ipAddress;
     clientUserAgent = navigator.userAgent;
-    
-    constructor(private router: Router, private formDataService: FormDataService, private http:HttpClient, private pingYoService: PingYoService) {
+
+    constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, private pingYoService: PingYoService) {
         // this.countDown = timer(0, 1000).pipe(
         //     take(this.count),
         //     map(() => {
@@ -95,7 +95,7 @@ export class ResultComponent implements OnInit {
         }
     }
 
-    resetSubmit () {
+    resetSubmit() {
         this.submitted = false;
         this.submitFail = false;
         this.submitSuccess = false;
@@ -122,7 +122,7 @@ export class ResultComponent implements OnInit {
         }
     }
 
-    processFormData () {
+    processFormData() {
         let applicationData = {
             "Campaign": this.pingYoService.defaultCampaign,
             "AffiliateId": this.pingYoService.defaultAffiliate,
@@ -187,7 +187,7 @@ export class ResultComponent implements OnInit {
         return JSON.stringify(applicationData);
     }
 
-    processForm () {
+    processForm() {
         //Status message on progress page
         this.status = this.status ? this.status : "Searching";
         const applicationData = this.processFormData();
@@ -202,7 +202,7 @@ export class ResultComponent implements OnInit {
         let randomNumber = Math.ceil(Math.random() * 10);
         this.submitted = true;
         let responseData;
-        
+
         //randomNumber < 5 ? this.submitFail = true : this.submitSuccess = true;
         let headers = new HttpHeaders().append('Content-Type', 'application/json');
 

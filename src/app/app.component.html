@@ -1,20 +1,19 @@
-<section style="background:#d1d1cf;">
- <msw-header></msw-header>
-  <div class="container">
-    <div class="board">
-      <!-- Navigation Area (Circular Tabs) -->
-      <msw-navbar></msw-navbar>
-      <!-- End Navigation Area (Circular Tabs) -->
+<section>
+  <msw-header></msw-header>
+  <div class="board">
+    <!-- Navigation Area (Circular Tabs) -->
+    <msw-navbar></msw-navbar>
+    <!-- End Navigation Area (Circular Tabs) -->
 
-      <!-- Content Area -->
-      <div class="tab-content">
-        <!-- Routed view  -->
-        <router-outlet></router-outlet>
-      </div>
-      <!-- End Content Area -->
+    <!-- Content Area -->
+    <div class="tab-content">
+      <!-- Routed view  -->
+      <router-outlet></router-outlet>
     </div>
-
-    <!-- For Debugging: show our formData as it is being typed -->
-    <!--<pre>{{ formData | json }}</pre>-->
+    <!-- End Content Area -->
   </div>
+
+  <!-- For Debugging: show our formData as it is being typed -->
+  <pre>{{ formData | json }}</pre>
+
 </section>

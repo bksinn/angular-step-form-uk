@@ -87,12 +87,12 @@ export class BankComponent implements OnInit {
         }
     }
 
-    clearBankRoutingInformation () {
+    clearBankRoutingInformation() {
         this.bank.routingNumber = '';
         this.formDataService.clearRoutingNumber(this.bank);
     }
 
-    getBankRoutingInformation () {
+    getBankRoutingInformation() {
         let element: HTMLElement = document.getElementById('user-bank');
         let elementRouting: HTMLElement = document.getElementById('routing-div');
         let bankElement: HTMLInputElement = element as HTMLInputElement;
@@ -115,69 +115,69 @@ export class BankComponent implements OnInit {
             this.http.get(`${this.apiFindBankData}` + bankName)
                 .toPromise()
                 .then(
-                    res => { // Success
-                        this.bankNameArray = [];
-                        this.bankNameArray.push(res);
-                        this.bankNameArrayFiltered = [];
+                res => { // Success
+                    this.bankNameArray = [];
+                    this.bankNameArray.push(res);
+                    this.bankNameArrayFiltered = [];
 
-                        //Matches bank names to user's city/state
-                        for (var i = 0; i < this.bankNameArray.length; i++) {
-                            this.bankNameArrayFiltered = []; //Clears array
-                            this.bankNameArray[i].filter((element) => {
-                                if (this.bankNameArray[i].length < 50) {
-                                    this.bankNameArrayFiltered.push(element);
-                                }
-                                else if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
-                                    this.bankNameArrayFiltered.push(element);
-                                }
-                                else if (element.StateAbbreviation.includes(this.formData.typeAheadState[0])) {                                
-                                    this.bankNameArrayFiltered.push(element);
-                                }
-                            })
-                        }
-                        //End matches bank names to user's city/state
-                        this.clickedItem = '';
-                        this.bankRoutingNumbers = [];
-                        this.bank.routingNumber = '';
-                        this.formDataService.clearRoutingNumber(this.bank);
-
-                        //Prefills routing number if only one exists for user's city and/or state
-                        if (this.bankNameArrayFiltered.length) {
-                            this.bankRoutingNumbers = []; //Clears array
-
-                            //Typeahead for Routing Numbers: this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
-                            //Typeahead for Routing Numbers: this.bank.routingNumber = this.bankRoutingNumbers[0].slice(0,9);
-                            this.bank.routingNumber = this.bankNameArrayFiltered[0].RoutingNumber
-
-                            //Adds 0 in front of routing number if length is 8 (for Bank of America that omits number '0' at the beginning )
-                            if (this.bank.routingNumber.length == 8) {
-                                this.bank.routingNumber = "0" + this.bankNameArrayFiltered[0].RoutingNumber;
+                    //Matches bank names to user's city/state
+                    for (var i = 0; i < this.bankNameArray.length; i++) {
+                        this.bankNameArrayFiltered = []; //Clears array
+                        this.bankNameArray[i].filter((element) => {
+                            if (this.bankNameArray[i].length < 50) {
+                                this.bankNameArrayFiltered.push(element);
                             }
+                            else if (element.City.includes(this.formData.typeAheadCity[0] && element.StateAbbreviation.includes(this.formData.typeAheadState[0]))) {
+                                this.bankNameArrayFiltered.push(element);
+                            }
+                            else if (element.StateAbbreviation.includes(this.formData.typeAheadState[0])) {
+                                this.bankNameArrayFiltered.push(element);
+                            }
+                        })
+                    }
+                    //End matches bank names to user's city/state
+                    this.clickedItem = '';
+                    this.bankRoutingNumbers = [];
+                    this.bank.routingNumber = '';
+                    this.formDataService.clearRoutingNumber(this.bank);
 
-                            //Check if routing number is unique                        
-                            this.bankNameArrayFiltered.forEach((element) => {
-                                if (this.bank.routingNumber != element.RoutingNumber) {
-                                    elementRouting.removeAttribute('style');
-                                    this.bankRoutingNumbers.push(element.RoutingNumber + " " + element.City + " " + 'Branch');
-                                }
-                                this.formDataService.setRoutingNumber(this.bank);
+                    //Prefills routing number if only one exists for user's city and/or state
+                    if (this.bankNameArrayFiltered.length) {
+                        this.bankRoutingNumbers = []; //Clears array
+
+                        //Typeahead for Routing Numbers: this.bankRoutingNumbers.push(this.bankNameArrayFiltered[0].RoutingNumber + " " + this.bankNameArrayFiltered[0].City + " " + 'Branch');
+                        //Typeahead for Routing Numbers: this.bank.routingNumber = this.bankRoutingNumbers[0].slice(0,9);
+                        this.bank.routingNumber = this.bankNameArrayFiltered[0].RoutingNumber
+
+                        //Adds 0 in front of routing number if length is 8 (for Bank of America that omits number '0' at the beginning )
+                        if (this.bank.routingNumber.length == 8) {
+                            this.bank.routingNumber = "0" + this.bankNameArrayFiltered[0].RoutingNumber;
+                        }
+
+                        //Check if routing number is unique                        
+                        this.bankNameArrayFiltered.forEach((element) => {
+                            if (this.bank.routingNumber != element.RoutingNumber) {
                                 elementRouting.removeAttribute('style');
-                            })
-                            //End routing number check
-                        }
-                        else {
+                                this.bankRoutingNumbers.push(element.RoutingNumber + " " + element.City + " " + 'Branch');
+                            }
+                            this.formDataService.setRoutingNumber(this.bank);
                             elementRouting.removeAttribute('style');
-                        }
-
-                        resolve();
-                    },
-                    msg => {
-                        this.bank.routingNumber = '';
-                        this.formDataService.clearRoutingNumber(this.bank);
+                        })
+                        //End routing number check
+                    }
+                    else {
                         elementRouting.removeAttribute('style');
-                        console.error(`Error: ${msg.status} ${msg.statusText}`)
-                    },
-                );
+                    }
+
+                    resolve();
+                },
+                msg => {
+                    this.bank.routingNumber = '';
+                    this.formDataService.clearRoutingNumber(this.bank);
+                    elementRouting.removeAttribute('style');
+                    console.error(`Error: ${msg.status} ${msg.statusText}`)
+                },
+            );
         });
     }
 
