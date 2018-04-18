@@ -114,23 +114,22 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
-
-
-
 .board{
     width: 75%;
     margin: 60px auto;
     /*height: 500px;*/
     height: auto;
     background: #fff;
-    /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
+    margin-top: 0;
+    position: relative;
+    top: 90px;
 }
+
 .board .nav-tabs {
     position: relative;
     /* border-bottom: 0; */
     /* width: 80%; */
-    margin: 40px auto;
+    /*margin: 40px auto;*/
     margin-bottom: 0;
     box-sizing: border-box;
 
@@ -180,7 +179,8 @@ span.round-tabs{
 }
 
 span.round-tabs.one{
-    color: rgb(34, 194, 34);border: 2px solid rgb(34, 194, 34);
+    color: rgb(34, 194, 34);
+    border: 2px solid rgb(34, 194, 34);
 }
 
 li.active span.round-tabs.one{
@@ -210,7 +210,8 @@ li.active span.round-tabs.three{
 }
 
 span.round-tabs.four{
-    color: #f1685e;border: 2px solid #f1685e;
+    color: #f1685e;
+    border: 2px solid #f1685e;
 }
 
 li.active span.round-tabs.four{

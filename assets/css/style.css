@@ -1,3 +1,7 @@
+html {
+    background-color: #d1d1cf;
+}
+
 .btn-default {
     border-color: #ccc;
 }
@@ -84,25 +88,25 @@ h4.head.text-center {
 
 form[name=personalForm] h3.head.text-center:first-child {
     background-color: rgb(34, 194, 34);
-    color: white;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=incomeForm] h3.head.text-center:first-child {
-    background-color:#febe29;
-    color: white;
+    background-color: #febe29;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=addressForm] h3.head.text-center:first-child {
-    background-color:#3e5e9a;
-    color: white;
+    background-color: #3e5e9a;
+    color: #fff;
     padding: 25px;
 }
 
 form[name=bankForm] h3.head.text-center:first-child {
-    background-color:#f1685e;
-    color: white;
+    background-color: #f1685e;
+    color: #fff;
     padding: 25px;
 }
 
@@ -413,5 +417,50 @@ p.progress-class {
     .loading-screen p {
         font-size: 18px;
     }
+}
+
+.header {
+    background-color: #d1d1cf;
+    margin: 0 auto;
+
+    background-color: #d1d1cf;
+    margin: 0 auto 90px;
+    position: fixed;
+    top: 0;
+    width: 70%;
+    left: 15%;
+    z-index: 9999999;
+}
+
+.header .progress-bar span {
+    color: #d1d1cf;
+    padding-left: 5px;
+}
+
+.header img.onlyloanz-logo {
+    float: left;
+    margin: 20px 0;
+    height: 50px;;
+}
+
+@media (max-width: 650px) {
+    .header {
+        width: 100%;
+        left: 0%;
+    }
+
+    .header img.onlyloanz-logo {
+        height: 60%;
+        width: 60%;
+    }
+    .header .progress-bar span {
+        font-size: 12.5px;
+    }
+}
+
+.header div.progress {
+    float: right;
+    margin: 20px 0;
+    width: 33%;
 }
 
