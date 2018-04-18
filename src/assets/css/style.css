@@ -427,7 +427,8 @@ p.progress-class {
     margin: 0 auto 90px;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 70%;
+    left: 15%;
     z-index: 9999999;
 }
 
@@ -443,6 +444,11 @@ p.progress-class {
 }
 
 @media (max-width: 650px) {
+    .header {
+        width: 100%;
+        left: 0%;
+    }
+
     .header img.onlyloanz-logo {
         height: 60%;
         width: 60%;
