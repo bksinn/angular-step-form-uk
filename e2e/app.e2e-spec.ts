@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular-multi-step-redo App', () => {
+describe('angular-multi-step App', () => {
   let page: AppPage;
 
   beforeEach(() => {
