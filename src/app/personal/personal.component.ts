@@ -51,12 +51,14 @@ export class PersonalComponent implements OnInit {
         private config: NgbTooltipConfig
     ) {
         config.placement = 'right';
-        config.triggers = 'hover';
+        config.triggers = 'click';
     }
 
-    scrollToPersonalInfo($event) {
+    scrollDown($event) {
         if ($event.target.value.length > 9) {
-            document.querySelector('#personal-info').scrollIntoView({
+            window.scrollBy({
+                top: 350, // could be negative value
+                left: 0,
                 behavior: 'smooth'
             });
         }
@@ -70,7 +72,13 @@ export class PersonalComponent implements OnInit {
         if (zipcodeElement.value.length == 5 && Number(zipcodeElement.value)) {
             this.http.get(url).subscribe(
                 res => {
-                    document.querySelector('#title-2').scrollIntoView({
+                    // document.querySelector('#title-2').scrollIntoView({
+                    //     behavior: 'smooth'
+                    // });
+
+                    window.scrollBy({
+                        top: 300, // could be negative value
+                        left: 0,
                         behavior: 'smooth'
                     });
 

@@ -85,7 +85,7 @@
 
         <div *ngIf="termPeriod.valid && loanAmount.valid">
             <div class="form-group">
-                <label class="control-label">I'm flexible with terms</label>
+                <label id="checkbox-flexible" class="control-label">I'm flexible with terms</label>
 
                 <div class="checkbox-div">
                     <input id="checkbox-flexible" type="checkbox" checked name="flexible-terms" class="big-checkbox">
@@ -103,8 +103,7 @@
             </div>
         </div>
         <div *ngIf="loanAmount.valid && termPeriod.valid && zip.valid">
-            <h4 id="title-2" class="head text-center large-width">{{title2}}</h4>
-
+            <h4 class="head text-center large-width">{{title2}}</h4>
             <div class="form-group">
                 <label class="control-label" for="title">Title</label>
                 <div class="radio radio-prefix" type="radio">
@@ -135,7 +134,7 @@
                 </div>
             </div>
             <div class="prefix-error-message text-danger" *ngIf="(firstName.touched || dob.touched || dob.dirty)" [hidden]="prefix.valid">
-                Please select your title before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your title before continuing
             </div>
 
             <div class="form-group">
@@ -157,7 +156,7 @@
 
             <div class="form-group">
                 <label class="control-label" for="dob">Date of Birth</label>
-                <input (keyup)="scrollToPersonalInfo($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB
+                <input (keyup)="scrollDown($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB
                     type="text" placeholder="MM/DD/YYYY" [(ngModel)]="personal.dob">
                 <div class="warning-text" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                     <div *ngIf="dob.errors.required">This field is required</div>
@@ -220,8 +219,8 @@
                 <div class="form-group">
                     <label class="control-label" for="email">
                         Email
-                        <a ngbTooltip="We only ever use your email to verify your account, we never send promotional emails. Please ensure your email domain type is valid. i.e. .us, .com, .net">
-
+                        <a style="cursor:pointer" ngbTooltip="We only ever use your email to verify your account, we never send promotional emails. Please ensure your email domain type is valid. i.e. .us, .com, .net">
+                            <span class="glyphicon glyphicon-question-sign"></span>
                         </a>
                     </label>
                     <input class="form-control input-md" id="email" #email="ngModel" required validateEmail name="email" type="text" placeholder="person@example.com"
@@ -364,7 +363,7 @@
                 </div>
                 <div class="militaryService-error-message text-danger" *ngIf="(issuingState.touched || issuingState.dirty)" class="warning-text"
                     [hidden]="militaryService.valid">
-                    Please select an option before continuing
+                    <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select an option before continuing
                 </div>
 
             </div>

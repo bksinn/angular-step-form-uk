@@ -74,6 +74,11 @@ color:#333;}
 	z-index:1000;
 }
 
+.form-control {
+	display: inline-block;
+	width: 49%;
+}
+
 .logo{
 	height:100%;
 	margin-left:20px;
@@ -248,6 +253,10 @@ a span.round-tabs {
     font-size: 14px;
 }
 
+label#checkbox-flexible {
+	width: 49%!important;
+}
+
 .checkbox-div.form-group{
 	display: inline-block;
 }
@@ -255,7 +264,7 @@ a span.round-tabs {
 .checkbox-div{
 	position: relative;
 	display: inline-block;
-	width:49%;
+	width:49%!important;
 	padding:5px 0;
 }
 
@@ -317,6 +326,7 @@ overflow: hidden;
 	vertical-align: top;
     line-height: 0;
     width: 24%;
+	margin-bottom: 5px;
 }
 
 .radio input[type=radio] {
@@ -347,6 +357,7 @@ overflow: hidden;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	padding-left: 0;
 }
 
 .radio label p{
@@ -374,6 +385,33 @@ a span.completed-tabs {
 	background-color: #fff!important;
 }
 
+/*From Bootstrap 3.3.7*/
+.progress {
+    height: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #337ab7;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    -webkit-transition: width .6s ease;
+    -o-transition: width .6s ease;
+    transition: width .6s ease;
+}
+
 .progress {
     display: inline-block;
     height: 42px;
@@ -398,7 +436,7 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 .result-form .checkbox-div{
 	position: relative;
 	float:left;
-    width: 28px;
+    width: 28px!important;
     padding: 5px 0;
     margin: 3px 7px 0 0;
     vertical-align: top;
@@ -407,6 +445,7 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 .result-form label{
 	display: inline-block;
 	line-height: 20px;
+	font-weight: inherit;
 }
 
 @media( min-width : 900px ){
@@ -449,9 +488,9 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 }
 
 
-@media( max-width : 400px ){
+@media( max-width : 415px ){
 	input[type="text"], select, .control-label{
-		width:100%;
+		width:100%!important;
 	}
 
  .radio span.option{
@@ -465,4 +504,50 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 	.email-domain button {
 		width: 49%;
 		margin-top: 5px;}
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.dropdown-menu button.dropdown-item {
+	width: 100%;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+}
+
+.tooltip {
+	opacity: 1;
+}
+
+.tooltip-inner {
+	padding: 15px;
+}
+
+.glyphicon-question-sign {
+	font-size: x-large;
+	top: 5px;
 }

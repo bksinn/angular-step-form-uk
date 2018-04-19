@@ -24,6 +24,8 @@ export class ResultComponent implements OnInit {
     submitted: boolean = false; //Check if form is submitted
     submitSuccess: boolean = false;
     submitFail: boolean = false;
+    noLenderMatch: boolean = false;
+    percentComplete = 0;
     errorList;
     countDown;
     count = 10;
@@ -33,21 +35,21 @@ export class ResultComponent implements OnInit {
     getUrl: string = 'https://leads.pingyo.com/application/status/';
     correlationId;
     redirectionUrl;
-    noLenderMatch: boolean = false;
-    percentComplete = 0;
     countDown2;
     count2 = 5;
     ipAddress;
     clientUserAgent = navigator.userAgent;
 
     constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, private pingYoService: PingYoService) {
-        // this.countDown = timer(0, 1000).pipe(
-        //     take(this.count),
-        //     map(() => {
-        //         this.percentComplete += 25;
-        //         return --this.count
-        //     })
-        // );
+        //Remember to comment this out
+        this.countDown = timer(0, 1000).pipe(
+            take(this.count),
+            map(() => {
+                this.percentComplete += 25;
+                return --this.count
+            })
+        );
+        //End Comment out ^
 
         this.countDown2 = timer(0, 1000).pipe(
             take(this.count2),
@@ -59,6 +61,10 @@ export class ResultComponent implements OnInit {
                 return --this.count2;
             })
         );
+
+        window.onhashchange = () => {
+            this.resetSubmit();
+        }
     }
 
     ngOnInit() {
@@ -95,6 +101,7 @@ export class ResultComponent implements OnInit {
             this.router.navigate(['/bank']);
         }
     }
+    
 
     resetSubmit() {
         this.submitted = false;
@@ -226,6 +233,7 @@ export class ResultComponent implements OnInit {
                 this.correlationId = `${error.CorrelationId}`;
                 this.submitSuccess = false;
                 this.submitFail = true;
+                clearInterval(checkStatus);
             }
         )
 

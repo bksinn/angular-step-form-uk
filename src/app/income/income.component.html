@@ -8,7 +8,7 @@
                     <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=1 [(ngModel)]="income.incomeSource"
                         type="radio">
                     <label>
-                        <p>Self Employed</p>
+                        Self Employed
                     </label>
                 </span>
                 <span class="option">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="incomeSource.valid">
-            Please select your income source before continuing
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your income source before continuing
         </div>
         <div id="employer-name"></div>
         <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="paymentType.valid">
-                Please select your payment type before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your payment type before continuing
             </div>
         </div>
         <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
@@ -161,7 +161,7 @@
                 </div>
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
-                Please select years at employer before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select years at employer before continuing
             </div>
 
             <div class="form-group">
@@ -198,7 +198,7 @@
                 </div>
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
-                Please select months at employer before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select months at employer before continuing
             </div>
         </div>
         <div class="form-group">
@@ -231,13 +231,14 @@
             </div>
         </div>
         <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="payFrequency.valid">
-            Please select your your payment type before continuing
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your your payment type before continuing
         </div>
 
 
         <div class="form-group">
             <label class="control-label" for="netamount">Net Monthly Amount
                 <a style="cursor:pointer" ngbTooltip="Monthly take home pay is the amount you receive after tax and deductions. If you are paid weekly, multiply your weekly pay by 4.33 to calculate your monthly pay.">
+                    <span class="glyphicon glyphicon-question-sign" style="margin-left: 5px"></span>
                 </a>
             </label>
             <input class="form-control input-md" id="monthlyAmount" validateMonthlyAmount (keyup)="forceNumeric($event)" #netAmount="ngModel"

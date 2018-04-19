@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid"  [hidden]="residentialStatus.valid">
-            Please select your residential status before continuing
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your residential status before continuing
         </div>
         <div *ngIf="residentialStatus.invalid && (residentialStatus.dirty || residentialStatus.touched)" [hidden]="residentialStatus.valid"
             class="warning-text">
@@ -194,7 +194,7 @@
             </div>
         </div>
         <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid" [hidden]="addressYears.valid">
-            Please select years at this address before continuing
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select years at this address before continuing
         </div>
 
         <div class="form-group">
@@ -231,7 +231,7 @@
             </div>
         </div>
         <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid" [hidden]="addressMonths.valid">
-            Please select months at this address before continuing
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select months at this address before continuing
         </div>
         <div class="form-group text-center buttons-group">
             <div *ngIf="!addressForm.valid" class="text-danger">

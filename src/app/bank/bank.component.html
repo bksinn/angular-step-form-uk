@@ -29,7 +29,7 @@
                 </span>
             </div>
             <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched)" [hidden]="accountType.valid">
-                Please select your account type before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your account type before continuing
             </div>
             <div *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)" [hidden]="accountType.valid" class="warning-text">
                 <div *ngIf="accountType.errors.required">This field is required</div>
@@ -141,7 +141,7 @@
             </div>
             <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" class="warning-text"
                 [hidden]="bankTimeYears.valid">
-                Please select years at this bank before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select years at this bank before continuing
             </div>
 
 
@@ -182,7 +182,7 @@
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(accountNumber.touched) && bankName.valid"
                 [hidden]="bankTimeMonths.valid">
-                Please select months at this bank before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select months at this bank before continuing
             </div>
 
         </div>
