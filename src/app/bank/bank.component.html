@@ -1,203 +1,201 @@
 <form #bankForm="ngForm" name="bankForm" class="editForm" novalidate>
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title}}</h3>
-        <br/>
-        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
-            <div class="row">
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <label class="control-label" for="bankName">Bank Name</label>
-                        <input type="text" class="form-control input-md" (keyup)="getBankInformation()" (keydown)="clearBankRoutingInformation()" #bankName="ngModel"
-                            required uppercase placeholder="Ex. Bank of America" name="bankName" id="user-bank" [ngbTypeahead]="search"
-                            (selectItem)="selectedItem($event)" [resultFormatter]="formatter" [(ngModel)]="bank.bankName">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)"
-                            [hidden]="bankName.valid">
-                            <div *ngIf="bankName.errors.required">This field is required</div>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <label class="control-label" for="accountType">Account Type</label>
-                        <div class="radio radio-accountType" type="radio">
-                            <span class="option">
-                                    <input #accountType="ngModel" required name="accountType" id="accountType" value=1 [(ngModel)]="bank.accountType" type="radio">
-                                    <label>
-                                        Checking
-                                    </label>
-                                </span>
-                            <span class="option">
-                                    <input #accountType="ngModel" required name="accountType" id="accountType" value=2 [(ngModel)]="bank.accountType" type="radio">
-                                    <label>
-                                        Savings
-                                    </label>
-                                </span>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched)" style="padding: 0 0 5px 0; font-size: 16px;"
-                            [hidden]="accountType.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your
-                            account type before continuing
-                        </div>
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)"
-                            [hidden]="accountType.valid">
-                            <div *ngIf="accountType.errors.required">This field is required</div>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="form-group">
+            <label class="control-label" for="bankName">Bank Name</label>
+            <input type="text" class="form-control input-md" (keyup)="getBankInformation()" (keydown)="clearBankRoutingInformation()"
+                #bankName="ngModel" required uppercase placeholder="Ex. Bank of America" name="bankName" id="user-bank" [ngbTypeahead]="search"
+                (selectItem)="selectedItem($event)" [resultFormatter]="formatter" [(ngModel)]="bank.bankName">
+            <div *ngIf="bankName.invalid && (bankName.dirty || bankName.touched)" [hidden]="bankName.valid" class="warning-text">
+                <div *ngIf="bankName.errors.required">This field is required</div>
             </div>
-            <div class="row">
-                <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <label class="control-label" for="routingNumber">ABA / Routing Number <br /> <span style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</span></label>
-                        <!--<label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>-->
-                        <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
-                            type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)"
-                            [hidden]="routingNumber.valid">
-                            <div *ngIf="routingNumber.errors.required">This field is required</div>
-                            <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div style="display: none;" id="routing-div" class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="routingNumber">ABA / Routing Number</label>
-                            <label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
-                            <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
-                                type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)"
-                                [hidden]="routingNumber.valid">
-                                <div *ngIf="routingNumber.errors.required">This field is required</div>
-                                <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="accountNumber">Account Number</label>
-                        <input class="form-control input-md" #accountNumber="ngModel" required minlength="6" maxlength="14" name="accountNumber"
-                            type="text" placeholder="6 to 17 digits" [(ngModel)]="bank.accountNumber">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)"
-                            [hidden]="accountNumber.valid">
-                            <div *ngIf="accountNumber.errors.required">This field is required</div>
-                            <div *ngIf='accountNumber.errors.minlength'>Too short</div>
-                            <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="accountType">Account Type</label>
+            <div class="radio radio-accountType" type="radio">
+                <span class="option">
+                    <input #accountType="ngModel" required name="accountType" id="accountType" value=1 [(ngModel)]="bank.accountType" type="radio">
+                    <label>
+                        Checking
+                    </label>
+                </span>
+                <span class="option">
+                    <input #accountType="ngModel" required name="accountType" id="accountType" value=2 [(ngModel)]="bank.accountType" type="radio">
+                    <label>
+                        Savings
+                    </label>
+                </span>
             </div>
-            <div class="row">
-                <div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Years At This Bank</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-bankTime" type="radio">
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="0" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="1" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>
-                                        1
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="2" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>
-                                        2
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="3" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>                                
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="4" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>                                
-                                        4
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="5" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>                                
-                                        5
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="6" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>                                
-                                        6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="7+" [(ngModel)]="bank.bankTimeYears" type="radio">
-                                    <label>                                
-                                        7+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px;"
-                            [hidden]="bankTimeYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years
-                            at this bank before continuing
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Months At This Bank</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-bankTime" type="radio">
-                                <span class="option">
-                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="0" [(ngModel)]="bank.bankTimeMonths" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="3" [(ngModel)]="bank.bankTimeMonths" type="radio">
-                                    <label>
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="6" [(ngModel)]="bank.bankTimeMonths" type="radio">
-                                    <label>
-                                       6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="9" [(ngModel)]="bank.bankTimeMonths" type="radio">
-                                    <label>                                
-                                        9+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" style="padding: 0 0 5px 0; font-size: 16px;"
-                            [hidden]="bankTimeMonths.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months
-                            at this bank before continuing
-                        </div>
-                    </div>
+            <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched)" [hidden]="accountType.valid">
+                Please select your account type before continuing
+            </div>
+            <div *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)" [hidden]="accountType.valid" class="warning-text">
+                <div *ngIf="accountType.errors.required">This field is required</div>
+            </div>
+
+        </div>
+
+
+        <div style="display: none;" id="routing-div">
+            <div class="form-group">
+                <label class="control-label" for="routingNumber">ABA / Routing Number
+                    <br />
+                    <span class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</span>
+                </label>
+                <!--<label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>-->
+                <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
+                    type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
+                <div *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid" class="warning-text">
+                    <div *ngIf="routingNumber.errors.required">This field is required</div>
+                    <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
                 </div>
             </div>
         </div>
-        <div class="form-group text-center space-20">
-            <div *ngIf="!bankForm.valid" class="text-danger" style="clear:both;">
-                <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered
-                before proceeding
+
+        <div style="display: none;" id="routing-div">
+            <div class="form-group">
+                <label class="control-label" for="routingNumber">ABA / Routing Number</label>
+                <label class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
+                <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
+                    type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
+                <div *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid" class="warning-text">
+                    <div *ngIf="routingNumber.errors.required">This field is required</div>
+                    <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
+                </div>
             </div>
-            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(bankForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
-            <button class="btn btn-outline-rounded btn-info" [disabled]="!bankForm.valid" (click)="goToNext(bankForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="accountNumber">Account Number</label>
+            <input class="form-control input-md" #accountNumber="ngModel" required minlength="6" maxlength="14" name="accountNumber"
+                type="text" placeholder="6 to 17 digits" [(ngModel)]="bank.accountNumber">
+            <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)" [hidden]="accountNumber.valid" class="warning-text">
+                <div *ngIf="accountNumber.errors.required">This field is required</div>
+                <div *ngIf='accountNumber.errors.minlength'>Too short</div>
+                <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
+            </div>
+        </div>
+        <div>
+
+            <div class="form-group">
+                <label class="control-label" for="title">Years At This Bank</label>
+                <div class="radio radio-bankTime" type="radio">
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="0" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            0
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="1" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            1
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="2" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            2
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="3" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            3
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="4" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            4
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="5" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            5
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="6" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            6
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeYears="ngModel" required name="bankTimeYears" id="bankTimeYears" value="7+" [(ngModel)]="bank.bankTimeYears"
+                            type="radio">
+                        <label>
+                            7+
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" class="warning-text"
+                [hidden]="bankTimeYears.valid">
+                Please select years at this bank before continuing
+            </div>
+
+
+            
+            <div class="form-group">
+                <label class="control-label" for="title">Months At This Bank</label>
+
+                <div class="radio radio-bankTime" type="radio">
+                    <span class="option">
+                        <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="0" [(ngModel)]="bank.bankTimeMonths"
+                            type="radio">
+                        <label>
+                            0
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="3" [(ngModel)]="bank.bankTimeMonths"
+                            type="radio">
+                        <label>
+                            3
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="6" [(ngModel)]="bank.bankTimeMonths"
+                            type="radio">
+                        <label>
+                            6
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #bankTimeMonths="ngModel" required name="bankTimeMonths" id="bankTimeMonths" value="9" [(ngModel)]="bank.bankTimeMonths"
+                            type="radio">
+                        <label>
+                            9+
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="prefix-error-message warning-text" *ngIf="(accountNumber.touched) && bankName.valid"
+                [hidden]="bankTimeMonths.valid">
+                Please select months at this bank before continuing
+            </div>
+
+        </div>
+
+
+        <div class="form-group text-center space-20 buttons-group">
+            <div *ngIf="!bankForm.valid" class="text-danger" style="clear:both;">
+                All fields must be answered before proceeding
+            </div>
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(bankForm)">
+                Previous</button>
+            <button class="btn btn-outline-rounded btn-info" [disabled]="!bankForm.valid" (click)="goToNext(bankForm)"> Next
+            </button>
         </div>
     </div>
 </form>

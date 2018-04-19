@@ -1,289 +1,273 @@
 <form #incomeForm="ngForm" name="incomeForm" class="editForm" novalidate>
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title}}</h3>
-        <br/>
-        <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
-            <div class='row'>
-
-                <div class='col-xs-12 col-sm-12'>
-                    <label class="control-label" for="title">Income Source</label>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <div class="radio radio-incomeSource" type="radio">
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=1 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label style="padding: 15px;">
-                                            Self <p class="radio-label">Employed</p>
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=2 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label>
-                                            Full Time
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=3 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label>
-                                            Part Time
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=4 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label style="padding: 19px 0 31px">
-                                            Employed <p class="radio-label">Temporarily</p>
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=5 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label>                                
-                                            Retired
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=6 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label style="padding: 18px 0;">                                
-                                            Disability <p class="radio-label">Benefits</p>
-                                        </label>
-                                    </span>
-                            <span class="option">
-                                        <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=7 [(ngModel)]="income.incomeSource" type="radio">
-                                        <label style="padding: 19px 0 31px">                                
-                                            Unemployed <p class="radio-label">Benefits</p>
-                                        </label>
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="incomeSource.valid">
-                        <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your income
-                        source before continuing
-                    </div>
-                </div>
-                <div id="employer-name"></div>
-                <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="workphone">Employer Name</label>
-                            <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" type="text" placeholder="Employer name"
-                                [(ngModel)]="income.employerName">
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)"
-                                [hidden]="employerName.valid">
-                                <div *ngIf="employerName.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Payment Type</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-paymentType" type="radio">
-                                <span class="option">
-                                    <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=2 [(ngModel)]="income.paymentType" type="radio">
-                                    <label>
-                                        Check
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=3 [(ngModel)]="income.paymentType" type="radio">
-                                    <label>                                
-                                        Cash
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=4 [(ngModel)]="income.paymentType" type="radio">
-                                    <label>
-                                        Direct Deposit
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="paymentType.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your
-                            payment type before continuing
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
-                <div class="row">
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Years At Employer</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-employmentTime" type="radio">
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="0" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="1" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>
-                                        1
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="2" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>
-                                        2
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="3" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>                                
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="4" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>                                
-                                        4
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="5" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>                                
-                                        5
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="6" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>                                
-                                        6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="7+" [(ngModel)]="income.employmentYears" type="radio">
-                                    <label>                                
-                                        7+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="employmentYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years
-                            at employer before continuing
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Months At Employer</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-employmentTime" type="radio">
-                                <span class="option">
-                                    <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="0" [(ngModel)]="income.employmentMonths" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="3" [(ngModel)]="income.employmentMonths" type="radio">
-                                    <label>
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="6" [(ngModel)]="income.employmentMonths" type="radio">
-                                    <label>
-                                       6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="9" [(ngModel)]="income.employmentMonths" type="radio">
-                                    <label>                                
-                                        9+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;" [hidden]="employmentYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months
-                            at employer before continuing
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-xs-12 col-sm-12'>
-                    <label class="control-label" for="title">Payment Frequency</label>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <div class="radio radio-payFrequency" type="radio">
-                            <span class="option">
-                                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=1 [(ngModel)]="income.payFrequency" type="radio">
-                                    <label>
-                                        Weekly
-                                    </label>
-                                </span>
-                            <span class="option">
-                                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=2 [(ngModel)]="income.payFrequency" type="radio">
-                                    <label>
-                                        Bi-Weekly
-                                    </label>
-                                </span>
-                            <span class="option">
-                                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=3 [(ngModel)]="income.payFrequency" type="radio">
-                                    <label>
-                                        Semi-Monthly
-                                    </label>
-                                </span>
-                            <span class="option">
-                                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=4 [(ngModel)]="income.payFrequency" type="radio">
-                                    <label>                                
-                                        Monthly
-                                    </label>
-                                </span>
-                        </div>
-                    </div>
-                    <div class="prefix-error-message text-danger" *ngIf="(jobTitle.touched)" style="padding: 0 0 5px 0; font-size: 16px;;" [hidden]="payFrequency.valid">
-                        <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select your your
-                        payment type before continuing
-                    </div>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <label class="control-label" for="netamount">Net Monthly Amount 
-                            <a style="cursor:pointer"
-                                ngbTooltip="Monthly take home pay is the amount you receive after tax and deductions. If you are paid weekly, multiply your weekly pay by 4.33 to calculate your monthly pay.">
-                                <span style="margin-left: 5px" class="glyphicon glyphicon-question-sign"></span>
-                            </a>
-                        </label>
-                        <input class="form-control input-md" id="monthlyAmount" validateMonthlyAmount (keyup)="forceNumeric($event)" #netAmount="ngModel"
-                            required uppercase minlength="3" name="netAmount" type="text" placeholder="Minimum $500" [(ngModel)]="income.netAmount">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)"
-                            [hidden]="netAmount.valid">
-                            <div *ngIf="netAmount.errors.required">This field is required</div>
-                            <div *ngIf="netAmount.invalid">Minimum monthly amount is $500, only enter numbers</div>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-xs-12 col-sm-12'>
-                    <div class="form-group">
-                        <label class="control-label" for="jobtitle">Job Title</label>
-                        <input class="form-control input-md" #jobTitle="ngModel" required uppercase minlength="3" name="jobtitle" type="text" placeholder="Job Title"
-                            [(ngModel)]="income.jobTitle">
-                        <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)"
-                            [hidden]="jobTitle.valid">
-                            <div *ngIf="jobTitle.errors.required">This field is required</div>
-                            <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="form-group">
+            <label class="control-label" for="title">Income Source</label>
+            <div class="radio radio-incomeSource" type="radio">
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=1 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        <p>Self Employed</p>
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=2 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Full Time
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=3 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Part Time
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToEmployerName()" value=4 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Employed Temporarily
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=5 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Retired
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=6 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Disability Benefits
+                    </label>
+                </span>
+                <span class="option">
+                    <input #incomeSource="ngModel" required name="incomeSource" id="incomeSource" (click)="scrollToPayFrequency()" value=7 [(ngModel)]="income.incomeSource"
+                        type="radio">
+                    <label>
+                        Unemployed Benefits
+                    </label>
+                </span>
             </div>
         </div>
-        <div class="form-group text-center">
-            <div *ngIf="!incomeForm.valid" class="text-danger" style="clear:both;">
-                <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered
-                before proceeding
+        <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="incomeSource.valid">
+            Please select your income source before continuing
+        </div>
+        <div id="employer-name"></div>
+        <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
+
+            <div class="form-group">
+                <label class="control-label" for="workphone">Employer Name</label>
+                <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" type="text" placeholder="Employer name"
+                    [(ngModel)]="income.employerName">
+                <div class="warning-text" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
+                    <div *ngIf="employerName.errors.required">This field is required</div>
+                </div>
             </div>
-            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(incomeForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
-            <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!incomeForm.valid" (click)="goToNext(incomeForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+
+            <div class="form-group">
+                <label class="control-label" for="title">Payment Type</label>
+                <div class="radio radio-paymentType" type="radio">
+                    <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=2 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Check
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=3 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Cash
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=4 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Direct Deposit
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="paymentType.valid">
+                Please select your payment type before continuing
+            </div>
+        </div>
+        <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
+
+            <div class="form-group">
+                <label class="control-label" for="title">Years At Employer</label>
+                <div class="radio radio-employmentTime" type="radio">
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="0" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            0
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="1" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            1
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="2" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            2
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="3" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            3
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="4" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            4
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="5" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            5
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="6" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            6
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentYears="ngModel" required name="employmentYears" id="employmentYears" value="7+" [(ngModel)]="income.employmentYears"
+                            type="radio">
+                        <label>
+                            7+
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
+                Please select years at employer before continuing
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="title">Months At Employer</label>
+                <div class="radio radio-employmentTime" type="radio">
+                    <span class="option">
+                        <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="0" [(ngModel)]="income.employmentMonths"
+                            type="radio">
+                        <label>
+                            0
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="3" [(ngModel)]="income.employmentMonths"
+                            type="radio">
+                        <label>
+                            3
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="6" [(ngModel)]="income.employmentMonths"
+                            type="radio">
+                        <label>
+                            6
+                        </label>
+                    </span>
+                    <span class="option">
+                        <input #employmentMonths="ngModel" required name="employmentMonths" id="employmentMonths" value="9" [(ngModel)]="income.employmentMonths"
+                            type="radio">
+                        <label>
+                            9+
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
+                Please select months at employer before continuing
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="title">Payment Frequency</label>
+            <div class="radio radio-payFrequency" type="radio">
+                <span class="option">
+                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=1 [(ngModel)]="income.payFrequency" type="radio">
+                    <label>
+                        Weekly
+                    </label>
+                </span>
+                <span class="option">
+                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=2 [(ngModel)]="income.payFrequency" type="radio">
+                    <label>
+                        Bi-Weekly
+                    </label>
+                </span>
+                <span class="option">
+                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=3 [(ngModel)]="income.payFrequency" type="radio">
+                    <label>
+                        Semi-Monthly
+                    </label>
+                </span>
+                <span class="option">
+                    <input #payFrequency="ngModel" required name="payFrequency" id="payFrequency" value=4 [(ngModel)]="income.payFrequency" type="radio">
+                    <label>
+                        Monthly
+                    </label>
+                </span>
+            </div>
+        </div>
+        <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="payFrequency.valid">
+            Please select your your payment type before continuing
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label" for="netamount">Net Monthly Amount
+                <a style="cursor:pointer" ngbTooltip="Monthly take home pay is the amount you receive after tax and deductions. If you are paid weekly, multiply your weekly pay by 4.33 to calculate your monthly pay.">
+                </a>
+            </label>
+            <input class="form-control input-md" id="monthlyAmount" validateMonthlyAmount (keyup)="forceNumeric($event)" #netAmount="ngModel"
+                required uppercase minlength="3" name="netAmount" type="text" placeholder="Minimum $500" [(ngModel)]="income.netAmount">
+            <div class="warning-text" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
+                <div *ngIf="netAmount.errors.required">This field is required</div>
+                <div *ngIf="netAmount.invalid">Minimum monthly amount is $500, only enter numbers</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="jobtitle">Job Title</label>
+            <input class="form-control input-md" #jobTitle="ngModel" required uppercase minlength="3" name="jobtitle" type="text" placeholder="Job Title"
+                [(ngModel)]="income.jobTitle">
+            <div class="warning-text" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
+                <div *ngIf="jobTitle.errors.required">This field is required</div>
+                <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
+            </div>
+        </div>
+
+        <div class="form-group text-center buttons-group">
+            <div *ngIf="!incomeForm.valid"  class="text-danger">
+                All fields must be answered before proceeding
+            </div>
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(incomeForm)">
+                Previous</button>
+            <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!incomeForm.valid" (click)="goToNext(incomeForm)">
+                Next
+
+            </button>
         </div>
     </div>
 </form>

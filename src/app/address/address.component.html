@@ -1,265 +1,249 @@
 <form #addressForm="ngForm" name="addressForm" class="editForm" novalidate>
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title1}}</h3>
-        <br/>
-        <div class='row'>
-            <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10'>
-                <div class="form-group">
-                    <label class="control-label" for="street">Street Address</label>
-                    <input class="form-control input-md" #street="ngModel" required id="street" name="street" type="text" placeholder="Street Address"
-                        [(ngModel)]="address.street">
-                    <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="street.invalid && (street.dirty || street.touched)"
-                        [hidden]="street.valid">
-                        <div *ngIf="street.errors.required">This field is required</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="city">City</label>
-                            <input class="form-control input-md" #city="ngModel" required id="city" name="city" type="text" placeholder="City" [(ngModel)]="address.city">
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="city.invalid && (city.dirty || city.touched)"
-                                [hidden]="city.valid">
-                                <div *ngIf="city.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="state">State</label>
-                            <select class="form-control input-md" #state="ngModel" required name="state" [(ngModel)]="address.state">
-                                <option value="" disabled selected>Select</option>                            
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="AA">Armed Forces Americas</option>
-                                <option value="AE">Armed Forces Europe</option>
-                                <option value="AP">Armed Forces Pacific</option>
-                            </select>
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="state.invalid && (state.dirty || state.touched)"
-                                [hidden]="state.valid">
-                                <div *ngIf="state.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="zip">Zip Code</label>
-                            <input class="form-control input-md" (keyup)="getZipInformation()" id="user-zipcode" #zip="ngModel" required validateZip
-                                apiCall name="zip" type="text" placeholder="Zip" [(ngModel)]="address.zip">
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid">
-                                <div *ngIf="zip.errors.required">This field is required</div>
-                                <div *ngIf="zip.invalid">Please provide a valid zip code</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h4 class="head text-center">{{title2}}</h4>
-                <div class="row">
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <label class="control-label" for="title">Residential Status</label>
-                            <div class=''>
-                                <div class="form-group">
-                                    <div class="radio radio-residentialStatus" type="radio">
-                                        <span class="option">
-                                            <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=1 [(ngModel)]="address.residentialStatus" type="radio">
-                                            <label>
-                                                Home Owner
-                                            </label>
-                                        </span>
-                                        <span class="option">
-                                            <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=2 [(ngModel)]="address.residentialStatus" type="radio">
-                                            <label>
-                                                Renter
-                                            </label>
-                                        </span>
-                                        <span class="option">
-                                            <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=3 [(ngModel)]="address.residentialStatus" type="radio">
-                                            <label style="padding: 19px 0 31px">
-                                               Government <p class="radio-label">Housing</p>
-                                            </label>
-                                        </span>
-                                        <span class="option">
-                                            <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=4 [(ngModel)]="address.residentialStatus" type="radio">
-                                            <label style="padding: 19px 0 31px">                                
-                                                Living with <p class="radio-label">Parents</p>
-                                            </label>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="prefix-error-message text-danger" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px;"
-                                    [hidden]="residentialStatus.valid">
-                                    <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select
-                                    your residential status before continuing
-                                </div>
-                            </div>
-                            <div style="padding-top: 5px; font-size: 12px; font-style: italic;" *ngIf="residentialStatus.invalid && (residentialStatus.dirty || residentialStatus.touched)"
-                                [hidden]="residentialStatus.valid">
-                                <div *ngIf="residentialStatus.errors.required">This field is required</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Years At This Address</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-addressTime" type="radio">
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="0" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="1" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>
-                                        1
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="2" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>
-                                        2
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="3" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>                                
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="4" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>                                
-                                        4
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="5" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>                                
-                                        5
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="6" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>                                
-                                        6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="7+" [(ngModel)]="address.addressYears" type="radio">
-                                    <label>                                
-                                        7+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px;"
-                            [hidden]="addressYears.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select years
-                            at this address before continuing
-                        </div>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <label class="control-label" for="title">Months At This Address</label>
-                    </div>
-                    <div class='col-xs-12 col-sm-12'>
-                        <div class="form-group">
-                            <div class="radio radio-addressTime" type="radio">
-                                <span class="option">
-                                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="0" [(ngModel)]="address.addressMonths" type="radio">
-                                    <label>
-                                        0
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="3" [(ngModel)]="address.addressMonths" type="radio">
-                                    <label>
-                                        3
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="6" [(ngModel)]="address.addressMonths" type="radio">
-                                    <label>
-                                       6
-                                    </label>
-                                </span>
-                                <span class="option">
-                                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="9+" [(ngModel)]="address.addressMonths" type="radio">
-                                    <label>                                
-                                        9+
-                                    </label>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="prefix-error-message text-danger" *ngIf="(zip.touched) && street.valid" style="padding: 0 0 5px 0; font-size: 16px;"
-                            [hidden]="addressMonths.valid">
-                            <span style="margin-right: 5px;" class="glyphicon glyphicon-arrow-up"></span>Please select months
-                            at this address before continuing
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group text-center">
-                <div *ngIf="!addressForm.valid" class="text-danger" style="clear:both;">
-                    <span class="glyphicon glyphicon-info-sign" style="margin-right: 5px;"></span>All fields must be answered
-                    before proceeding
-                </div>
-                <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(addressForm)"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
-                <button class="btn btn-outline-rounded btn-info" [disabled]="!addressForm.valid" (click)="goToNext(addressForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        <div class="form-group">
+            <label class="control-label" for="street">Street Address</label>
+            <input class="form-control input-md" #street="ngModel" required id="street" name="street" type="text" placeholder="Street Address"
+                [(ngModel)]="address.street">
+            <div *ngIf="street.invalid && (street.dirty || street.touched)" [hidden]="street.valid" class="warning-text">
+                <div *ngIf="street.errors.required">This field is required</div>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="city">City</label>
+            <input class="form-control input-md" #city="ngModel" required id="city" name="city" type="text" placeholder="City" [(ngModel)]="address.city">
+            <div *ngIf="city.invalid && (city.dirty || city.touched)" [hidden]="city.valid" class="warning-text">
+                <div *ngIf="city.errors.required">This field is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="state">State</label>
+            <select class="form-control input-md" #state="ngModel" required name="state" [(ngModel)]="address.state">
+                <option value="" disabled selected>Select</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+                <option value="AA">Armed Forces Americas</option>
+                <option value="AE">Armed Forces Europe</option>
+                <option value="AP">Armed Forces Pacific</option>
+            </select>
+            <div *ngIf="state.invalid && (state.dirty || state.touched)" [hidden]="state.valid">
+                <div *ngIf="state.errors.required" class="warning-text">This field is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="zip">Zip Code</label>
+            <input class="form-control input-md" (keyup)="getZipInformation()" id="user-zipcode" #zip="ngModel" required validateZip
+                apiCall name="zip" type="text" placeholder="Zip" [(ngModel)]="address.zip">
+            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid" class="warning-text">
+                <div *ngIf="zip.errors.required">This field is required</div>
+                <div *ngIf="zip.invalid">Please provide a valid zip code</div>
+            </div>
+        </div>
+        <h4 class="head text-center">{{title2}}</h4>
+        <div class="form-group">
+            <label class="control-label" for="title">Residential Status</label>
+            <div class="radio radio-residentialStatus" type="radio">
+                <span class="option">
+                    <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=1 [(ngModel)]="address.residentialStatus"
+                        type="radio">
+                    <label>
+                        Home Owner
+                    </label>
+                </span>
+                <span class="option">
+                    <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=2 [(ngModel)]="address.residentialStatus"
+                        type="radio">
+                    <label>
+                        Renter
+                    </label>
+                </span>
+                <span class="option">
+                    <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=3 [(ngModel)]="address.residentialStatus"
+                        type="radio">
+                    <label>
+                        Government Housing
+                    </label>
+                </span>
+                <span class="option">
+                    <input #residentialStatus="ngModel" required name="residentialStatus" id="residentialStatus" value=4 [(ngModel)]="address.residentialStatus"
+                        type="radio">
+                    <label>
+                        Living with Parents
+                    </label>
+                </span>
+            </div>
+        </div>
+        <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid"  [hidden]="residentialStatus.valid">
+            Please select your residential status before continuing
+        </div>
+        <div *ngIf="residentialStatus.invalid && (residentialStatus.dirty || residentialStatus.touched)" [hidden]="residentialStatus.valid"
+            class="warning-text">
+            <div *ngIf="residentialStatus.errors.required">This field is required</div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="title">Years At This Address</label>
+            <div class="radio radio-addressTime" type="radio">
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="0" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        0
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="1" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        1
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="2" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        2
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="3" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        3
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="4" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        4
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="5" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        5
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="6" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        6
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressYears="ngModel" required name="addressYears" id="addressYears" value="7+" [(ngModel)]="address.addressYears"
+                        type="radio">
+                    <label>
+                        7+
+                    </label>
+                </span>
+            </div>
+        </div>
+        <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid" [hidden]="addressYears.valid">
+            Please select years at this address before continuing
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="title">Months At This Address</label>
+            <div class="radio radio-addressTime" type="radio">
+                <span class="option">
+                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="0" [(ngModel)]="address.addressMonths"
+                        type="radio">
+                    <label>
+                        0
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="3" [(ngModel)]="address.addressMonths"
+                        type="radio">
+                    <label>
+                        3
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="6" [(ngModel)]="address.addressMonths"
+                        type="radio">
+                    <label>
+                        6
+                    </label>
+                </span>
+                <span class="option">
+                    <input #addressMonths="ngModel" required name="addressMonths" id="addressMonths" value="9+" [(ngModel)]="address.addressMonths"
+                        type="radio">
+                    <label>
+                        9+
+                    </label>
+                </span>
+            </div>
+        </div>
+        <div class="prefix-error-message warning-text" *ngIf="(zip.touched) && street.valid" [hidden]="addressMonths.valid">
+            Please select months at this address before continuing
+        </div>
+        <div class="form-group text-center buttons-group">
+            <div *ngIf="!addressForm.valid" class="text-danger">
+                All fields must be answered before proceeding
+            </div>
+            <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(addressForm)">
+                Previous</button>
+            <button class="btn btn-outline-rounded btn-info" [disabled]="!addressForm.valid" (click)="goToNext(addressForm)"> Next
+
+            </button>
+        </div>
+
 
     </div>
 </form>
