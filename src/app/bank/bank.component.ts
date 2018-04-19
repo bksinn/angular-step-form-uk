@@ -70,6 +70,7 @@ export class BankComponent implements OnInit {
 
     getBankInformation() {
         let url = `${this.apiRootBank}`;
+        let elementRouting: HTMLElement = document.getElementById('routing-div');
         let element: HTMLElement = document.getElementById('user-bank');
         let bankElement: HTMLInputElement = element as HTMLInputElement;
         url = url + bankElement.value;
@@ -81,6 +82,7 @@ export class BankComponent implements OnInit {
                     this.bankArray.push(res);
                 },
                 error => {
+                    elementRouting.removeAttribute('style');
                     console.error(`Error: ${error.status} ${error.statusText}`)
                 }
             );
@@ -168,14 +170,13 @@ export class BankComponent implements OnInit {
                     else {
                         elementRouting.removeAttribute('style');
                     }
-
                     resolve();
                 },
-                msg => {
+                error => {
                     this.bank.routingNumber = '';
                     this.formDataService.clearRoutingNumber(this.bank);
                     elementRouting.removeAttribute('style');
-                    console.error(`Error: ${msg.status} ${msg.statusText}`)
+                    console.error(`Error: ${error.status} ${error.statusText}`)
                 },
             );
         });
