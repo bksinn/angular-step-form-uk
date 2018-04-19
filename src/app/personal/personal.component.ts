@@ -51,7 +51,7 @@ export class PersonalComponent implements OnInit {
         private config: NgbTooltipConfig
     ) {
         config.placement = 'right';
-        config.triggers = 'click';
+        config.triggers = 'hover';
     }
 
     scrollDown($event) {

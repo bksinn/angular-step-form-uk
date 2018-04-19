@@ -65,7 +65,7 @@
                 <label class="control-label" for="workphone">Employer Name</label>
                 <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" type="text" placeholder="Employer name"
                     [(ngModel)]="income.employerName">
-                <div class="warning-text" *ngIf="employerName.invalid && (employerName.dirty || employerName.touched)" [hidden]="employerName.valid">
+                <div class="warning-text" *ngIf="(employerName.invalid && (employerName.dirty || employerName.touched)) || (paymentType.dirty && employerName.invalid)" [hidden]="employerName.valid">
                     <div *ngIf="employerName.errors.required">This field is required</div>
                 </div>
             </div>

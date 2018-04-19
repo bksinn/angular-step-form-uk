@@ -133,7 +133,7 @@
                     </span>
                 </div>
             </div>
-            <div class="prefix-error-message text-danger" *ngIf="(firstName.touched || dob.touched || dob.dirty)" [hidden]="prefix.valid">
+            <div class="prefix-error-message warning-text" *ngIf="(firstName.touched || dob.touched || dob.dirty)" [hidden]="prefix.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your title before continuing
             </div>
 
@@ -361,14 +361,14 @@
                         </span>
                     </div>
                 </div>
-                <div class="militaryService-error-message text-danger" *ngIf="(issuingState.touched || issuingState.dirty)" class="warning-text"
+                <div class="militaryService-error-message warning-text" *ngIf="(driversLicense.touched || driversLicense.dirty)" class="warning-text"
                     [hidden]="militaryService.valid">
                     <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select an option before continuing
                 </div>
 
             </div>
         </div>
-        <div class="form-group text-center">
+        <div class="form-group text-center buttons-group">
             <div *ngIf="!personalForm.valid" class="text-danger">
                 All fields must be answered before proceeding
             </div>

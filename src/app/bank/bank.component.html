@@ -28,7 +28,7 @@
                     </label>
                 </span>
             </div>
-            <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched)" [hidden]="accountType.valid">
+            <div class="prefix-error-message warning-text" *ngIf="(accountNumber.touched)" [hidden]="accountType.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your account type before continuing
             </div>
             <div *ngIf="accountType.invalid && (accountType.dirty || accountType.touched)" [hidden]="accountType.valid" class="warning-text">
@@ -70,7 +70,7 @@
             <label class="control-label" for="accountNumber">Account Number</label>
             <input class="form-control input-md" #accountNumber="ngModel" required minlength="6" maxlength="14" name="accountNumber"
                 type="text" placeholder="6 to 17 digits" [(ngModel)]="bank.accountNumber">
-            <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched)" [hidden]="accountNumber.valid" class="warning-text">
+            <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched) || (accountNumber.invalid && bankTimeYears.dirty)" [hidden]="accountNumber.valid" class="warning-text">
                 <div *ngIf="accountNumber.errors.required">This field is required</div>
                 <div *ngIf='accountNumber.errors.minlength'>Too short</div>
                 <div *ngIf='accountNumber.errors.maxlength'>Too long</div>
@@ -139,7 +139,7 @@
                     </span>
                 </div>
             </div>
-            <div class="prefix-error-message text-danger" *ngIf="(accountNumber.touched) && bankName.valid" class="warning-text"
+            <div class="prefix-error-message warning-text" *ngIf="(accountNumber.touched) && bankName.valid" class="warning-text"
                 [hidden]="bankTimeYears.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select years at this bank before continuing
             </div>

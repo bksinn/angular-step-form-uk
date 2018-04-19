@@ -32,9 +32,6 @@ p small{
 
 a{
 color:#333;}
-/*pre{
-	display: none;
-}*/
 
 .header{
 	top:0;
@@ -173,7 +170,7 @@ input[type="text"],select,.control-label{
 
 .warning-text{
 	font-style:italic;
-	font-size:12px;
+	font-size:16px;
 	margin-bottom:10px;
 	color:#ff6666;
 }
@@ -378,6 +375,7 @@ input:-webkit-autofill{background-color: transparent !important;}
 	color:#333;
 	border:1px solid #e0e0e0;
 	font-size:12px;
+	margin-right: 3px;
 }
 
 a span.completed-tabs {
@@ -431,6 +429,7 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 
 .buttons-group button{
 	display: inline-block;
+	padding: 15px 40px;
 }
 
 .result-form .checkbox-div{
@@ -531,10 +530,11 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 
 .dropdown-menu button.dropdown-item {
 	width: 100%;
+	color: #000;
+	text-align: left;
 }
 
 .dropdown-item.active, .dropdown-item:active {
-    color: #fff;
     text-decoration: none;
     background-color: #007bff;
 }

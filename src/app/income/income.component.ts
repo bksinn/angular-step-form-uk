@@ -37,7 +37,7 @@ export class IncomeComponent implements OnInit {
 
     constructor(private router: Router, private formDataService: FormDataService, private config: NgbTooltipConfig) {
         config.placement = 'right';
-        config.triggers = 'click';
+        config.triggers = 'hover';
     }
 
     scrollToEmployerName() {
