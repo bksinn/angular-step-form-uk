@@ -118,11 +118,11 @@ export class PersonalComponent implements OnInit {
         else {
             butP.onmousedown = function () {
                 //Add by 50
-                if (parseInt(countInput.value) < 5000) {
+                if (parseInt(countInput.value) <= 5000) {
                     countInput.value = parseInt(countInput.value) + 50 + units;
                 }
                 interval = setInterval(function () {
-                    if (parseInt(countInput.value) < 5000) {
+                    if (parseInt(countInput.value) <= 5000) {
                         countInput.value = parseInt(countInput.value) + 50 + units;
                     }
                 }, 100)
@@ -150,6 +150,13 @@ export class PersonalComponent implements OnInit {
             butM.onmouseout = function () {
                 clearInterval(interval);
             }
+        }
+        console.log(countInput.value.replace(/\D/g, ''));
+        if (countInput.value.replace(/\D/g, '') <= '5000') {
+            countInput.value = countInput.value.replace(/\D/g, '');
+        }
+        else if (countInput.value > '5000') {
+            countInput.value = '5000+';
         }
     }
 
@@ -276,7 +283,10 @@ export class PersonalComponent implements OnInit {
         let lastNameFromUrl = this.pingYoService.getUrlVars().ln ? this.pingYoService.getUrlVars().ln : '';
         let emailFromUrl = this.pingYoService.getUrlVars().em ? this.pingYoService.getUrlVars().em : '';
 
-        if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl >= 250) {
+        if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl > 5000) {
+            this.personal.loanAmount = '5000+';
+        }
+        else if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl >= 250) {
             this.personal.loanAmount = String(loanAmountFromUrl);
         }
         if (termFromUrl % 1 == 0 && termFromUrl >= 3 && termFromUrl <= 24) {

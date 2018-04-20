@@ -157,7 +157,7 @@ export class ResultComponent implements OnInit {
                 "IncomePaymentType": this.formData.paymentType,
                 "NextPayDate": this.formData.nextPayDate,
                 "FollowingPayDate": this.formData.followingPayDate,
-                "LoanAmount": Number(this.formData.loanAmount),
+                "LoanAmount": Number(this.formData.loanAmount.replace(/\D/g, '')),
                 "Term": Number(this.formData.termPeriod),
                 "MilitaryService": Number(this.formData.militaryService),
                 "NationalIdentityNumber": this.formData.nationalIdentityNumber.replace(/\D/g, ''),
