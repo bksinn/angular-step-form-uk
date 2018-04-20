@@ -103,7 +103,7 @@
 
         <div class="text-center buttons-group">
             <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(resultForm)"> Previous</button>
-            <button class="btn btn-success btn-outline-rounded" (click)="submit(resultForm)"> Submit</button>
+            <button class="btn btn-success btn-outline-rounded" [disabled]="!isFormValid" (click)="submit(resultForm)"> Submit</button>
         </div>
     </div>
 </form>
