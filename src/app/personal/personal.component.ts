@@ -108,12 +108,12 @@ export class PersonalComponent implements OnInit {
             butM.ontouchend = function () {
                 clearInterval(interval);
             }
-            // butP.ontouchmove = function () {
-            //     clearInterval(interval);
-            // }
-            // butM.ontouchmove = function () {
-            //     clearInterval(interval);
-            // }
+            butP.ontouchmove = function () {
+                clearInterval(interval);
+            }
+            butM.ontouchmove = function () {
+                clearInterval(interval);
+            }
         }
         else {
             butP.onmousedown = function () {
