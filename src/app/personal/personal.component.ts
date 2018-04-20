@@ -57,7 +57,7 @@ export class PersonalComponent implements OnInit {
     scrollDown($event) {
         if ($event.target.value.length > 9) {
             window.scrollBy({
-                top: 350, // could be negative value
+                top: 200, // could be negative value
                 left: 0,
                 behavior: 'smooth'
             });
@@ -108,12 +108,12 @@ export class PersonalComponent implements OnInit {
             butM.ontouchend = function () {
                 clearInterval(interval);
             }
-            butP.ontouchmove = function () {
-                clearInterval(interval);
-            }
-            butM.ontouchmove = function () {
-                clearInterval(interval);
-            }
+            // butP.ontouchmove = function () {
+            //     clearInterval(interval);
+            // }
+            // butM.ontouchmove = function () {
+            //     clearInterval(interval);
+            // }
         }
         else {
             butP.onmousedown = function () {
@@ -266,7 +266,9 @@ export class PersonalComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.pingYoService.getUrlVars().la);
+        //Ensures 'active' class is on first tab when query strings present in URL
+        document.getElementById('personal-tab').classList.add('active');
+        console.log(this.pingYoService.getUrlVars());
         this.personal = this.formDataService.getPersonal();
         let loanAmountFromUrl = Number(this.pingYoService.getUrlVars().la);
         let termFromUrl = Number(this.pingYoService.getUrlVars().term);
@@ -277,11 +279,11 @@ export class PersonalComponent implements OnInit {
         if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl >= 250) {
             this.personal.loanAmount = String(loanAmountFromUrl);
         }
-        if (termFromUrl % 1 == 0 && termFromUrl >= 3 && termFromUrl < 18) {
+        if (termFromUrl % 1 == 0 && termFromUrl >= 3 && termFromUrl <= 24) {
             this.personal.termPeriod = String(termFromUrl);
         }
-        else if (termFromUrl % 1 == 0 && termFromUrl > 18) {
-            this.personal.termPeriod = '18';
+        else if (termFromUrl % 1 == 0 && termFromUrl > 24) {
+            this.personal.termPeriod = '24';
         }
 
         this.personal.firstName = firstNameFromUrl;

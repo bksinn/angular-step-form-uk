@@ -41,13 +41,23 @@ export class IncomeComponent implements OnInit {
     }
 
     scrollToEmployerName() {
-        document.querySelector('#employer-name').scrollIntoView({
+        // document.querySelector('#employer-name').scrollIntoView({
+        //     behavior: 'smooth'
+        // });
+        window.scrollBy({
+            top: 200, // could be negative value
+            left: 0,
             behavior: 'smooth'
         });
     }
 
     scrollToPayFrequency() {
-        document.querySelector('.radio-payFrequency').scrollIntoView({
+        // document.querySelector('.radio-payFrequency').scrollIntoView({
+        //     behavior: 'smooth'
+        // });
+        window.scrollBy({
+            top: 200, // could be negative value
+            left: 0,
             behavior: 'smooth'
         });
     }
