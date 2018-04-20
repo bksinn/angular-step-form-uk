@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit {
     submitSuccess: boolean = false;
     submitFail: boolean = false;
     noLenderMatch: boolean = false;
-    percentComplete = 0;
+    percentComplete =0;
     errorList;
     countDown;
     count = 10;

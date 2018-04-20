@@ -1,5 +1,5 @@
 <div class="jumbotron text-center loading-screen" *ngIf="submitted && percentComplete != 100 && !submitSuccess && !submitFail">
-    <h2>{{status}}...</h2>
+    <h2>{{status}}</h2>
     <p>We are currently checking our large panel to source the best option for you.</p>
     <p>This can take a few minutes so please be patient and do not close your browser.</p>
     <p class="progress-class">
@@ -17,21 +17,27 @@
 
 <div class="jumbotron text-center" *ngIf="percentComplete == 100 && (submitSuccess || noLenderMatch)">
     <div class="lender-match" *ngIf="submitSuccess">
-        <h2>Congratulations, you are matched to a lender! </h2>
+        <h2>
+            <img src="assets/images/success.svg">Congratulations</h2>
+        <h3>You are matched to a lender!</h3>
         <p class="countdown">{{countDown2 | async}}</p>
         <p>You will now be redirected to your match.</p>
     </div>
     <div class="no-lender-match" *ngIf="noLenderMatch">
-        <h2>No lender match found :(</h2>
-        <p>Better luck next time</p>
+        <h2>
+            <img src="assets/images/denied.svg">Sorry</h2>
+        <p>Unfortunately we were not able to match you with a lender at this time</p>
         <button class="btn btn-outline-rounded btn-default" (click)="resetSubmit()">
             <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
     </div>
 </div>
 
-<div class="jumbotron text-center" *ngIf="submitFail">
-    <h2>ERROR!</h2>
-    <p>This application is declined</p>
+<div class="jumbotron text-center submitfail" *ngIf="submitFail">
+    <h2>
+        <img src="assets/images/denied.svg">Oh No!</h2>
+    <p>Something went wrong.</p>
+    <p>This application was declined</p>
+    <p>Please try again</p>
     <div id="error-list" *ngIf="errorList">
         <li *ngFor="let error of errorList">{{error}}</li>
     </div>
@@ -44,24 +50,22 @@
         <h3 class="head text-center">{{title}}</h3>
         <p>
             By submitting this application I confirm that I have read and understood PingYo’s&nbsp;
-            <a href="/application/terms/US"
-                target="_blank">Terms &amp; Conditions</a>&nbsp;and&nbsp;
+            <a href="/application/terms/US" target="_blank">Terms &amp; Conditions</a>&nbsp;and&nbsp;
             <a href="/application/terms/US#privacy-policy-a" target="_blank">Privacy Policy</a>. I understand my application may be transmitted to a panel of lenders and credit brokers who
             may contact me by SMS, email and automated voice messaging. I agree to a credit check being carried out in relation
             to my application.
         </p>
 
-        
         <label>
-                <div class="checkbox-div">
-                        <input class="form-control" #consentToCreditSearch="ngModel" required type="checkbox" class="checkbox" id="emailconsent"
-                            name="consentToCreditSearch" [(ngModel)]="result.consentToCreditSearch" checked="">
-                        <label for="emailconsent"></label>
-                    </div>
-            I agree that by submitting this application and clicking Apply Now, I provide my signature expressly consenting to
-            receive recurring communication from PingYo and 3rd Party partners via telephone, text message or email against
-            the number provided on the application. &nbsp;I am not required to enter into this agreement as a condition for
-            obtaining a loan.
+            <div class="checkbox-div">
+                <input class="form-control" #consentToCreditSearch="ngModel" required type="checkbox" class="checkbox" id="emailconsent"
+                    name="consentToCreditSearch" [(ngModel)]="result.consentToCreditSearch" checked="">
+                <label for="emailconsent" class="checkbox-label"></label>
+            </div>
+            I agree that by submitting this application and clicking Apply Now, I provide my signature expressly consenting to receive
+            recurring communication from PingYo and 3rd Party partners via telephone, text message or email against the number
+            provided on the application. &nbsp;I am not required to enter into this agreement as a condition for obtaining
+            a loan.
         </label>
         <!--<p class="checkbox">
                        <label>
@@ -92,8 +96,7 @@
             <small>
                 <strong>Note:</strong> You can
                 <a href="https://leads.pingyo.com/marketing/sms/optout?brand=pingyo-optout" target="_blank">opt-out</a> of these communications at any time. For more details please see our&nbsp;
-                <a href="/application/terms/US#privacy-policy-a"
-                    target="_blank">Privacy Policy</a>&nbsp;which also explains the types of companies who may contact you and the way they will
+                <a href="/application/terms/US#privacy-policy-a" target="_blank">Privacy Policy</a>&nbsp;which also explains the types of companies who may contact you and the way they will
                 use the information you have provided today as well as in the past. Be assured that any such parties will
                 use your data in accordance with all applicable law relating to privacy.</small>
         </p>

@@ -84,8 +84,8 @@
         </div>
 
         <div *ngIf="termPeriod.valid && loanAmount.valid">
-            <div class="form-group">
-                <label id="checkbox-flexible" class="control-label">I'm flexible with terms</label>
+            <div class="form-group checkbox-group">
+                <label id="" class="control-label">I'm flexible with terms</label>
 
                 <div class="checkbox-div">
                     <input id="checkbox-flexible" type="checkbox" checked name="flexible-terms" class="big-checkbox">
@@ -206,11 +206,11 @@
                     </div>
                 </div>
 
-                <div class="text-danger" *ngIf="(mobilePhone.value == workPhone.value || homePhone.value == workPhone.value) && mobilePhone.valid && workPhone.valid">
-                    Your work and home or cell numbers match, many lenders will treat you as self - employed and many will decline to consider
+                <div class="warning-text" *ngIf="(mobilePhone.value == workPhone.value || homePhone.value == workPhone.value) && mobilePhone.valid && workPhone.valid">
+                    Your work and home or cell numbers match,<span> many lenders will treat you as self - employed and many will decline to consider
                     your application due to lack of detailed information.This decreases your chance for acceptance. We encourage
                     you to provide a real work number which is separate from your mobile to gain the highest possible chance
-                    for acceptance
+                    for acceptance</span>
                 </div>
 
                 <div id="phoneMessage">
@@ -226,16 +226,16 @@
                     <input class="form-control input-md" id="email" #email="ngModel" required validateEmail name="email" type="text" placeholder="person@example.com"
                         [(ngModel)]="personal.email">
                     <div *ngIf="email.invalid && email.value.length > '2'" class="email-domain" [hidden]="email.valid">
-                        <button (click)="addGmail()" class="btn btn-info col-xs-6">
+                        <button (click)="addGmail()" class="">
                             @gmail.com
                         </button>
-                        <button (click)="addYahoo()" class="btn btn-info col-xs-6">
+                        <button (click)="addYahoo()" class="">
                             @yahoo.com
                         </button>
-                        <button (click)="addHotmail()" class="btn btn-info col-xs-6">
+                        <button (click)="addHotmail()" class="">
                             @hotmail.com
                         </button>
-                        <button (click)="addAol()" class="btn btn-info col-xs-6">
+                        <button (click)="addAol()" class="">
                             @aol.com
                         </button>
                     </div>

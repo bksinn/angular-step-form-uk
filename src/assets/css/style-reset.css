@@ -2,10 +2,10 @@ body{
 	padding:85px 0;
 	margin:0;
 	color:#333;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	height:100%;
 	width:100%;
 	font-size:14px;
+	font-family: Mont-Reg,Helvetica Neue,sans-serif;
 }
 
 button{
@@ -31,7 +31,9 @@ p small{
 }
 
 a{
-color:#333;}
+color:#333;
+text-decoration: underline;
+}
 
 .header{
 	top:0;
@@ -39,12 +41,12 @@ color:#333;}
 	z-index: 1000;
 	width:100%;
 	overflow: hidden;
-	background-color: #2a333b;
+	background-color: #000;
 	position: fixed;
 }
 
 .header .onlyloanz-logo{
-	padding: 10px;
+	margin: 10px;
     height: 65px;
 }
 
@@ -52,7 +54,7 @@ color:#333;}
 	position: relative;
  }
  .tab-content .head{
-	 font-size: 25px;
+	 font-size: 22px;
 	 text-transform: uppercase;
 	 margin: 75px 0 40px 0;
 	 padding:0 0 5px 0;
@@ -74,6 +76,8 @@ color:#333;}
 .form-control {
 	display: inline-block;
 	width: 49%;
+	box-shadow: none;
+	color:#333;
 }
 
 .logo{
@@ -92,22 +96,15 @@ color:#333;}
 	width: 465px;
 }
 
-
-
 h1,h2,h3,h4,h5,h6{
 	font-weight:normal;
 	text-align: center;
 }
 
 h3,h4{
-	font-size:24px;
+	font-size:22px;
 	padding:0;
 	margin:0;
-}
-
-label{
-	margin:0 0 5px 0;
-	color:#737373;
 }
 
 label,input{
@@ -159,6 +156,9 @@ input[type="text"],select,.control-label{
 	width:49%;
 	display: inline-block;
 	vertical-align: top;
+	margin:0 0 5px 0;
+	color:#737373;
+	font-weight:normal;
 }
 
 .text-danger{
@@ -170,14 +170,19 @@ input[type="text"],select,.control-label{
 
 .warning-text{
 	font-style:italic;
-	font-size:16px;
+	font-size:14px;
 	margin-bottom:10px;
 	color:#ff6666;
 }
 
+.warning-text span{
+	color:#333;
+}
+
 .board-inner{ 
-	width: 235px;
-    float: right;
+	width: 215px;
+	float: right;
+	margin: 25px 25px 0 0;
 }
 
 .board .nav-tabs {
@@ -196,6 +201,7 @@ input[type="text"],select,.control-label{
 	list-style: none;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
+	border:0;
 }
 .nav-tabs>li {
     display: inline-block;
@@ -216,22 +222,34 @@ input[type="text"],select,.control-label{
 .nav-tabs li .dash{
 	display: inline-block;
     background-color: #fff;
-    width: 5px;
-    height: 4px;
+    width: 20px;
+    height: 6px;
     vertical-align: top;
-    margin-top: 17px;
-    margin-right: -4px;
+    margin: 13px -4px 0 -4px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+	background-color: transparent;
 }
 
 .nav-tabs>li>a {
     line-height: 1.42857143;
     border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	margin:0;
+}
+
+.nav-tabs>li>a:hover{
+	border-color: transparent;
+	background-color: transparent;
 }
 
 #status-buttons a.active span.round-tabs {
 	color: #fff;
-	background:rgba(255,255,255,.4);
+	background:transparent;
+	background-image: url('C:\Users\madel\Documents\GitHub\angular-step-form\src\assets\images\location.png');
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 a span.round-tabs {
@@ -250,6 +268,16 @@ a span.round-tabs {
     font-size: 14px;
 }
 
+a span.completed-tabs {
+	color: #000!important;
+	background-color:#22c222;
+	background-image: url('C:\Users\madel\Documents\GitHub\angular-step-form\src\assets\images\check.svg');
+	background-repeat: no-repeat;
+	background-size: 12px;
+    background-position: center;
+}
+
+
 label#checkbox-flexible {
 	width: 49%!important;
 }
@@ -266,7 +294,8 @@ label#checkbox-flexible {
 }
 
 .checkbox-div input[type=checkbox] {
-    visibility: hidden;
+	visibility: hidden;
+	margin:0;
 }
 
 .checkbox-div label{
@@ -281,17 +310,18 @@ label#checkbox-flexible {
 }
 
 .checkbox-div label:after {
-    opacity: 0.2;
+	opacity: 0.2;
     content: '';
     position: absolute;
-    width: 9px;
-    height: 5px;
+    width: 13px;
+    height: 7px;
     background: transparent;
     top: 6px;
-    left: 7px;
+    left: 5px;
     border: 3px solid #22c222;
     border-top: none;
     border-right: none;
+    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
 
@@ -302,7 +332,6 @@ label#checkbox-flexible {
 .checkbox-div input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
-
 
 .radio {
 position: relative;
@@ -315,6 +344,10 @@ overflow: hidden;
     content: "";
     display: table;
     clear: both;
+}
+
+.radio.twooptions span.option{
+	width:49%;
 }
 
 .radio span.option {
@@ -341,13 +374,18 @@ overflow: hidden;
     background-color: #22c222;
 }
 
+.checkbox-div input[type=checkbox]:checked + label{
+	border:1px solid rgba(34, 194, 34, 0.5)
+}
+
 .radio label {
     cursor: pointer;
-    background-color:#f0f0f0;
+	background-color: #fafafa;
+    border: 1px solid #f0f0f0;
     color: #333;
 	border-radius: 4px;
 	line-height: 15px;
-    font-weight: 700;
+    font-weight: normal;
     width: 100%;
 	height: 65px;
 	display: flex;
@@ -361,37 +399,46 @@ overflow: hidden;
 	margin:0;
 }
 
-input:-webkit-autofill{background-color: transparent !important;}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+	background-color:#fff !important;
+}
 
 .email-domain{
 	margin-top:10px;
 }
 
-.email-domain button{
+.form-group .email-domain button{
 	width:24%;
 	display: inline-block;
 	padding:10px 0;
-	background-color: transparent;
 	color:#333;
-	border:1px solid #e0e0e0;
+	background-color: #fafafa;
+    border: 1px solid #f0f0f0;
 	font-size:12px;
-	margin-right: 3px;
+	margin-right: 1px;
 }
 
-a span.completed-tabs {
-	color: #000!important;
-	background-color: #fff!important;
-}
 
 /*From Bootstrap 3.3.7*/
 .progress {
     height: 20px;
-    margin-bottom: 20px;
+    margin: 20px  20px 0 0 ;
     overflow: hidden;
     background-color: #f5f5f5;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    height: 42px;
+	width: 200px;
+	float: right;
 }
 
 .progress-bar {
@@ -402,7 +449,7 @@ a span.completed-tabs {
     line-height: 20px;
     color: #fff;
     text-align: center;
-    background-color: #337ab7;
+    background-color:  #22c222;
     -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
     box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
     -webkit-transition: width .6s ease;
@@ -410,16 +457,11 @@ a span.completed-tabs {
     transition: width .6s ease;
 }
 
-.progress {
-    display: inline-block;
-    height: 42px;
-    width: 75%;
-}
-
 .progress-bar span {
     position: relative;
     top: 10px;
-    font-size: 25px;
+	font-size: 22px;
+	left: 2px;
 }
 
 form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] .radio{
@@ -432,6 +474,8 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 	padding: 15px 40px;
 }
 
+.result-form p{margin-bottom:20px;}
+
 .result-form .checkbox-div{
 	position: relative;
 	float:left;
@@ -441,11 +485,181 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
     vertical-align: top;
 }
 
+.result-form .checkbox-label{
+	margin-bottom: 0;
+}
+
 .result-form label{
 	display: inline-block;
 	line-height: 20px;
 	font-weight: inherit;
+	color:#737373;
+	margin-bottom: 20px;
 }
+
+.glyphicon-question-sign{
+	font-size:inherit;
+	top: 1px;
+}
+
+.radio span.option{
+	width:49%;
+}
+
+.radio {
+	width: 100%;
+}
+
+.email-domain button {
+	width: 49%;
+	margin-top: 5px;
+}
+.dropdown-menu {
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 1000;
+display: none;
+float: left;
+min-width: 160px;
+padding: 5px 0;
+margin: 2px 5px 0;
+font-size: 14px;
+text-align: left;
+list-style: none;
+background-color: #fff;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+border: 1px solid #ccc;
+border: 1px solid rgba(0,0,0,.15);
+border-radius: 0;
+-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.dropdown-menu button{
+	background-color: #fff;
+	border-radius: 0;
+	font-size:14px;
+}
+
+.dropdown-menu button.dropdown-item {
+width: 100%;
+color: #000;
+text-align: left;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+text-decoration: none;
+background-color: #31b0d5;
+}
+
+.tooltip {
+opacity: 1;
+}
+
+.tooltip-inner {
+padding: 15px;
+}
+
+.loading-ripple{
+	bottom:0;
+}
+
+.lender-match h2{
+	color:#22c222;
+}
+
+.lender-match h3{
+	color:#737373;
+	font-size:18px;
+}
+
+.lender-match p.countdown{
+	font-size:24px;
+	line-height: 46px;
+	border:1px solid #ccc;
+	color:#22c222;
+	font-weight: bold;
+	width:50px;
+	height: 50px;
+	border-radius: 50px;
+	margin:20px auto;
+}
+.no-lender-match{
+	width:300px;
+	margin:0 auto;
+}
+
+#error-list{
+	border: 1px solid #f44242;
+    background-color: #ffd3d3;
+    padding: 15px 0;
+    border-radius: 3px;
+    color: #600000;
+    margin: 20px auto;
+    width: 350px;
+}
+
+.jumbotron.submitfail p{
+	margin:0;
+}
+
+.submitfail img, .no-lender-match img, .lender-match img{
+	width:30px;
+	margin: -5px 10px 0 0;
+}
+
+.submitfail button{margin-top:30px;}
+
+.no-lender-match button{
+	margin-top:50px;
+}
+
+.jumbotron {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	color: inherit;
+	background-color: #fff;
+  }
+  .jumbotron h1,
+  .jumbotron .h1 {
+	color: inherit;
+  }
+  .jumbotron p {
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 22px;
+	font-weight: 200;
+  }
+  .jumbotron > hr {
+	border-top-color: #d5d5d5;
+  }
+  .container .jumbotron,
+  .container-fluid .jumbotron {
+	padding-right: 15px;
+	padding-left: 15px;
+	border-radius: 6px;
+  }
+  .jumbotron .container {
+	max-width: 100%;
+  }
+  @media screen and (min-width: 768px) {
+	.jumbotron {
+	  padding-top: 48px;
+	  padding-bottom: 48px;
+	}
+	.container .jumbotron,
+	.container-fluid .jumbotron {
+	  padding-right: 60px;
+	  padding-left: 60px;
+	}
+	.jumbotron h1,
+	.jumbotron .h1 {
+	  font-size: 63px;
+	}
+  }
 
 @media( min-width : 900px ){
 	.board{
@@ -458,14 +672,14 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 }
 
 @media( max-width : 580px ){
+	body{padding-top:140px;}
 	.header{
 		text-align: center;
 		height:140px;
 	}
 
 	.header .onlyloanz-logo{
-		width:60%;
-		height:auto;
+	
 	}
 	.nav{
 		margin:0 auto;
@@ -492,62 +706,17 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 		width:100%!important;
 	}
 
- .radio span.option{
-		width:49%;
+	.checkbox-group label#checkbox-flexible,.checkbox-group .control-label{
+		width:70%!important;
 	}
+
+
+	.checkbox-group .checkbox-div{
+		width:25px!important;
+		float:right;
+	}
+
 	
-	.radio {
-		width: 100%;
-	}
-
-	.email-domain button {
-		width: 49%;
-		margin-top: 5px;}
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
-
-.dropdown-menu button.dropdown-item {
-	width: 100%;
-	color: #000;
-	text-align: left;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-    text-decoration: none;
-    background-color: #007bff;
-}
-
-.tooltip {
-	opacity: 1;
-}
-
-.tooltip-inner {
-	padding: 15px;
-}
-
-.glyphicon-question-sign {
-	font-size: x-large;
-	top: 5px;
+.form-group .email-domain button{
+	width:49%;}
 }
