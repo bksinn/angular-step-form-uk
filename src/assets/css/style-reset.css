@@ -682,9 +682,6 @@ padding: 15px;
 		height:140px;
 	}
 
-	.header .onlyloanz-logo{
-	
-	}
 	.nav{
 		margin:0 auto;
 	}
@@ -715,14 +712,14 @@ padding: 15px;
 	}
 
 	.wr input {
-		width: 27%!important;
+		width: 33%!important;
 	}
 
 	#bminus {
-		margin-right: 65px!important;
+		margin-right: 82px!important;
 	}
 	#bplus {
-		margin-left: 65px!important;
+		margin-left: 50px!important;
 	}
 
 	.checkbox-group label#checkbox-flexible,.checkbox-group .control-label{
@@ -740,12 +737,21 @@ padding: 15px;
 	width:49%;}
 }
 
-@media (max-width: 374px) {
+@media (max-width: 375px) {
 	#bminus {
-		margin-right: 45px!important;
+		margin-right: 65px!important;
 	}
 	#bplus {
 		margin-left: 45px!important;
+	}
+}
+
+@media (min-width: 319px) and (max-width: 374px) {
+	#bplus {
+		margin-left: 10%!important;
+	}
+	#bminus {
+		margin-right: 45px!important;
 	}
 }
 
@@ -758,7 +764,7 @@ padding: 15px;
 .wr input {
     display: block;
     padding: 8px 8px 8px 0;
-    width: 27%;
+    width: 33%;
     text-align: left;
     border: none;
     outline: none;
@@ -796,18 +802,22 @@ span.loan-amount {
 
 @media (min-width: 900px) {
 	.loanamount-label {
-		width: 65%;
+		width: 62%;
 	}
 	.wr {
-		width: 34%;
+		width: 37%;
 	}
 }
 
 @media (min-width: 485px) and (max-width: 899px) {
 	.loanamount-label {
-		width: 58%;
+		width: 54%;
 	}
 	.wr {
-		width: 41%;
+		width: 45%;
 	}
 } 
+
+.loanamount {
+	margin-bottom: 30px;
+}

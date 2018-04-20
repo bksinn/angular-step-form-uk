@@ -1,7 +1,7 @@
 <form #personalForm="ngForm" name="personalForm" class="editForm" novalidate>
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title1}}</h3>
-        <div class="form-group">
+        <div class="form-group loanamount">
             <label class="control-label loanamount-label" for="loanAmount">How much would you like to borrow?</label>
             <!--<select class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount">
                 <option value="" disabled selected>Select</option>
@@ -91,7 +91,7 @@
                 <option value="17">17 Months</option>
                 <option value="18">18+ Months</option>
             </select>-->
-                <div class="form-group">
+                <div class="term-group">
                     <div class="radio radio-term" type="radio">
                         <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=3 type="radio">
