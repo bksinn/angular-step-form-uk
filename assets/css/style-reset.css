@@ -764,7 +764,7 @@ padding: 15px;
 .wr input {
     display: block;
     padding: 8px 8px 8px 0;
-    width: 33%;
+    width: 38%;
     text-align: left;
     border: none;
     outline: none;
@@ -802,20 +802,20 @@ span.loan-amount {
 
 @media (min-width: 900px) {
 	.loanamount-label {
-		width: 62%;
+		width: 56%;
 	}
 	.wr {
-		width: 37%;
+		width: 42%;
 	}
 }
 
-@media (min-width: 485px) and (max-width: 899px) {
+@media (min-width: 416px) and (max-width: 899px) {
 	.loanamount-label {
-		width: 54%;
+		width: 47%;
 	}
-	.wr {
+	/*.wr {
 		width: 45%;
-	}
+	}*/
 } 
 
 .loanamount {
