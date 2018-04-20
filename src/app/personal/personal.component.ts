@@ -151,11 +151,12 @@ export class PersonalComponent implements OnInit {
                 clearInterval(interval);
             }
         }
-        console.log(countInput.value.replace(/\D/g, ''));
-        if (countInput.value.replace(/\D/g, '') <= '5000') {
+        let integerValue = Number(countInput.value.replace(/\D/g, ''));
+        if (integerValue < 5000) {
             countInput.value = countInput.value.replace(/\D/g, '');
+            console.log(countInput.value);
         }
-        else if (countInput.value > '5000') {
+        else if (integerValue > 5000) {
             countInput.value = '5000+';
         }
     }
