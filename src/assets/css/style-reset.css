@@ -247,7 +247,7 @@ input[type="text"],select,.control-label{
 #status-buttons a.active span.round-tabs {
 	color: #fff;
 	background:transparent;
-	background-image: url('C:\Users\madel\Documents\GitHub\angular-step-form\src\assets\images\location.png');
+	background-image: url('../images/location.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -271,7 +271,7 @@ a span.round-tabs {
 a span.completed-tabs {
 	color: #000!important;
 	background-color:#22c222;
-	background-image: url('C:\Users\madel\Documents\GitHub\angular-step-form\src\assets\images\check.svg');
+	background-image: url('../images/check.svg');
 	background-repeat: no-repeat;
 	background-size: 12px;
     background-position: center;
@@ -666,8 +666,12 @@ padding: 15px;
 		width: 570px;
 	}
 
- .radio span.option{
+ 	.radio span.option{
 		width:24%;
+	}
+
+	.radio-term span.option {
+		width: 16%;
 	}
 }
 
@@ -706,6 +710,21 @@ padding: 15px;
 		width:100%!important;
 	}
 
+	.wr {
+		width: 100%!important;
+	}
+
+	.wr input {
+		width: 27%!important;
+	}
+
+	#bminus {
+		margin-right: 65px!important;
+	}
+	#bplus {
+		margin-left: 65px!important;
+	}
+
 	.checkbox-group label#checkbox-flexible,.checkbox-group .control-label{
 		width:70%!important;
 	}
@@ -720,3 +739,75 @@ padding: 15px;
 .form-group .email-domain button{
 	width:49%;}
 }
+
+@media (max-width: 374px) {
+	#bminus {
+		margin-right: 45px!important;
+	}
+	#bplus {
+		margin-left: 45px!important;
+	}
+}
+
+.wr {
+	width: 49%;
+	display: inline-block;
+	margin: 0;
+}
+
+.wr input {
+    display: block;
+    padding: 8px 8px 8px 0;
+    width: 27%;
+    text-align: left;
+    border: none;
+    outline: none;
+    float: left;
+    font-size: 22px;
+    box-shadow: none;
+    margin: 0;
+	background-color: inherit!important;
+}
+.wr #term {
+	width: 39%;
+}
+#bminus,
+#bplus,
+#aminus,
+#aplus {
+    float: left;
+    display: block;
+	padding: 5px 15px;
+	margin: 0 5px;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+span.loan-amount {
+	float: left;
+    font-size: 25px;
+    margin: 0 10px;
+}
+
+@media (min-width: 900px) {
+	.loanamount-label {
+		width: 65%;
+	}
+	.wr {
+		width: 34%;
+	}
+}
+
+@media (min-width: 485px) and (max-width: 899px) {
+	.loanamount-label {
+		width: 58%;
+	}
+	.wr {
+		width: 41%;
+	}
+} 

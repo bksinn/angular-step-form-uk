@@ -3,7 +3,7 @@ import * as moment from 'moment';
 
 @Injectable()
 export class FormData {
-    loanAmount: string = '';
+    loanAmount: string = '250';
     termPeriod: string = '';
     prefix: string = '';
     firstName: string = '';

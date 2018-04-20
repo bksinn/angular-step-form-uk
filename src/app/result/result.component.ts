@@ -42,13 +42,13 @@ export class ResultComponent implements OnInit {
 
     constructor(private router: Router, private formDataService: FormDataService, private http: HttpClient, private pingYoService: PingYoService) {
         //Remember to comment this out
-        this.countDown = timer(0, 1000).pipe(
-            take(this.count),
-            map(() => {
-                this.percentComplete += 25;
-                return --this.count
-            })
-        );
+        // this.countDown = timer(0, 1000).pipe(
+        //     take(this.count),
+        //     map(() => {
+        //         this.percentComplete += 25;
+        //         return --this.count
+        //     })
+        // );
         //End Comment out ^
 
         this.countDown2 = timer(0, 1000).pipe(

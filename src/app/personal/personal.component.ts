@@ -64,6 +64,95 @@ export class PersonalComponent implements OnInit {
         }
     }
 
+    isMobile() {
+        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+    }
+
+    toggleLoanAmount() {
+        var wrapper = document.querySelector('wr');
+        //var countInput = document.getElementById('count');
+
+        let countInputElement: HTMLElement = document.getElementById('la');
+        let countInput: HTMLInputElement = countInputElement as HTMLInputElement;
+        var butM = document.getElementById('bminus');
+        var butP = document.getElementById('bplus');
+        var units = countInput.value.replace(/\d/g, '');
+        var interval;
+
+        if (this.isMobile()) {
+            butP.ontouchstart = function () {
+                //Add by 50
+                if (parseInt(countInput.value) < 5000) {
+                    countInput.value = parseInt(countInput.value) + 50 + units;
+                }
+                interval = setInterval(function () {
+                    if (parseInt(countInput.value) < 5000) {
+                        countInput.value = parseInt(countInput.value) + 50 + units;
+                    }
+                }, 100)
+            };
+            butM.ontouchstart = function () {
+                //Subtract by 50
+                if (parseInt(countInput.value) > 250) {
+                    countInput.value = parseInt(countInput.value) - 50 + units;
+                }
+                interval = setInterval(function () {
+                    if (parseInt(countInput.value) > 250) {
+                        countInput.value = parseInt(countInput.value) - 50 + units;
+                    }
+                }, 100)
+            };
+            butP.ontouchend = function () {
+                clearInterval(interval);
+            }
+            butM.ontouchend = function () {
+                clearInterval(interval);
+            }
+            butP.ontouchmove = function () {
+                clearInterval(interval);
+            }
+            butM.ontouchmove = function () {
+                clearInterval(interval);
+            }
+        }
+        else {
+            butP.onmousedown = function () {
+                //Add by 50
+                if (parseInt(countInput.value) < 5000) {
+                    countInput.value = parseInt(countInput.value) + 50 + units;
+                }
+                interval = setInterval(function () {
+                    if (parseInt(countInput.value) < 5000) {
+                        countInput.value = parseInt(countInput.value) + 50 + units;
+                    }
+                }, 100)
+            };
+            butM.onmousedown = function () {
+                //Subtract by 50
+                if (parseInt(countInput.value) > 250) {
+                    countInput.value = parseInt(countInput.value) - 50 + units;
+                }
+                interval = setInterval(function () {
+                    if (parseInt(countInput.value) > 250) {
+                        countInput.value = parseInt(countInput.value) - 50 + units;
+                    }
+                }, 100)
+            };
+            butP.onmouseup = function () {
+                clearInterval(interval);
+            }
+            butM.onmouseup = function () {
+                clearInterval(interval);
+            }
+            butP.onmouseout = function () {
+                clearInterval(interval);
+            }
+            butM.onmouseout = function () {
+                clearInterval(interval);
+            }
+        }
+    }
+
     getZipInformation() {
         let url = `${this.apiRoot}`;
         let element: HTMLElement = document.getElementById('user-zipcode');
@@ -178,7 +267,6 @@ export class PersonalComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.pingYoService.getUrlVars().la);
-
         this.personal = this.formDataService.getPersonal();
         let loanAmountFromUrl = Number(this.pingYoService.getUrlVars().la);
         let termFromUrl = Number(this.pingYoService.getUrlVars().term);

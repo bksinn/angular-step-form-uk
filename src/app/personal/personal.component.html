@@ -2,8 +2,8 @@
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title1}}</h3>
         <div class="form-group">
-            <label class="control-label" for="loanAmount">How much would you like to borrow?</label>
-            <select class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount">
+            <label class="control-label loanamount-label" for="loanAmount">How much would you like to borrow?</label>
+            <!--<select class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount">
                 <option value="" disabled selected>Select</option>
                 <option value="250">$250</option>
                 <option value="300">$300</option>
@@ -54,14 +54,25 @@
                 <option value="3000">$3000</option>
                 <option value="4000">$4000</option>
                 <option value="5000">$5000+</option>
-            </select>
+            </select>-->
+                <div class="wr form-group" (click)="toggleLoanAmount()">
+                    <div>
+                        <span class="btn btn-info btn-rounded" id="bminus">–</span>
+                        <div class="loanamount-wrapper">
+                            <span class="loan-amount">$</span>
+                            <input readonly class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount"
+                                type="text" />
+                        </div>
+                        <span class="btn btn-info btn-rounded" id="bplus">+</span>
+                    </div>
+                </div>
             <div *ngIf="loanAmount.invalid && (loanAmount.dirty || loanAmount.touched)" class="warning-text" [hidden]="loanAmount.valid">This field is required</div>
         </div>
 
 
         <div class="form-group">
-            <label class="control-label" for="termPeriod">Over how long?</label>
-            <select class="form-control input-md" id="term" #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod">
+            <label class="control-label" for="termPeriod">Over how many months?</label>
+            <!--<select class="form-control input-md" id="term" #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod">
                 <option value="" disabled selected>Select</option>
                 <option value="3">3 Months</option>
                 <option value="4">4 Months</option>
@@ -79,7 +90,47 @@
                 <option value="16">16 Months</option>
                 <option value="17">17 Months</option>
                 <option value="18">18+ Months</option>
-            </select>
+            </select>-->
+                <div class="form-group">
+                    <div class="radio radio-term" type="radio">
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=3 type="radio">
+                            <label>
+                                3
+                            </label>
+                        </span>
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=6 type="radio">
+                            <label>
+                                6
+                            </label>
+                        </span>
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=9 type="radio">
+                            <label>
+                               9
+                            </label>
+                        </span>
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=12 type="radio">
+                            <label>
+                                12
+                            </label>
+                        </span>
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=18 type="radio">
+                            <label>
+                                18
+                            </label>
+                        </span>
+                        <span class="option">
+                            <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=24 type="radio">
+                            <label>
+                                24+
+                            </label>
+                        </span>
+                    </div>
+            </div>
             <div *ngIf="termPeriod.invalid && (termPeriod.dirty || termPeriod.touched)" class="warning-text" [hidden]="termPeriod.valid">This field is required</div>
         </div>
 
