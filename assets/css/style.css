@@ -1,5 +1,4 @@
 html {
-    background-color: #d1d1cf;
 }
 
 .btn-default {
@@ -420,10 +419,6 @@ p.progress-class {
 }
 
 .header {
-    background-color: #d1d1cf;
-    margin: 0 auto;
-
-    background-color: #d1d1cf;
     margin: 0 auto 90px;
     position: fixed;
     top: 0;
@@ -463,4 +458,3 @@ p.progress-class {
     margin: 20px 0;
     width: 33%;
 }
-
