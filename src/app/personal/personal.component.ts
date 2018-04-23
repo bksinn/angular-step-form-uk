@@ -264,9 +264,9 @@ export class PersonalComponent implements OnInit {
         this.personal = this.formDataService.getPersonal();
         let loanAmountFromUrl = Number(this.pingYoService.getUrlVars().la);
         let termFromUrl = Number(this.pingYoService.getUrlVars().term);
-        let firstNameFromUrl = this.pingYoService.getUrlVars().fn ? this.pingYoService.getUrlVars().fn : '';
-        let lastNameFromUrl = this.pingYoService.getUrlVars().ln ? this.pingYoService.getUrlVars().ln : '';
-        let emailFromUrl = this.pingYoService.getUrlVars().em ? this.pingYoService.getUrlVars().em : '';
+        let firstNameFromUrl = this.pingYoService.getUrlVars().fn ? this.pingYoService.getUrlVars().fn : this.personal.firstName;
+        let lastNameFromUrl = this.pingYoService.getUrlVars().ln ? this.pingYoService.getUrlVars().ln : this.personal.lastName;
+        let emailFromUrl = this.pingYoService.getUrlVars().em ? this.pingYoService.getUrlVars().em : this.personal.email;
 
         if (loanAmountFromUrl % 50 == 0 && loanAmountFromUrl > 5000) {
             this.personal.loanAmount = '5000+';
