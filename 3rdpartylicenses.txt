@@ -141,10 +141,6 @@ THE SOFTWARE.
 MIT
 MIT
 
-@angular/animations@5.2.7
-MIT
-MIT
-
 @angular/platform-browser-dynamic@5.2.7
 MIT
 MIT

@@ -78,7 +78,7 @@ text-decoration: underline;
 	width: 49%;
 	box-shadow: none;
 	color:#333;*/
-	height: 40px;
+	height: 40px!important;
 }
 
 .logo{
@@ -153,7 +153,7 @@ input,select{
 	border:1px solid #E0E0E0;
 }
 
-input[type="text"],select,.control-label{
+input[type="text"], input[type="number"], select, .control-label{
 	/*width:49%;*/
 	width:100%;
 	display: inline-block;
@@ -257,7 +257,12 @@ a.active #text-one,
 a.active #text-two,
 a.active #text-three,
 a.active #text-four,
-a.active #text-five
+a.active #text-five,
+a span.completed-tabs #text-one,
+a span.completed-tabs #text-two,
+a span.completed-tabs #text-three,
+a span.completed-tabs #text-four,
+a span.completed-tabs #text-five
  {
 	display: none;
 }
@@ -713,7 +718,7 @@ padding: 15px;
 
 
 @media( max-width : 415px ){
-	input[type="text"], select, .control-label{
+	input[type="text"], input[type="number"] select, .control-label{
 		width:100%;
 	}
 	input#la {
@@ -792,6 +797,7 @@ span.loan-amount {
 	margin-bottom: 30px;
 }
 
+/*Setting this style keeps mobile browsers from zooming on input fields*/
 input {
 	font-size: 16px!important;
 }
