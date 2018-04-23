@@ -19,31 +19,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 
-// import {
-//     trigger,
-//     state,
-//     style,
-//     animate,
-//     transition
-// } from '@angular/animations';
-
 const information = ['something'];
 
 @Component({
     selector: 'mt-wizard-bank',
     templateUrl: './bank.component.html',
-    // animations: [
-    //     trigger('flyInOut', [
-    //         state('in', style({ transform: 'translateX(0)' })),
-    //         transition('void => *', [
-    //             style({ transform: 'translateX(-100%)' }),
-    //             animate(100)
-    //         ]),
-    //         transition('* => void', [
-    //             animate(100, style({ transform: 'translateX(100%)' }))
-    //         ])
-    //     ])
-    // ]
 })
 
 export class BankComponent implements OnInit {

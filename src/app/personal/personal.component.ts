@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { 
-//     trigger,
-//     state,
-//     style,
-//     animate,
-//     transition
-// } from '@angular/animations';
 import { Personal } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
@@ -18,18 +11,6 @@ import { NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'mt-wizard-personal',
     templateUrl: './personal.component.html',
-    // animations: [
-    //     trigger('flyInOut', [
-    //         state('in', style({ transform: 'translateX(0)' })),
-    //         transition('void => *', [
-    //             style({ transform: 'translateX(-100%)' }),
-    //             animate(100)
-    //         ]),
-    //         transition('* => void', [
-    //             animate(100, style({ transform: 'translateX(100%)' }))
-    //         ])
-    //     ])
-    // ]
 })
 
 export class PersonalComponent implements OnInit {

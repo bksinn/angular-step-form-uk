@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,16 +38,12 @@ import {
   StateValidator,
   MonthlyAmountValidator } from './shared/custom-validations.directive';
 
-/* Animation Modules */
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
     CommonModule,
     HttpModule,
     HttpClientModule,

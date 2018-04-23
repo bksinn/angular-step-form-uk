@@ -5,29 +5,9 @@ import { FormDataService } from '../data/formData.service';
 import { FormData } from '../data/formData.model';
 import { HttpClient } from '@angular/common/http';
 
-// import {
-//     trigger,
-//     state,
-//     style,
-//     animate,
-//     transition
-// } from '@angular/animations';
-
 @Component({
     selector: 'mt-wizard-address',
     templateUrl: './address.component.html'
-    // animations: [
-    //     trigger('flyInOut', [
-    //         state('in', style({ transform: 'translateX(0)' })),
-    //         transition('void => *', [
-    //             style({ transform: 'translateX(-100%)' }),
-    //             animate(100)
-    //         ]),
-    //         transition('* => void', [
-    //             animate(100, style({ transform: 'translateX(100%)' }))
-    //         ])
-    //     ])
-    // ]
 })
 
 export class AddressComponent implements OnInit {
