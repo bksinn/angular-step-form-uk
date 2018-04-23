@@ -84,7 +84,7 @@
         <div class="form-group">
             <label class="control-label" for="zip">Zip Code</label>
             <input class="form-control input-md" (keyup)="getZipInformation()" id="user-zipcode" #zip="ngModel" required validateZip
-                apiCall name="zip" type="text" placeholder="Zip" [(ngModel)]="address.zip">
+                apiCall name="zip" type="tel" placeholder="Zip" [(ngModel)]="address.zip">
             <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid" class="warning-text">
                 <div *ngIf="zip.errors.required">This field is required</div>
                 <div *ngIf="zip.invalid">Please provide a valid zip code</div>

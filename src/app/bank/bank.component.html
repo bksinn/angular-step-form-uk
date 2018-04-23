@@ -38,28 +38,28 @@
         </div>
 
 
-        <div style="display: none;" id="routing-div">
+        <!--<div style="display: none;" id="routing-div">
             <div class="form-group">
                 <label class="control-label" for="routingNumber">ABA / Routing Number
                     <br />
                     <span class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</span>
                 </label>
-                <!--<label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>-->
+                <label style="font-size: 12px;" class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
                 <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
-                    type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
+                    type="number" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
                 <div *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid" class="warning-text">
                     <div *ngIf="routingNumber.errors.required">This field is required</div>
                     <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div style="display: none;" id="routing-div">
             <div class="form-group">
                 <label class="control-label" for="routingNumber">ABA / Routing Number</label>
                 <label class="control-label" for="routingNumberMessage">(Please verify or enter your routing number)</label>
                 <input class="form-control input-md" id="user-routing" #routingNumber="ngModel" validateABA required name="routingNumber"
-                    type="text" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
+                    type="tel" placeholder="9 digits" [(ngModel)]="bank.routingNumber">
                 <div *ngIf="routingNumber.invalid && (routingNumber.dirty || routingNumber.touched)" [hidden]="routingNumber.valid" class="warning-text">
                     <div *ngIf="routingNumber.errors.required">This field is required</div>
                     <div id="validateABA" *ngIf="routingNumber.errors.validateABA">Please provide a valid ABA/Routing number</div>
@@ -69,7 +69,7 @@
         <div class="form-group">
             <label class="control-label" for="accountNumber">Account Number</label>
             <input class="form-control input-md" #accountNumber="ngModel" required minlength="6" maxlength="14" name="accountNumber"
-                type="text" placeholder="6 to 17 digits" [(ngModel)]="bank.accountNumber">
+                type="tel" placeholder="6 to 17 digits" [(ngModel)]="bank.accountNumber">
             <div *ngIf="accountNumber.invalid && (accountNumber.dirty || accountNumber.touched) || (accountNumber.invalid && bankTimeYears.dirty)" [hidden]="accountNumber.valid" class="warning-text">
                 <div *ngIf="accountNumber.errors.required">This field is required</div>
                 <div *ngIf='accountNumber.errors.minlength'>Too short</div>

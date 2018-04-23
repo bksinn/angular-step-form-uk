@@ -242,7 +242,7 @@
                 </a>
             </label>
             <input class="form-control input-md" id="monthlyAmount" validateMonthlyAmount (keyup)="forceNumeric($event)" #netAmount="ngModel"
-                required uppercase minlength="3" name="netAmount" type="text" placeholder="Minimum $500" [(ngModel)]="income.netAmount">
+                required uppercase minlength="3" name="netAmount" type="tel" placeholder="Minimum $500" [(ngModel)]="income.netAmount">
             <div class="warning-text" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
                 <div *ngIf="netAmount.errors.required">This field is required</div>
                 <div *ngIf="netAmount.invalid">Minimum monthly amount is $500, only enter numbers</div>

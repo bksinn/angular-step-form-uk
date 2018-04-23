@@ -147,7 +147,7 @@
         <div class="form-group">
             <label class="control-label" for="zip">What's your zipcode?</label>
             <input class="form-control input-md" (keyup)="getZipInformation()" id="user-zipcode" #zip="ngModel" required validateZip
-                apiCall name="zip" type="text" placeholder="Zip" [(ngModel)]="personal.zip">
+                apiCall name="zip" type="tel" placeholder="Zip" [(ngModel)]="personal.zip">
             <div class="warning-text" *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid">
                 <div *ngIf="zip.errors.required">This field is required</div>
                 <div *ngIf="zip.invalid">Please provide a valid zip code</div>
@@ -211,7 +211,7 @@
             <div class="form-group">
                 <label class="control-label" for="dob">Date of Birth</label>
                 <input (keyup)="scrollDown($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB
-                    type="text" placeholder="MM/DD/YYYY" [(ngModel)]="personal.dob">
+                    type="tel" placeholder="MM/DD/YYYY" [(ngModel)]="personal.dob">
                 <div class="warning-text" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                     <div *ngIf="dob.errors.required">This field is required</div>
                     <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY
@@ -226,7 +226,7 @@
                 <div class="form-group">
                     <label class="control-label" for="mobilephone">Mobile Phone</label>
                     <input class="form-control input-md phone" id="mobilePhone" #mobilePhone="ngModel" required validatePhone name="mobilephone"
-                        type="text" placeholder="(123) 456-7890" [(ngModel)]="personal.mobilePhone">
+                        type="tel" placeholder="(123) 456-7890" [(ngModel)]="personal.mobilePhone">
                     <div class="warning-text" *ngIf="mobilePhone.dirty && mobilePhone.untouched" [hidden]="mobilePhone.valid">
                         Please finish filling out your phone number
                     </div>
@@ -239,7 +239,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="workphone">Work Phone</label>
-                    <input class="form-control input-md phone" id="workPhone" #workPhone="ngModel" required validatePhone name="workPhone" type="text"
+                    <input class="form-control input-md phone" id="workPhone" #workPhone="ngModel" required validatePhone name="workPhone" type="tel"
                         placeholder="(123) 456-7890" [(ngModel)]="personal.workPhone">
                     <div class="warning-text" *ngIf="workPhone.dirty && workPhone.untouched" [hidden]="workPhone.valid">
                         Please finish filling out your phone number
@@ -252,7 +252,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="homephone">Home Phone (Optional)</label>
-                    <input class="form-control input-md phone" id="homePhone" #homePhone="ngModel" name="homephone" type="text" placeholder="(123) 456-7890"
+                    <input class="form-control input-md phone" id="homePhone" #homePhone="ngModel" name="homephone" type="tel" placeholder="(123) 456-7890"
                         [(ngModel)]="personal.homePhone">
                     <div class="warning-text" *ngIf="homePhone.invalid && (homePhone.touched)" [hidden]="homePhone.valid">
                         <div *ngIf="homePhone.errors.required">This field is required</div>
@@ -302,7 +302,7 @@
                 <div class="form-group">
                     <label class="control-label" for="nationalIdentityNumber">Social Security Number</label>
                     <input class="form-control input-md" #nationalIdentityNumber="ngModel" required validateSSN name="nationalIdentityNumber"
-                        type="text" placeholder="XXX-XX-XXXX" [(ngModel)]="personal.nationalIdentityNumber">
+                        type="tel" placeholder="XXX-XX-XXXX" [(ngModel)]="personal.nationalIdentityNumber">
                     <div class="warning-text" *ngIf="nationalIdentityNumber.invalid && (nationalIdentityNumber.dirty || nationalIdentityNumber.touched)"
                         [hidden]="nationalIdentityNumber.valid">
                         <div *ngIf="nationalIdentityNumber.errors.required">This field is required</div>
