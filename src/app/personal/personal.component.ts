@@ -141,6 +141,8 @@ export class PersonalComponent implements OnInit {
         else if (integerValue > 5000) {
             countInput.value = '5000+';
         }
+        //Sets the new loan amount
+        this.personal.loanAmount = countInput.value;
     }
 
     getZipInformation() {
