@@ -69,30 +69,6 @@
                     <div *ngIf="employerName.errors.required">This field is required</div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="control-label" for="title">Payment Type</label>
-                <div class="radio radio-paymentType" type="radio">
-                    <span class="option">
-                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=2 [(ngModel)]="income.paymentType" type="radio">
-                        <label>
-                            Check
-                        </label>
-                    </span>
-                    <span class="option">
-                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=3 [(ngModel)]="income.paymentType" type="radio">
-                        <label>
-                            Cash
-                        </label>
-                    </span>
-                    <span class="option">
-                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=4 [(ngModel)]="income.paymentType" type="radio">
-                        <label>
-                            Direct Deposit
-                        </label>
-                    </span>
-                </div>
-            </div>
             <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="paymentType.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your payment type before continuing
             </div>
@@ -199,6 +175,29 @@
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select months at employer before continuing
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="title">Payment Type</label>
+            <div class="radio radio-paymentType" type="radio">
+                <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=2 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Check
+                        </label>
+                    </span>
+                <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=3 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Cash
+                        </label>
+                    </span>
+                <span class="option">
+                        <input #paymentType="ngModel" required name="paymentType" id="paymentType" value=4 [(ngModel)]="income.paymentType" type="radio">
+                        <label>
+                            Direct Deposit
+                        </label>
+                    </span>
             </div>
         </div>
         <div class="form-group">

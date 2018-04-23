@@ -1,5 +1,5 @@
 <div class="jumbotron text-center loading-screen" *ngIf="submitted && percentComplete != 100 && !submitSuccess && !submitFail">
-    <h2>{{status}}</h2>
+    <h2>{{status}}...</h2>
     <p>We are currently checking our large panel to source the best option for you.</p>
     <p>This can take a few minutes so please be patient and do not close your browser.</p>
     <p class="progress-class">
@@ -44,8 +44,8 @@
     <button class="btn btn-outline-rounded btn-default" (click)="resetSubmit()">
         <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Previous</button>
 </div>
-
-<form (ngSubmit)="processForm()" #resultForm="ngForm" name="resultForm" class="editForm result-form" novalidate *ngIf="!submitted">
+<!--(ngSubmit)="processForm()"-->
+<form (ngSubmit)="processForm(resultForm)" #resultForm="ngForm" name="resultForm" class="editForm result-form" novalidate *ngIf="!submitted">
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title}}</h3>
         <p>
@@ -59,7 +59,7 @@
         <label>
             <div class="checkbox-div">
                 <input class="form-control" #consentToCreditSearch="ngModel" required type="checkbox" class="checkbox" id="emailconsent"
-                    name="consentToCreditSearch" [(ngModel)]="result.consentToCreditSearch" checked="">
+                    name="consentToCreditSearch" [(ngModel)]="result.consentToCreditSearch" checked="" (click)="toggleCheckBox()">
                 <label for="emailconsent" class="checkbox-label"></label>
             </div>
             I agree that by submitting this application and clicking Apply Now, I provide my signature expressly consenting to receive
@@ -82,7 +82,9 @@
                         <span></span>
                     </label>
                     </p>-->
-        <div *ngIf="consentToCreditSearch.invalid && (consentToCreditSearch.dirty || consentToCreditSearch.touched)" [hidden]="consentToCreditSearch.valid">You must agree to the terms before submitting. </div>
+        <div style="font-size: 16px; font-style: italic; color: red;" *ngIf="consentToCreditSearch.invalid && (consentToCreditSearch.dirty || consentToCreditSearch.touched)" [hidden]="consentToCreditSearch.valid">
+            <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>You must agree to the terms before submitting. 
+        </div>
 
         <input type="hidden" id="emailconsent2" name="emailconsent2">
         <p>
@@ -103,7 +105,7 @@
 
         <div class="text-center buttons-group">
             <button class="btn btn-outline-rounded btn-default" (click)="goToPrevious(resultForm)"> Previous</button>
-            <button class="btn btn-success btn-outline-rounded" [disabled]="!isFormValid" (click)="submit(resultForm)"> Submit</button>
+            <button class="btn btn-success btn-outline-rounded" [disabled]="!isFormValid"> Submit</button>
         </div>
     </div>
 </form>

@@ -101,8 +101,11 @@ export class ResultComponent implements OnInit {
             this.router.navigate(['/bank']);
         }
     }
-    
 
+    toggleCheckBox() {
+        this.isFormValid = !this.isFormValid;
+    }
+    
     resetSubmit() {
         this.submitted = false;
         this.submitFail = false;
@@ -119,16 +122,16 @@ export class ResultComponent implements OnInit {
         document.getElementById('header-status').removeAttribute('style');
     }
 
-    submit(form: any) {
-        window.scrollTo(0, 0);
-        if (this.save(form)) {
-            // Navigate to the result page
-            //this.router.navigate(['/personal']);
-        }
-        else {
-            console.log("FORM INCOMPLETE");
-        }
-    }
+    // submit(form: any) {
+    //     window.scrollTo(0, 0);
+    //     if (this.save(form)) {
+    //         // Navigate to the result page
+    //         //this.router.navigate(['/personal']);
+    //     }
+    //     else {
+    //         console.log("FORM INCOMPLETE");
+    //     }
+    // }
 
     processFormData() {
         let applicationData = {
@@ -195,7 +198,11 @@ export class ResultComponent implements OnInit {
         return JSON.stringify(applicationData);
     }
 
-    processForm() {
+    processForm(form: any) {
+        if (!form.valid) {
+            return false;
+        }
+        this.formDataService.setResult(this.result);
         //Status message on progress page
         this.status = this.status ? this.status : "Searching";
         const applicationData = this.processFormData();

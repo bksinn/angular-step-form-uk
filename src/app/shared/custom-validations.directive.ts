@@ -5,7 +5,6 @@ import { EventEmitter, HostListener, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 // Validate phone numbers
-
 function validatePhoneNumber(): ValidatorFn {
     return (c: AbstractControl) => {
         c.markAsPristine();
@@ -488,6 +487,82 @@ export class MonthlyAmountValidator implements Validator {
 
     constructor() {
         this.validator = validateMonthyAmount();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}
+
+function validateLastName(): ValidatorFn {
+    return (c: AbstractControl) => {
+        let firstName: HTMLElement = document.getElementById('firstname');
+        let firstNameElement: HTMLInputElement = firstName as HTMLInputElement;
+        console.log(c.value != firstNameElement.value);
+        let isValid = c.value != firstNameElement.value;
+
+        if (isValid) {
+            return null;
+        } else {
+            return {
+                validateLastName: {
+                    valid: false
+                }
+            };
+        }
+    }
+}
+
+@Directive({
+    selector: '[validateLastName][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: LastNameValidator, multi: true }
+    ]
+})
+export class LastNameValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateLastName();
+    }
+
+    validate(c: FormControl) {
+        return this.validator(c);
+    }
+
+}
+
+function validateFirstName(): ValidatorFn {
+    return (c: AbstractControl) => {
+        let lastName: HTMLElement = document.getElementById('lastname');
+        let lastNameElement: HTMLInputElement = lastName as HTMLInputElement;
+        console.log(c.value != lastNameElement.value);
+        let isValid = c.value != lastNameElement.value;
+
+        if (isValid) {
+            return null;
+        } else {
+            return {
+                validateFirstName: {
+                    valid: false
+                }
+            };
+        }
+    }
+}
+
+@Directive({
+    selector: '[validateFirstName][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: FirstNameValidator, multi: true }
+    ]
+})
+export class FirstNameValidator implements Validator {
+    validator: ValidatorFn;
+
+    constructor() {
+        this.validator = validateFirstName();
     }
 
     validate(c: FormControl) {

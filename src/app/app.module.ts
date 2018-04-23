@@ -36,7 +36,9 @@ import {
   AccountNumberValidator,
   UppercaseDirective,
   StateValidator,
-  MonthlyAmountValidator } from './shared/custom-validations.directive';
+  MonthlyAmountValidator,
+  LastNameValidator,
+  FirstNameValidator } from './shared/custom-validations.directive';
 
 import { HeaderComponent } from './header/header.component';
 
@@ -58,9 +60,8 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
-    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator,
-    MonthlyAmountValidator,
-    HeaderComponent
+    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator, LastNameValidator, 
+    FirstNameValidator,MonthlyAmountValidator,HeaderComponent
     ],
   bootstrap: [AppComponent]
 })

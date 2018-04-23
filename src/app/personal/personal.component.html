@@ -190,21 +190,23 @@
 
             <div class="form-group">
                 <label class="control-label" for="firstName">First Name</label>
-                <input class="form-control input-md" id="firstname" #firstName="ngModel" required uppercase name="firstName" minlength="2"
+                <input class="form-control input-md" id="firstname" #firstName="ngModel" required validateFirstName uppercase name="firstName" minlength="2"
                     type="text" placeholder="First Name" [(ngModel)]="personal.firstName">
                 <div class="warning-text" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" [hidden]="firstName.valid">
                     <div *ngIf="firstName.errors.required">This field is required</div>
                     <div *ngIf="firstName.errors.minlength">Minimum length is 2 characters</div>
+                    <div *ngIf="firstName.errors.validateFirstName">First and last names cannont match</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="lastname">Last Name</label>
-                <input class="form-control input-md" id="lastname" #lastname="ngModel" required uppercase name="lastname" minlength="2" type="text" placeholder="Last Name"
+                <input class="form-control input-md" id="lastname" #lastname="ngModel" required validateLastName uppercase name="lastname" minlength="2" type="text" placeholder="Last Name"
                     [(ngModel)]="personal.lastName">
                 <div class="warning-text" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" [hidden]="lastname.valid">
                     <div *ngIf="lastname.errors.required">This field is required</div>
                     <div *ngIf="lastname.errors.minlength">Minimum length is 2 characters</div>
+                    <div *ngIf="lastname.errors.validateLastName">First and last names cannont match</div>
                 </div>
             </div>
 
@@ -277,7 +279,7 @@
                             <span class="glyphicon glyphicon-question-sign"></span>
                         </a>
                     </label>
-                    <input class="form-control input-md" id="email" #email="ngModel" required validateEmail name="email" type="text" placeholder="person@example.com"
+                    <input class="form-control input-md" id="email" #email="ngModel" required validateEmail name="email" type="email" placeholder="person@example.com"
                         [(ngModel)]="personal.email">
                     <div *ngIf="email.invalid && email.value.length > '2'" class="email-domain" [hidden]="email.valid">
                         <button (click)="addGmail()" class="">
