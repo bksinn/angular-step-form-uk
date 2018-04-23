@@ -74,10 +74,11 @@ text-decoration: underline;
 }
 
 .form-control {
-	display: inline-block;
+	/*display: inline-block;
 	width: 49%;
 	box-shadow: none;
-	color:#333;
+	color:#333;*/
+	height: 40px;
 }
 
 .logo{
@@ -153,7 +154,8 @@ input,select{
 }
 
 input[type="text"],select,.control-label{
-	width:49%;
+	/*width:49%;*/
+	width:100%;
 	display: inline-block;
 	vertical-align: top;
 	margin:0 0 5px 0;
@@ -180,7 +182,7 @@ input[type="text"],select,.control-label{
 }
 
 .board-inner{ 
-	width: 215px;
+	width: 295px;
 	float: right;
 	margin: 25px 25px 0 0;
 }
@@ -222,10 +224,10 @@ input[type="text"],select,.control-label{
 .nav-tabs li .dash{
 	display: inline-block;
     background-color: #fff;
-    width: 20px;
+    width: 28px;
     height: 6px;
-    vertical-align: top;
-    margin: 13px -4px 0 -4px;
+    vertical-align: super;
+    margin: 13px -4px 0 5px;
 }
 
 .nav>li>a:focus, .nav>li>a:hover{
@@ -251,21 +253,29 @@ input[type="text"],select,.control-label{
 	background-repeat: no-repeat;
 	background-size: contain;
 }
+a.active #text-one,
+a.active #text-two,
+a.active #text-three,
+a.active #text-four,
+a.active #text-five
+ {
+	display: none;
+}
 
 a span.round-tabs {
 	color:#fff;
 	background:transparent;
 	border: 3px solid #fff;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 40px;
+    height: 40px;
+    line-height: 35px;
     display: inline-block;
     border-radius: 100px;
     z-index: 2;
     position: absolute;
     left: 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 a span.completed-tabs {
@@ -704,29 +714,11 @@ padding: 15px;
 
 @media( max-width : 415px ){
 	input[type="text"], select, .control-label{
-		width:100%!important;
+		width:100%;
 	}
-
-	.wr {
-		width: 100%!important;
+	input#la {
+		width: 57%;
 	}
-
-	.wr input {
-		width: 33%!important;
-	}
-
-	#bminus {
-		margin-right: 66px!important;
-	}
-	#bplus {
-		margin-left: 50px!important;
-	}
-
-	.checkbox-group label#checkbox-flexible,.checkbox-group .control-label{
-		width:70%!important;
-	}
-
-
 	.checkbox-group .checkbox-div{
 		width:25px!important;
 		float:right;
@@ -738,41 +730,37 @@ padding: 15px;
 }
 
 @media (max-width: 375px) {
-	#bminus {
-		margin-right: 65px!important;
-	}
-	#bplus {
-		margin-left: 45px!important;
+	input#la {
+		width: 55%;
 	}
 }
 
 @media (min-width: 319px) and (max-width: 374px) {
-	#bplus {
-		margin-left: 10%!important;
-	}
-	#bminus {
-		margin-right: 45px!important;
+	input#la {
+		width: 47%;
 	}
 }
 
 .wr {
-	width: 49%;
+	/*width: 49%;*/
+	width: 100%;
 	display: inline-block;
 	margin: 0;
 }
 
 .wr input {
     display: block;
-    padding: 8px 8px 8px 0;
-    width: 38%;
-    text-align: left;
+    padding: 15px 8px 8px 0;
+    width: 25%;
+    text-align: center;
     border: none;
     outline: none;
     float: left;
-    font-size: 22px;
+    font-size: 30px;
     box-shadow: none;
     margin: 0;
 	background-color: inherit!important;
+	color: #333;
 }
 .wr #term {
 	width: 39%;
@@ -783,9 +771,9 @@ padding: 15px;
 #aplus {
     float: left;
     display: block;
-	padding: 5px 15px;
+	padding: 5px 18px;
 	margin: 0 5px;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bolder;
     cursor: pointer;
     color: #fff;
@@ -796,28 +784,14 @@ padding: 15px;
 }
 span.loan-amount {
 	float: left;
-    font-size: 25px;
+    font-size: 30px;
     margin: 0 10px;
 }
 
-@media (min-width: 900px) {
-	.loanamount-label {
-		width: 56%;
-	}
-	.wr {
-		width: 42%;
-	}
-}
-
-@media (min-width: 416px) and (max-width: 899px) {
-	.loanamount-label {
-		width: 47%;
-	}
-	/*.wr {
-		width: 45%;
-	}*/
-} 
-
 .loanamount {
 	margin-bottom: 30px;
+}
+
+input {
+	font-size: 16px;
 }

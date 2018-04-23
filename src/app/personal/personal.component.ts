@@ -57,7 +57,7 @@ export class PersonalComponent implements OnInit {
     scrollDown($event) {
         if ($event.target.value.length > 9) {
             window.scrollBy({
-                top: 200, // could be negative value
+                top: 50, // could be negative value
                 left: 0,
                 behavior: 'smooth'
             });
@@ -89,7 +89,7 @@ export class PersonalComponent implements OnInit {
                     if (parseInt(countInput.value) < 5000) {
                         countInput.value = parseInt(countInput.value) + 50 + units;
                     }
-                }, 100)
+                }, 125)
             };
             butM.ontouchstart = function () {
                 //Subtract by 50
@@ -100,7 +100,7 @@ export class PersonalComponent implements OnInit {
                     if (parseInt(countInput.value) > 250) {
                         countInput.value = parseInt(countInput.value) - 50 + units;
                     }
-                }, 100)
+                }, 125)
             };
             butP.ontouchend = function () {
                 clearInterval(interval);
@@ -108,12 +108,13 @@ export class PersonalComponent implements OnInit {
             butM.ontouchend = function () {
                 clearInterval(interval);
             }
-            butP.ontouchmove = function () {
-                clearInterval(interval);
-            }
-            butM.ontouchmove = function () {
-                clearInterval(interval);
-            }
+            //Touch move gets triggered any time someone's finger moves
+            // butP.ontouchmove = function () {
+            //     clearInterval(interval);
+            // }
+            // butM.ontouchmove = function () {
+            //     clearInterval(interval);
+            // }
         }
         else {
             butP.onmousedown = function () {
@@ -125,7 +126,7 @@ export class PersonalComponent implements OnInit {
                     if (parseInt(countInput.value) <= 5000) {
                         countInput.value = parseInt(countInput.value) + 50 + units;
                     }
-                }, 100)
+                }, 125)
             };
             butM.onmousedown = function () {
                 //Subtract by 50
@@ -136,7 +137,7 @@ export class PersonalComponent implements OnInit {
                     if (parseInt(countInput.value) > 250) {
                         countInput.value = parseInt(countInput.value) - 50 + units;
                     }
-                }, 100)
+                }, 125)
             };
             butP.onmouseup = function () {
                 clearInterval(interval);
@@ -174,7 +175,7 @@ export class PersonalComponent implements OnInit {
                     // });
 
                     window.scrollBy({
-                        top: 300, // could be negative value
+                        top: 50, // could be negative value
                         left: 0,
                         behavior: 'smooth'
                     });

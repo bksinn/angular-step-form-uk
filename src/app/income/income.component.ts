@@ -45,7 +45,7 @@ export class IncomeComponent implements OnInit {
         //     behavior: 'smooth'
         // });
         window.scrollBy({
-            top: 200, // could be negative value
+            top: 50, // could be negative value
             left: 0,
             behavior: 'smooth'
         });
@@ -56,7 +56,7 @@ export class IncomeComponent implements OnInit {
         //     behavior: 'smooth'
         // });
         window.scrollBy({
-            top: 200, // could be negative value
+            top: 50, // could be negative value
             left: 0,
             behavior: 'smooth'
         });
