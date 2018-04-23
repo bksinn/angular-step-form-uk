@@ -57,13 +57,13 @@
             </select>-->
                 <div class="wr form-group" (click)="toggleLoanAmount()">
                     <div>
-                        <span class="btn btn-info btn-rounded" id="bminus">–</span>
+                        <button class="btn btn-info btn-rounded" id="bminus">–</button>
                         <div class="loanamount-wrapper">
                             <span class="loan-amount">$</span>
                             <input readonly class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount"
                                 type="text" />
                         </div>
-                        <span class="btn btn-info btn-rounded" id="bplus">+</span>
+                        <button class="btn btn-info btn-rounded" id="bplus">+</button>
                     </div>
                 </div>
             <div *ngIf="loanAmount.invalid && (loanAmount.dirty || loanAmount.touched)" class="warning-text" [hidden]="loanAmount.valid">This field is required</div>

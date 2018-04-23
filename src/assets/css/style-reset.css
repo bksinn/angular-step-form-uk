@@ -797,6 +797,7 @@ span.loan-amount {
 	margin-bottom: 30px;
 }
 
+/*Setting this style keeps mobile browsers from zooming on input fields*/
 input {
 	font-size: 16px!important;
 }
