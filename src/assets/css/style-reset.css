@@ -79,6 +79,7 @@ text-decoration: underline;
 	box-shadow: none;
 	color:#333;*/
 	height: 40px!important;
+	font-size: 16px;
 }
 
 .logo{
@@ -151,6 +152,7 @@ input,select{
     padding: 8px 0;
 	border-radius: 3px;
 	border:1px solid #E0E0E0;
+	font-size: 16px;
 }
 
 input[type="text"], input[type="number"], select, .control-label{
