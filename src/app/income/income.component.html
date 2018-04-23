@@ -55,7 +55,7 @@
                 </span>
             </div>
         </div>
-        <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="incomeSource.valid">
+        <div class="prefix-error-message warning-text" *ngIf="(netAmount.touched)" [hidden]="incomeSource.valid">
             <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your income source before continuing
         </div>
         <div id="employer-name"></div>
@@ -63,14 +63,21 @@
 
             <div class="form-group">
                 <label class="control-label" for="workphone">Employer Name</label>
-                <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" type="text" placeholder="Employer name"
+                <input class="form-control input-md" uppercase #employerName="ngModel" required name="employername" minlength=2 type="text" placeholder="Employer name"
                     [(ngModel)]="income.employerName">
                 <div class="warning-text" *ngIf="(employerName.invalid && (employerName.dirty || employerName.touched)) || (paymentType.dirty && employerName.invalid)" [hidden]="employerName.valid">
                     <div *ngIf="employerName.errors.required">This field is required</div>
+                    <div *ngIf="employerName.errors.minlength">Must be at least 2 characters</div>
                 </div>
             </div>
-            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="paymentType.valid">
-                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your payment type before continuing
+            <div class="form-group">
+                <label class="control-label" for="jobtitle">Job Title</label>
+                <input class="form-control input-md" #jobTitle="ngModel" required uppercase minlength="3" name="jobtitle" type="text" placeholder="Job Title"
+                    [(ngModel)]="income.jobTitle">
+                <div class="warning-text" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
+                    <div *ngIf="jobTitle.errors.required">This field is required</div>
+                    <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
+                </div>
             </div>
         </div>
         <div *ngIf="incomeSource.value == 2 || incomeSource.value == 3 || incomeSource.value == 4 || incomeSource.value == 1">
@@ -136,7 +143,7 @@
                     </span>
                 </div>
             </div>
-            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
+            <div class="prefix-error-message warning-text" *ngIf="(netAmount.touched)" [hidden]="employmentYears.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select years at employer before continuing
             </div>
 
@@ -173,7 +180,7 @@
                     </span>
                 </div>
             </div>
-            <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="employmentYears.valid">
+            <div class="prefix-error-message warning-text" *ngIf="(netAmount.touched)" [hidden]="employmentYears.valid">
                 <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select months at employer before continuing
             </div>
         </div>
@@ -198,6 +205,10 @@
                             Direct Deposit
                         </label>
                     </span>
+            </div>
+            <div class="prefix-error-message warning-text" *ngIf="(netAmount.touched)" [hidden]="paymentType.valid">
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your
+                payment type before continuing
             </div>
         </div>
         <div class="form-group">
@@ -229,7 +240,7 @@
                 </span>
             </div>
         </div>
-        <div class="prefix-error-message warning-text" *ngIf="(jobTitle.touched)" [hidden]="payFrequency.valid">
+        <div class="prefix-error-message warning-text" *ngIf="(netAmount.touched)" [hidden]="payFrequency.valid">
             <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your your payment type before continuing
         </div>
 
@@ -245,16 +256,6 @@
             <div class="warning-text" *ngIf="netAmount.invalid && (netAmount.dirty || netAmount.touched)" [hidden]="netAmount.valid">
                 <div *ngIf="netAmount.errors.required">This field is required</div>
                 <div *ngIf="netAmount.invalid">Minimum monthly amount is $500, only enter numbers</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="jobtitle">Job Title</label>
-            <input class="form-control input-md" #jobTitle="ngModel" required uppercase minlength="3" name="jobtitle" type="text" placeholder="Job Title"
-                [(ngModel)]="income.jobTitle">
-            <div class="warning-text" *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" [hidden]="jobTitle.valid">
-                <div *ngIf="jobTitle.errors.required">This field is required</div>
-                <div *ngIf="jobTitle.errors.minlength">Must be at least 3 characters</div>
             </div>
         </div>
 
