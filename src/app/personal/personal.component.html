@@ -131,7 +131,10 @@
                         </span>
                     </div>
             </div>
-            <div *ngIf="termPeriod.invalid && (termPeriod.dirty || termPeriod.touched)" class="warning-text" [hidden]="termPeriod.valid">This field is required</div>
+            <!--<div *ngIf="termPeriod.invalid && (termPeriod.dirty || termPeriod.touched)" class="warning-text" [hidden]="termPeriod.valid">This field is required</div>-->
+            <div class="prefix-error-message warning-text" *ngIf="(zip.touched)" [hidden]="termPeriod.valid">
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select for how long you would like to borrow
+            </div>
         </div>
 
         <div *ngIf="termPeriod.valid && loanAmount.valid">
@@ -195,7 +198,7 @@
                 <div class="warning-text" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" [hidden]="firstName.valid">
                     <div *ngIf="firstName.errors.required">This field is required</div>
                     <div *ngIf="firstName.errors.minlength">Minimum length is 2 characters</div>
-                    <div *ngIf="firstName.errors.validateFirstName">First and last names cannont match</div>
+                    <div *ngIf="firstName.errors.validateFirstName">First and last names can not match</div>
                 </div>
             </div>
 
@@ -206,7 +209,7 @@
                 <div class="warning-text" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" [hidden]="lastname.valid">
                     <div *ngIf="lastname.errors.required">This field is required</div>
                     <div *ngIf="lastname.errors.minlength">Minimum length is 2 characters</div>
-                    <div *ngIf="lastname.errors.validateLastName">First and last names cannont match</div>
+                    <div *ngIf="lastname.errors.validateLastName">First and last names can not match</div>
                 </div>
             </div>
 
@@ -229,7 +232,7 @@
                     <label class="control-label" for="mobilephone">Mobile Phone</label>
                     <input class="form-control input-md phone" id="mobilePhone" #mobilePhone="ngModel" required validatePhone name="mobilephone"
                         type="tel" placeholder="(123) 456-7890" [(ngModel)]="personal.mobilePhone">
-                    <div class="warning-text" *ngIf="mobilePhone.dirty && mobilePhone.untouched" [hidden]="mobilePhone.valid">
+                    <div class="warning-text" style="color: orange;" *ngIf="mobilePhone.dirty && mobilePhone.untouched" [hidden]="mobilePhone.valid">
                         Please finish filling out your phone number
                     </div>
                     <div class="warning-text" *ngIf="mobilePhone.invalid && (mobilePhone.touched)" [hidden]="mobilePhone.valid">
@@ -243,7 +246,7 @@
                     <label class="control-label" for="workphone">Work Phone</label>
                     <input class="form-control input-md phone" id="workPhone" #workPhone="ngModel" required validatePhone name="workPhone" type="tel"
                         placeholder="(123) 456-7890" [(ngModel)]="personal.workPhone">
-                    <div class="warning-text" *ngIf="workPhone.dirty && workPhone.untouched" [hidden]="workPhone.valid">
+                    <div class="warning-text" style="color: orange" *ngIf="workPhone.dirty && workPhone.untouched" [hidden]="workPhone.valid">
                         Please finish filling out your phone number
                     </div>
                     <div class="warning-text" *ngIf="workPhone.invalid && (workPhone.touched)" [hidden]="workPhone.valid">
