@@ -303,6 +303,10 @@ label#checkbox-flexible {
 	display: inline-block;
 }
 
+.checkbox-group.form-group .control-label{
+	width:49%;
+}
+
 .checkbox-div{
 	position: relative;
 	display: inline-block;
@@ -386,7 +390,7 @@ overflow: hidden;
     margin: 0;
 }
 
-.radio input[type=radio]:checked+label {
+.radio input[type=radio]:checked+label, .radio input[type=radio]:hover+label {
     color: #fff;
     background-color: #22c222;
 }
@@ -515,7 +519,7 @@ form[name=incomeForm] .radio, form[name=addressForm] .radio,form[name=bankForm] 
 }
 
 .glyphicon-question-sign{
-	font-size:inherit;
+	font-size:20px;
 	top: 1px;
 }
 
@@ -716,15 +720,28 @@ padding: 15px;
 		width:95%;
 		margin:0 auto;
 	}
+
+	a span.round-tabs {
+		border: 3px solid #fff;
+		width: 35px;
+		height: 35px;
+		line-height: 30px;
+	}
+
+	.nav-tabs li .dash {
+		width: 14px;
+		margin: 0 -4px 0 0;
+		height: 4px;
+		vertical-align: text-top;
+	}
+	.board-inner {
+		width: 215px;}
 }
 
 
 @media( max-width : 415px ){
 	input[type="text"], input[type="number"] select, .control-label{
 		width:100%;
-	}
-	input#la {
-		width: 57%;
 	}
 	.checkbox-group .checkbox-div{
 		width:25px!important;
@@ -736,33 +753,19 @@ padding: 15px;
 	width:49%;}
 }
 
-@media (max-width: 375px) {
-	input#la {
-		width: 55%;
-	}
-}
-
-@media (min-width: 319px) and (max-width: 374px) {
-	input#la {
-		width: 47%;
-	}
-}
-
 .wr {
 	/*width: 49%;*/
-	width: 100%;
-	display: inline-block;
-	margin: 0;
+	width: 215px;
+	margin: 0 auto;
 }
 
 .wr input {
-    display: block;
-    padding: 8px 8px 8px 0;
-    width: 25%;
+    display: inline-block;
+    padding: 0;
+    width: 60px;
     text-align: center;
     border: none;
     outline: none;
-    float: left;
     font-size: 25px!important;
     box-shadow: none;
     margin: 0;
@@ -776,10 +779,12 @@ padding: 15px;
 #bplus,
 #aminus,
 #aplus {
-    float: left;
-    display: block;
-	padding: 5px 18px;
-	margin: 0 5px;
+	display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     font-size: 25px;
     font-weight: bolder;
     cursor: pointer;
@@ -790,16 +795,51 @@ padding: 15px;
     user-select: none;
 }
 span.loan-amount {
-	float: left;
-    font-size: 30px;
-    margin: 0 10px;
+	display: inline-block;
+	font-size: 25px;
+    line-height: 41px;
+    margin: 0;
 }
 
 .loanamount {
 	margin-bottom: 30px;
 }
 
+.loanamount-wrapper{
+	width:85px;
+	vertical-align: top;
+	display: inline-block;
+	margin:0 10px;
+}
+
 /*Setting this style keeps mobile browsers from zooming on input fields*/
 input {
 	font-size: 16px!important;
+}
+
+/*CSS for right arrow*/
+.tooltip .arrow {
+    position: absolute;
+    display: block;
+    width: .8rem;
+    height: .4rem;
+}
+
+.tooltip .arrow::before {
+    position: absolute;
+    content: "";
+    border-color: transparent;
+    border-style: solid;
+}
+
+.bs-tooltip-auto[x-placement^=right] .arrow, .bs-tooltip-right .arrow {
+    left: 0;
+    width: .4rem;
+    height: .8rem;
+}
+
+.bs-tooltip-auto[x-placement^=right] .arrow::before, .bs-tooltip-right .arrow::before {
+    right: 0;
+    border-width: .4rem .4rem .4rem 0;
+    border-right-color: #000;
 }
