@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,7 +12,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 /* Feature Components */
 import { PersonalComponent } from './personal/personal.component';
 import { IncomeComponent } from './income/income.component';
-// import { WorkComponent } from './work/work.component';
 import { BankComponent } from './bank/bank.component';
 import { AddressComponent } from './address/address.component';
 import { ResultComponent } from './result/result.component';
@@ -33,7 +31,6 @@ import {
   DOBValidator,
   ZipCodeValidator,
   ABARoutingValidator,
-  AccountNumberValidator,
   UppercaseDirective,
   StateValidator,
   MonthlyAmountValidator,
@@ -47,7 +44,6 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     AppRoutingModule,
     CommonModule,
-    HttpModule,
     HttpClientModule,
     NgbModule.forRoot()
   ],
@@ -60,7 +56,7 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
       AppComponent, NavbarComponent, PersonalComponent, IncomeComponent, 
       BankComponent, AddressComponent, ResultComponent, PhoneNumberValidator, EmailValidator, SSNValidator, DOBValidator,
-    ZipCodeValidator, ABARoutingValidator, AccountNumberValidator, UppercaseDirective, StateValidator, LastNameValidator, 
+    ZipCodeValidator, ABARoutingValidator, UppercaseDirective, StateValidator, LastNameValidator, 
     FirstNameValidator,MonthlyAmountValidator,HeaderComponent
     ],
   bootstrap: [AppComponent]

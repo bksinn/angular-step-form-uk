@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Result } from '../data/formData.model';
 import { FormData } from '../data/formData.model';
@@ -14,7 +14,6 @@ import { take, map } from 'rxjs/operators';
     templateUrl: './result.component.html',
 })
 
-@Injectable()
 export class ResultComponent implements OnInit {
     title = 'Terms and Conditions';
     @Input() formData: FormData;

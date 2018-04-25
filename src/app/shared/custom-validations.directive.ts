@@ -1,5 +1,5 @@
-import { Directive, forwardRef, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, Validator, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
+import { Directive, forwardRef, Input } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, NG_ASYNC_VALIDATORS, Validator, ValidatorFn } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { EventEmitter, HostListener, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -380,23 +380,6 @@ export class ABARoutingValidator implements Validator {
         return this.validator(c);
     }
 
-}
-
-@Directive({
-    selector: '[validateAccountNumber]',
-    providers: [{ provide: NG_VALIDATORS, useExisting: AccountNumberValidator, multi: true }]
-})
-export class AccountNumberValidator implements Validator {
-
-    validate(c: FormControl): ValidationErrors {
-        const validateAccountNumber = /^\d{3,3}-\d{3,3}-\d{3,3}$/.test(c.value);
-        const message = {
-            'validateAccountNumber': {
-                'message': 'The phone number must be valid (XXX-XXX-XXX, where X is a digit)'
-            }
-        };
-        return validateAccountNumber ? null : message;
-    }
 }
 
 //Force uppercase

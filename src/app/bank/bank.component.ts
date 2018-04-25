@@ -4,20 +4,15 @@ import { Bank } from '../data/formData.model';
 import { FormDataService } from '../data/formData.service';
 import { FormData } from '../data/formData.model';
 
-
 import { HttpClient } from '@angular/common/http';
 //Ng-Bootstrap
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/merge';
 
 const information = ['something'];
 
@@ -82,15 +77,6 @@ export class BankComponent implements OnInit {
         let routingNumber = this.bank.routingNumber;
         let bankName;
 
-        //elementRouting.removeAttribute('validateABA')
-
-
-        //CHECKBOX My bank is located in the same State as me
-        //function onclick located on the checkbox
-        //if (checkbox is clicked) {do promise} 
-        //else{
-        //      show elementRouting, clear value, add validateABA if not there 
-        //}
         bankName = this.clickedItem || bankElement.value
 
         let promise = new Promise((resolve, reject) => {
