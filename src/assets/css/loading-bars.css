@@ -43,6 +43,18 @@
     bottom: 35px;
 }
 
+.loading-ellipsis {
+    height: 85px;
+    position: relative;
+    bottom: 20px;
+}
+
+.ellipsis {
+    width: 20%;
+    margin: 0 auto;
+    height: 20px;
+}
+
 p.countdown {
     position: relative;
     font-size: 100px;
