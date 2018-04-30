@@ -310,7 +310,7 @@ label#checkbox-flexible {
 .checkbox-div{
 	position: relative;
 	display: inline-block;
-	width:49%!important;
+	width:49%;
 	padding:5px 0;
 }
 
@@ -352,6 +352,16 @@ label#checkbox-flexible {
 
 .checkbox-div input[type=checkbox]:checked + label:after {
     opacity: 1;
+}
+
+@media (min-width: 416px) {
+	.checkbox-group.form-group .control-label{
+		width:94%;
+	}
+
+	.checkbox-div {
+		width: 5%;
+	}
 }
 
 .radio {
