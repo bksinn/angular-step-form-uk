@@ -2,7 +2,7 @@
     <div class="tab-pane fade in active">
         <h3 class="head text-center">{{title1}}</h3>
         <div class="form-group loanamount">
-             <!--<label class="control-label loanamount-label" for="loanAmount">How much would you like to borrow?</label>-->
+            <!--<label class="control-label loanamount-label" for="loanAmount">How much would you like to borrow?</label>-->
             <!--<select class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount">
                 <option value="" disabled selected>Select</option>
                 <option value="250">$250</option>
@@ -55,17 +55,17 @@
                 <option value="4000">$4000</option>
                 <option value="5000">$5000+</option>
             </select>-->
-                <div class="wr form-group" (click)="toggleLoanAmount()">
-                    <div>
-                        <button class="btn btn-info btn-rounded" id="bminus">–</button>
-                        <div class="loanamount-wrapper">
-                            <span class="loan-amount">$</span>
-                            <input readonly class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount"
-                                type="text" />
-                        </div>
-                        <button class="btn btn-info btn-rounded" id="bplus">+</button>
+            <div class="wr form-group" (click)="toggleLoanAmount()">
+                <div>
+                    <button class="btn btn-info btn-rounded" id="bminus">–</button>
+                    <div class="loanamount-wrapper">
+                        <span class="loan-amount">$</span>
+                        <input readonly class="form-control input-md" id="la" #loanAmount="ngModel" required name="loanAmount" [(ngModel)]="personal.loanAmount"
+                            type="text" />
                     </div>
+                    <button class="btn btn-info btn-rounded" id="bplus">+</button>
                 </div>
+            </div>
             <div *ngIf="loanAmount.invalid && (loanAmount.dirty || loanAmount.touched)" class="warning-text" [hidden]="loanAmount.valid">This field is required</div>
         </div>
 
@@ -91,49 +91,50 @@
                 <option value="17">17 Months</option>
                 <option value="18">18+ Months</option>
             </select>-->
-                <div class="term-group">
-                    <div class="radio radio-term" type="radio">
-                        <span class="option">
+            <div class="term-group">
+                <div class="radio radio-term" type="radio">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=3 type="radio">
                             <label>
                                 3
                             </label>
                         </span>
-                        <span class="option">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=6 type="radio">
                             <label>
                                 6
                             </label>
                         </span>
-                        <span class="option">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=9 type="radio">
                             <label>
                                9
                             </label>
                         </span>
-                        <span class="option">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=12 type="radio">
                             <label>
                                 12
                             </label>
                         </span>
-                        <span class="option">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=18 type="radio">
                             <label>
                                 18
                             </label>
                         </span>
-                        <span class="option">
+                    <span class="option">
                             <input #termPeriod="ngModel" required name="termPeriod" [(ngModel)]="personal.termPeriod" value=24 type="radio">
                             <label>
                                 24+
                             </label>
                         </span>
-                    </div>
+                </div>
             </div>
             <!--<div *ngIf="termPeriod.invalid && (termPeriod.dirty || termPeriod.touched)" class="warning-text" [hidden]="termPeriod.valid">This field is required</div>-->
             <div class="prefix-error-message warning-text" *ngIf="(zip.touched)" [hidden]="termPeriod.valid">
-                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select for how long you would like to borrow
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select for how long you
+                would like to borrow
             </div>
         </div>
 
@@ -154,6 +155,9 @@
             <div class="warning-text" *ngIf="zip.invalid && (zip.dirty || zip.touched)" [hidden]="zip.valid">
                 <div *ngIf="zip.errors.required">This field is required</div>
                 <div *ngIf="zip.invalid">Please provide a valid zip code</div>
+            </div>
+            <div *ngIf="zipCodeLoading" class="ellipsis">
+                <img class="loading-ellipsis" src="assets/images/loading-ellipsis.svg" alt="Loading Animation">
             </div>
         </div>
         <div *ngIf="loanAmount.valid && termPeriod.valid && zip.valid">
@@ -188,13 +192,14 @@
                 </div>
             </div>
             <div class="prefix-error-message warning-text" *ngIf="(firstName.touched || dob.touched || dob.dirty)" [hidden]="prefix.valid">
-                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your title before continuing
+                <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select your title before
+                continuing
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="firstName">First Name</label>
-                <input class="form-control input-md" id="firstname" #firstName="ngModel" required validateFirstName uppercase name="firstName" minlength="2"
-                    type="text" placeholder="First Name" [(ngModel)]="personal.firstName">
+                <input class="form-control input-md" id="firstname" #firstName="ngModel" required validateFirstName uppercase name="firstName"
+                    minlength="2" type="text" placeholder="First Name" [(ngModel)]="personal.firstName">
                 <div class="warning-text" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" [hidden]="firstName.valid">
                     <div *ngIf="firstName.errors.required">This field is required</div>
                     <div *ngIf="firstName.errors.minlength">Minimum length is 2 characters</div>
@@ -204,8 +209,8 @@
 
             <div class="form-group">
                 <label class="control-label" for="lastname">Last Name</label>
-                <input class="form-control input-md" id="lastname" #lastname="ngModel" required validateLastName uppercase name="lastname" minlength="2" type="text" placeholder="Last Name"
-                    [(ngModel)]="personal.lastName">
+                <input class="form-control input-md" id="lastname" #lastname="ngModel" required validateLastName uppercase name="lastname"
+                    minlength="2" type="text" placeholder="Last Name" [(ngModel)]="personal.lastName">
                 <div class="warning-text" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" [hidden]="lastname.valid">
                     <div *ngIf="lastname.errors.required">This field is required</div>
                     <div *ngIf="lastname.errors.minlength">Minimum length is 2 characters</div>
@@ -215,8 +220,8 @@
 
             <div class="form-group">
                 <label class="control-label" for="dob">Date of Birth</label>
-                <input (keyup)="scrollDown($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB
-                    type="tel" placeholder="MM/DD/YYYY" [(ngModel)]="personal.dob">
+                <input (keyup)="scrollDown($event)" class="form-control input-md" #dob="ngModel" required name="dob" validateDOB type="tel"
+                    placeholder="MM/DD/YYYY" [(ngModel)]="personal.dob">
                 <div class="warning-text" *ngIf="dob.invalid && (dob.dirty || dob.touched)" [hidden]="dob.valid">
                     <div *ngIf="dob.errors.required">This field is required</div>
                     <div *ngIf="dob.errors.validateDOB">Please use format MM/DD/YYYY
@@ -422,7 +427,8 @@
                 </div>
                 <div class="militaryService-error-message warning-text" *ngIf="(driversLicense.touched || driversLicense.dirty)" class="warning-text"
                     [hidden]="militaryService.valid">
-                    <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select an option before continuing
+                    <span class="glyphicon glyphicon-arrow-up" style="margin-right: 5px;"></span>Please select an option
+                    before continuing
                 </div>
 
             </div>

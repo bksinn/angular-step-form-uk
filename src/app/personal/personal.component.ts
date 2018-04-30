@@ -22,6 +22,7 @@ export class PersonalComponent implements OnInit {
     apiRoot: string = "https://www.pingyo.com/find/locales/zipcode/";
     response: Array<any> = [];
     areaCode: string = '';
+    zipCodeLoading: boolean = false;
 
     constructor(
         private router: Router,
@@ -151,6 +152,7 @@ export class PersonalComponent implements OnInit {
         let zipcodeElement: HTMLInputElement = element as HTMLInputElement;
         url = url + zipcodeElement.value;
         if (zipcodeElement.value.length == 5 && Number(zipcodeElement.value)) {
+            this.zipCodeLoading = true;
             this.http.get(url).subscribe(
                 res => {
                     // document.querySelector('#title-2').scrollIntoView({
@@ -193,8 +195,10 @@ export class PersonalComponent implements OnInit {
                     this.formData.typeAheadCity = [];
                     this.formData.typeAheadState.push(res[0].StateAbbreviation);
                     this.formData.typeAheadCity.push(res[0].City);
+                    this.zipCodeLoading = false;
                 },
                 msg => {
+                    this.zipCodeLoading = false;
                     console.error(`Error: ${msg.status} ${msg.statusText}`)
                 }
             );
